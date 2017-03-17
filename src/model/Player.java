@@ -11,7 +11,7 @@ public class Player {
     // The private player state
     private String name;
     private Race race;
-    private String playerClass;
+    private PlayerClass playerClass;
     private int health;
     private int mana;
     private int movement;
@@ -25,7 +25,7 @@ public class Player {
      * Manual Constructor for testing.
      * @param name String representing the character's name
      * @param race Race object representing the character's race
-     * @param playerClass String representing the character's class
+     * @param playerClass PlayerClass object representing the character's class
      * @param health int representing the character's current health
      * @param mana int representing the character's current mana
      * @param movement int representing the character's current movement distance
@@ -35,7 +35,7 @@ public class Player {
      * @param limits Limits object representing various maximum and minimum character values
      * @param inventory  ArrayList of Item objects representing the character's inventory
      */
-    public Player(String name, Race race, String playerClass, int health, int mana, int movement, long experience,
+    public Player(String name, Race race, PlayerClass playerClass, int health, int mana, int movement, long experience,
                   int level, double weight, Limits limits, ArrayList<Item> inventory) {
         this.name = name;
         this.race = race;
@@ -58,19 +58,38 @@ public class Player {
      */
     public Player(String race, String name, String playerClass){
         this.name = name;
-        this.playerClass = playerClass;
+        if(playerClass.equals(Warrior.WARRIOR_PLAYER_CLASS)){
+            this.playerClass = new Warrior();
+        }
 
         // Human character constructor
         if(race.equals("Human")){
             this.race = new Human();
-            this.health = Human.HUMAN_DEFAULT_HEALTH;
-            this.mana = Human.HUMAN_DEFAULT_MANA;
-            this.movement = Human.HUMAN_DEFAULT_MOVEMENT;
+            this.health = Human.HUMAN_DEFAULT_HEALTH + this.playerClass.getHealthModifier();
+            this.mana = Human.HUMAN_DEFAULT_MANA + this.playerClass.getManaModifier();
+            this.movement = Human.HUMAN_DEFAULT_MOVEMENT + this.playerClass.getMovementModifier();
             this.experience = Human.HUMAN_DEFAULT_EXPERIENCE;
             this.level = Human.HUMAN_DEFAULT_LEVEL;
-            this.weight = Human.HUMAN_DEFAULT_WEIGHT;
+            this.weight = Limits.DEFAULT_MIN_WEIGHT;
             this.limits = new Limits(race);
+            this.limits.setMaxWeight(Human.HUMAN_DEFAULT_WEIGHT + this.playerClass.getWeightModifier());
             this.inventory = new ArrayList<>();
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Player:\n" +
+                " name: '" + name + '\'' +
+                "\n race: " + race.toString() +
+                "\n playerClass: " + playerClass.toString() +
+                "\n health: " + health +
+                "\n mana: " + mana +
+                "\n movement: " + movement +
+                "\n experience: " + experience +
+                "\n level: " + level +
+                "\n weight: " + weight +
+                "\n limits: " + limits.toString() +
+                "\n inventory: " + inventory;
     }
 }

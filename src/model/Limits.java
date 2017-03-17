@@ -69,18 +69,132 @@ public class Limits {
     public Limits(String race){
         // Human limit constructor
         if(race.equals(HUMAN_RACE)){
-            this.maxHealth = Player.HUMAN_DEFAULT_HEALTH;
+            this.maxHealth = Human.HUMAN_DEFAULT_HEALTH;
             this.minHealth = DEFAULT_MIN_HEALTH;
-            this.maxMana = Player.HUMAN_DEFAULT_MANA;
+            this.maxMana = Human.HUMAN_DEFAULT_MANA;
             this.minMana = DEFAULT_MIN_MANA;
-            this.maxMovement = Player.HUMAN_DEFAULT_MOVEMENT;
+            this.maxMovement = Human.HUMAN_DEFAULT_MOVEMENT;
             this.minMovement = DEFAULT_MIN_MOVEMENT;
             this.maxExperience = LEVEL_ONE_EXPERIENCE;
-            this.minExperience = Player.HUMAN_DEFAULT_EXPERIENCE;
+            this.minExperience = Human.HUMAN_DEFAULT_EXPERIENCE;
             this.maxLevel = DEFAULT_MAX_LEVEL;
-            this.minLevel = Player.HUMAN_DEFAULT_LEVEL;
-            this.maxWeight = Player.HUMAN_DEFAULT_WEIGHT;
+            this.minLevel = Human.HUMAN_DEFAULT_LEVEL;
+            this.maxWeight = Human.HUMAN_DEFAULT_WEIGHT;
             this.minWeight = DEFAULT_MIN_WEIGHT;
         }
+    }
+
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
+    public void setMaxHealth(int maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+
+    public int getMinHealth() {
+        return minHealth;
+    }
+
+    public void setMinHealth(int minHealth) {
+        this.minHealth = minHealth;
+    }
+
+    public int getMaxMana() {
+        return maxMana;
+    }
+
+    public void setMaxMana(int maxMana) {
+        this.maxMana = maxMana;
+    }
+
+    public int getMinMana() {
+        return minMana;
+    }
+
+    public void setMinMana(int minMana) {
+        this.minMana = minMana;
+    }
+
+    public int getMaxMovement() {
+        return maxMovement;
+    }
+
+    public void setMaxMovement(int maxMovement) {
+        this.maxMovement = maxMovement;
+    }
+
+    public int getMinMovement() {
+        return minMovement;
+    }
+
+    public void setMinMovement(int minMovement) {
+        this.minMovement = minMovement;
+    }
+
+    public long getMaxExperience() {
+        return maxExperience;
+    }
+
+    public void setMaxExperience(long maxExperience) {
+        this.maxExperience = maxExperience;
+    }
+
+    public long getMinExperience() {
+        return minExperience;
+    }
+
+    public void setMinExperience(long minExperience) {
+        this.minExperience = minExperience;
+    }
+
+    public int getMaxLevel() {
+        return maxLevel;
+    }
+
+    public void setMaxLevel(int maxLevel) {
+        this.maxLevel = maxLevel;
+    }
+
+    public int getMinLevel() {
+        return minLevel;
+    }
+
+    public void setMinLevel(int minLevel) {
+        this.minLevel = minLevel;
+    }
+
+    public double getMaxWeight() {
+        return maxWeight;
+    }
+
+    public void setMaxWeight(double maxWeight) {
+        this.maxWeight = maxWeight;
+    }
+
+    public double getMinWeight() {
+        return minWeight;
+    }
+
+    public void setMinWeight(double minWeight) {
+        this.minWeight = minWeight;
+    }
+
+    @Override
+    public String toString() {
+        return "Limits{" +
+                "maxHealth=" + maxHealth +
+                ", minHealth=" + minHealth +
+                ", maxMana=" + maxMana +
+                ", minMana=" + minMana +
+                ", maxMovement=" + maxMovement +
+                ", minMovement=" + minMovement +
+                ", maxExperience=" + maxExperience +
+                ", minExperience=" + minExperience +
+                ", maxLevel=" + maxLevel +
+                ", minLevel=" + minLevel +
+                ", maxWeight=" + maxWeight +
+                ", minWeight=" + minWeight +
+                '}';
     }
 }
