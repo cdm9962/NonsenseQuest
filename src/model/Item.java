@@ -6,6 +6,10 @@ package model;
  * @author Connor D. Milligan, Nathan Hall
  */
 public abstract class Item {
-    private int value;
-    private int weight;
+    private String name;
+    private String rarity;
+    private String description;
+    private boolean equipable;
+    private double value;
+    private double weight;
 }

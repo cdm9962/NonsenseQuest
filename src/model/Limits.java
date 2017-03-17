@@ -20,6 +20,17 @@ public class Limits {
     private double maxWeight;
     private double minWeight;
 
+    public static final String HUMAN_RACE = "Human";
+
+    public static final int DEFAULT_MIN_HEALTH = 0;
+    public static final int DEFAULT_MIN_MANA = 0;
+    public static final int DEFAULT_MIN_MOVEMENT = 0;
+    public static final int DEFAULT_MAX_LEVEL = 50;
+    public static final double DEFAULT_MIN_WEIGHT = 0;
+
+    public static final long LEVEL_ONE_EXPERIENCE = 1000;
+
+
     /**
      * Manual constructor for testing.
      * @param maxHealth int representing the maximum health of a character
@@ -49,5 +60,27 @@ public class Limits {
         this.minLevel = minLevel;
         this.maxWeight = maxWeight;
         this.minWeight = minWeight;
+    }
+
+    /**
+     * Limit constructor for the various races.
+     * @param race String representing the character's race
+     */
+    public Limits(String race){
+        // Human limit constructor
+        if(race.equals(HUMAN_RACE)){
+            this.maxHealth = Player.HUMAN_DEFAULT_HEALTH;
+            this.minHealth = DEFAULT_MIN_HEALTH;
+            this.maxMana = Player.HUMAN_DEFAULT_MANA;
+            this.minMana = DEFAULT_MIN_MANA;
+            this.maxMovement = Player.HUMAN_DEFAULT_MOVEMENT;
+            this.minMovement = DEFAULT_MIN_MOVEMENT;
+            this.maxExperience = LEVEL_ONE_EXPERIENCE;
+            this.minExperience = Player.HUMAN_DEFAULT_EXPERIENCE;
+            this.maxLevel = DEFAULT_MAX_LEVEL;
+            this.minLevel = Player.HUMAN_DEFAULT_LEVEL;
+            this.maxWeight = Player.HUMAN_DEFAULT_WEIGHT;
+            this.minWeight = DEFAULT_MIN_WEIGHT;
+        }
     }
 }
