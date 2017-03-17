@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * The player object class.  Holds all of the player data.
  *
- * @author Connor D. Milligan
+ * @author Connor D. Milligan, Nathan Hall
  */
 public class Player {
     // The private player state
@@ -72,6 +72,9 @@ public class Player {
             this.level = Human.HUMAN_DEFAULT_LEVEL;
             this.weight = Limits.DEFAULT_MIN_WEIGHT;
             this.limits = new Limits(race);
+            this.limits.setMaxHealth(Human.HUMAN_DEFAULT_HEALTH + this.playerClass.getHealthModifier());
+            this.limits.setMaxMana(Human.HUMAN_DEFAULT_MANA + this.playerClass.getManaModifier());
+            this.limits.setMaxMovement(Human.HUMAN_DEFAULT_MOVEMENT + this.playerClass.getMovementModifier());
             this.limits.setMaxWeight(Human.HUMAN_DEFAULT_WEIGHT + this.playerClass.getWeightModifier());
             this.inventory = new ArrayList<>();
         }
