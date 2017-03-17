@@ -6,14 +6,48 @@ package model;
  * @author Connor D. Milligan
  */
 public class Limits {
+    // The private limit values
     private int maxHealth;
     private int minHealth;
     private int maxMana;
     private int minMana;
     private int maxMovement;
     private int minMovement;
+    private long maxExperience;
+    private long minExperience;
     private int maxLevel;
     private int minLevel;
-    private int maxWeight;
-    private int minWeight;
+    private double maxWeight;
+    private double minWeight;
+
+    /**
+     * Manual constructor for testing.
+     * @param maxHealth int representing the maximum health of a character
+     * @param minHealth int representing the minimum health of a character
+     * @param maxMana int representing the maximum mana of a character
+     * @param minMana int representing the minimum mana of a character
+     * @param maxMovement int representing the maximum movement distance of a character
+     * @param minMovement int representing the minimum movement distance of a character
+     * @param maxExperience long representing the maximum experience points for the current level
+     * @param minExperience long representing the minimum experience points for the current level
+     * @param maxLevel int representing the maximum level of a character
+     * @param minLevel int representing the minimum level of a character
+     * @param maxWeight double representing the maximum weight of a character
+     * @param minWeight double representing the minimum weight of a character
+     */
+    public Limits(int maxHealth, int minHealth, int maxMana, int minMana, int maxMovement, int minMovement, long maxExperience,
+                  long minExperience, int maxLevel, int minLevel, double maxWeight, double minWeight) {
+        this.maxHealth = maxHealth;
+        this.minHealth = minHealth;
+        this.maxMana = maxMana;
+        this.minMana = minMana;
+        this.maxMovement = maxMovement;
+        this.minMovement = minMovement;
+        this.maxExperience = maxExperience;
+        this.minExperience = minExperience;
+        this.maxLevel = maxLevel;
+        this.minLevel = minLevel;
+        this.maxWeight = maxWeight;
+        this.minWeight = minWeight;
+    }
 }
