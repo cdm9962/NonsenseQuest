@@ -15,7 +15,7 @@ import model.GameModel;
 /**
  * Utility class for the opening scene
  *
- * @author Connor D. Milligan
+ * @author Connor D. Milligan, Nathan Hall
  */
 public class OpeningScene {
     private GameModel model;
