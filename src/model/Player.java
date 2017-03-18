@@ -56,7 +56,7 @@ public class Player {
      * @param name String representing the name of the character
      * @param playerClass String representing the class of the character
      */
-    public Player(String race, String name, String playerClass){
+    public Player(String name, String race, String playerClass){
         this.name = name;
 
         // Warrior character constructor

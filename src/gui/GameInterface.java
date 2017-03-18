@@ -36,7 +36,7 @@ public class GameInterface extends Application implements Observer {
      * Constructor for the game interface.
      */
     public GameInterface(){
-        this.model = new GameModel();
+        this.model = null;
     }
 
     @Override
@@ -64,16 +64,6 @@ public class GameInterface extends Application implements Observer {
     }
 
     /**
-     * Method to create the scene of the application.
-     * @return BorderPane representing the elements of the scene
-     */
-    private BorderPane makeBorder(){
-        BorderPane border = new BorderPane();
-        border.setTop(makeSplash());
-        return border;
-    }
-
-    /**
      * Method to create the title bar for the application.
      * @return Pane representing the top element of the border pane
      */
@@ -90,7 +80,8 @@ public class GameInterface extends Application implements Observer {
         GridPane grid = new GridPane();
         Button start = new Button("Start Adventure!");
         start.setOnAction(event -> {
-            openingScene();
+            OpeningScene openingScene = new OpeningScene(this.model, this.primaryStage);
+            openingScene.startScene();
         });
         grid.add(start, 0, 0);
 
@@ -99,13 +90,4 @@ public class GameInterface extends Application implements Observer {
         return border;
     }
 
-    private void openingScene(){
-        primaryStage.setTitle(TITLE);
-        BorderPane border = new BorderPane();
-        border.setCenter(new Label("Opening scene"));
-        Scene opening = new Scene(border);
-        primaryStage.setScene(opening);
-        primaryStage.setResizable(true);
-        primaryStage.show();
-    }
 }
