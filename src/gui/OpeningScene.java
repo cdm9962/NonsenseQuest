@@ -10,8 +10,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import model.GameModel;
-import model.Human;
+import model.*;
 
 /**
  * Utility class for the opening scene.  Gathers user information for character creation.
@@ -90,9 +89,19 @@ public class OpeningScene {
         Button humanButton = new Button(Human.HUMAN_RACE);
         characterRace.add(humanButton, 1, 0);
 
-        // Sets player race
+        // Sets player race to human
         humanButton.setOnAction(event -> {
             this.race = Human.HUMAN_RACE;
+            pickClass(border);
+        });
+
+        // Adds the dragon race option to the grid pane
+        Button dragonButton = new Button(Dragon.DRAGON_RACE);
+        characterRace.add(dragonButton, 2, 0);
+
+        // Sets player race to dragon
+        dragonButton.setOnAction(event -> {
+            this.race = Dragon.DRAGON_RACE;
             pickClass(border);
         });
 
@@ -112,12 +121,24 @@ public class OpeningScene {
         characterClass.add(title, 0, 0);
 
         // Adds the warrior class option to the grid pane
-        Button warriorButton = new Button("Warrior");
+        Button warriorButton = new Button(Warrior.WARRIOR_PLAYER_CLASS);
         characterClass.add(warriorButton, 1, 0);
 
-        // Sets player class and updates the rest of the model
+        // Sets player class to warrior and updates the rest of the model
         warriorButton.setOnAction(event -> {
-            this.playerClass = "Warrior";
+            this.playerClass = Warrior.WARRIOR_PLAYER_CLASS;
+            GameModel modelUpdate = new GameModel(this.name, this.race, this.playerClass);
+            this.model = modelUpdate;
+            displayCharacter(border);
+        });
+
+        // Adds the thief class option to the grid pane
+        Button thiefButton = new Button(Thief.THIEF_PLAYER_CLASS);
+        characterClass.add(thiefButton, 2, 0);
+
+        // Sets player class to thief and updates the rest of the model
+        thiefButton.setOnAction(event -> {
+            this.playerClass = Thief.THIEF_PLAYER_CLASS;
             GameModel modelUpdate = new GameModel(this.name, this.race, this.playerClass);
             this.model = modelUpdate;
             displayCharacter(border);
@@ -155,6 +176,10 @@ public class OpeningScene {
         // Adds deny button to the accept grid pane
         Button noButton = new Button("No");
         acceptGrid.add(noButton, 2, 0);
+        noButton.setOnAction(event -> {
+            OpeningScene redo = new OpeningScene(this.model, this.primaryStage);
+            redo.startScene();
+        });
 
         border.setRight(acceptGrid);
     }
