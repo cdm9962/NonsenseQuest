@@ -1,4 +1,4 @@
-package model;
+package model.items;
 
 /**
  * A player usable value object.

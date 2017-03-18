@@ -1,5 +1,7 @@
 package model;
 
+import model.races.Human;
+
 /**
  * Class to hold the minimum and maximum player values.
  *

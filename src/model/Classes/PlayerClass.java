@@ -1,4 +1,4 @@
-package model;
+package model.classes;
 
 /**
  * Abstract class to hold class attributes.

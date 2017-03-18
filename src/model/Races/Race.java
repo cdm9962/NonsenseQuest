@@ -1,4 +1,4 @@
-package model;
+package model.races;
 
 /**
  * Abstract class to hold race attributes.

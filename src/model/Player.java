@@ -1,5 +1,13 @@
 package model;
 
+import model.classes.PlayerClass;
+import model.classes.Thief;
+import model.classes.Warrior;
+import model.items.Item;
+import model.races.Dragon;
+import model.races.Human;
+import model.races.Race;
+
 import java.util.ArrayList;
 
 /**

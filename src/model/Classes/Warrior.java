@@ -1,4 +1,4 @@
-package model;
+package model.classes;
 
 /**
  * Warrior player class.

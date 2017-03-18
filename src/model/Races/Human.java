@@ -1,4 +1,4 @@
-package model;
+package model.races;
 
 /**
  * Human race class.

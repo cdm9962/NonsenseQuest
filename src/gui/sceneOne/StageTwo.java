@@ -1,21 +1,20 @@
-package gui;
+package gui.sceneOne;
 
-import javafx.geometry.Insets;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.GameModel;
 
 /**
- * @author Connor D. Milligan
+ * @author Connor D. Milligan, Nathan Hall
  */
-public class StageOne {
+public class StageTwo {
     private GameModel model;
 
     private Stage primaryStage;
 
-    public static final String STAGE_ONE_TITLE = "Stage one: Select a stage.";
+    public static final String STAGE_TWO_TITLE = "Stage one: Select a stage.";
 
-    public StageOne(GameModel model, Stage primaryStage){
+    public StageTwo(GameModel model, Stage primaryStage){
         this.model = model;
         this.primaryStage = primaryStage;
     }

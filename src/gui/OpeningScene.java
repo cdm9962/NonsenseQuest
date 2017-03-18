@@ -1,5 +1,6 @@
 package gui;
 
+import gui.sceneOne.SceneOne;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,6 +12,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.*;
+import model.classes.Thief;
+import model.classes.Warrior;
+import model.races.Dragon;
+import model.races.Human;
 
 /**
  * Utility class for the opening scene.  Gathers user information for character creation.
