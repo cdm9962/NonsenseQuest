@@ -12,6 +12,15 @@ Built using Java and the JavaFX framework.
 
 - Currently in early stages of development/design.
 
+## Updates:
+
+- Update 1: Completed basic character creation.
+
+![alt tag](https://preview.ibb.co/bXg2gF/Update_1_final_1.png)
+![alt tag](https://preview.ibb.co/djDtov/Update_1_final_2.png)
+
+
+
 ## Trello:
 
 - Development process can be tracked through Trello.
