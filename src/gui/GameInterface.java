@@ -3,8 +3,11 @@ package gui;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.*;
 import javafx.scene.text.Font;
@@ -24,6 +27,8 @@ public class GameInterface extends Application implements Observer {
     // The game model for the graphical user interface
     private GameModel model;
 
+    private Stage primaryStage;
+
     // Constant string values
     public static final String TITLE = "Nonsense Quest";
 
@@ -42,9 +47,10 @@ public class GameInterface extends Application implements Observer {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle(TITLE);
-        primaryStage.setScene(new Scene(makeBorder()));
-        primaryStage.setResizable(false);
+        primaryStage.setScene(new Scene(makeSplash()));
+        primaryStage.setResizable(true);
         primaryStage.show();
+        this.primaryStage = primaryStage;
     }
 
     @Override
@@ -63,7 +69,7 @@ public class GameInterface extends Application implements Observer {
      */
     private BorderPane makeBorder(){
         BorderPane border = new BorderPane();
-        border.setTop(makeTopLabel());
+        border.setTop(makeSplash());
         return border;
     }
 
@@ -71,12 +77,35 @@ public class GameInterface extends Application implements Observer {
      * Method to create the title bar for the application.
      * @return Pane representing the top element of the border pane
      */
-    private Pane makeTopLabel(){
+    private BorderPane makeSplash(){
+        BorderPane border = new BorderPane();
+
         Label label = new Label("Welcome to Nonsense Quest!");
         label.setFont(new Font(30));
         label.setTextFill(javafx.scene.paint.Paint.valueOf("blue"));
         label.setAlignment(Pos.CENTER);
         Pane pane = new Pane(label);
-        return pane;
+        border.setCenter(pane);
+
+        GridPane grid = new GridPane();
+        Button start = new Button("Start Adventure!");
+        start.setOnAction(event -> {
+            openingScene();
+        });
+        grid.add(start, 0, 0);
+
+        border.setBottom(start);
+
+        return border;
+    }
+
+    private void openingScene(){
+        primaryStage.setTitle(TITLE);
+        BorderPane border = new BorderPane();
+        border.setCenter(new Label("Opening scene"));
+        Scene opening = new Scene(border);
+        primaryStage.setScene(opening);
+        primaryStage.setResizable(true);
+        primaryStage.show();
     }
 }

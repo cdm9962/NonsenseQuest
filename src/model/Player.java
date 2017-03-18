@@ -58,6 +58,8 @@ public class Player {
      */
     public Player(String race, String name, String playerClass){
         this.name = name;
+
+        // Warrior character constructor
         if(playerClass.equals(Warrior.WARRIOR_PLAYER_CLASS)){
             this.playerClass = new Warrior();
         }
