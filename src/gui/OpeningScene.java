@@ -11,39 +11,55 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.GameModel;
+import model.Human;
 
 /**
- * Utility class for the opening scene
+ * Utility class for the opening scene.  Gathers user information for character creation.
  *
  * @author Connor D. Milligan, Nathan Hall
  */
 public class OpeningScene {
+    // Private state for nessisary for the scene
     private GameModel model;
     private Stage primaryStage;
+
+    // User gathered information
     private String name;
     private String race;
     private String playerClass;
 
+    /**
+     * Constructor for the opening scene.
+     * @param model GameModel of the current game
+     * @param primaryStage Stage of the current game
+     */
     public OpeningScene(GameModel model, Stage primaryStage){
         this.model = model;
         this.primaryStage = primaryStage;
     }
 
+    /**
+     * Method to start the opening scene. Gathers user's name choice.
+     */
     public void startScene(){
+        // Creates the border pane for the scene
         BorderPane border = new BorderPane();
         border.setPadding(new Insets(50.0));
 
+        // Creates the label for the top of the border pane
         Label description = new Label("Welcome to the world of Nonsense Quest!\n" +
                                       "To begin your adventure:");
         description.setAlignment(Pos.CENTER);
         border.setTop(description);
 
+        // Creates the text box to gather the users name
         GridPane characterName = new GridPane();
         Label title = new Label("Enter a Character Name: ");
         characterName.add(title, 0, 0);
         TextField input = new TextField();
         characterName.add(input, 1, 0);
         border.setCenter(characterName);
+        // Gathers the user input
         input.setOnKeyPressed(event -> {
             if(event.getCode().equals(KeyCode.ENTER)){
                 this.name = input.getCharacters().toString();
@@ -51,57 +67,87 @@ public class OpeningScene {
             }
         });
 
-
+        // Updates the scene
         Scene opening = new Scene(border);
         this.primaryStage.setScene(opening);
-        this.primaryStage.setResizable(true);
         this.primaryStage.show();
     }
 
+    /**
+     * Method to gather user's race choice.
+     * @param border BorderPane to update
+     */
     private void pickRace(BorderPane border){
+        // Creates the race selection grid pane
         GridPane characterRace = new GridPane();
-        Label title = new Label("Select a Race: ");
-        Button humanButton = new Button("Human");
-        characterRace.add(title, 0, 0);
-        characterRace.add(humanButton, 1, 0);
-        border.setCenter(characterRace);
 
+        // Adds the label to the race selection
+        Label title = new Label("Select a Race: ");
+        characterRace.add(title, 0, 0);
+
+        // Adds the human race option to the grid pane
+        Button humanButton = new Button(Human.HUMAN_RACE);
+        characterRace.add(humanButton, 1, 0);
+
+        // Sets player race
         humanButton.setOnAction(event -> {
-            this.race = "Human";
+            this.race = Human.HUMAN_RACE;
             pickClass(border);
         });
+
+        border.setCenter(characterRace);
     }
 
+    /**
+     * Method to gather user's class choice.
+     * @param border BorderPane to update
+     */
     private void pickClass(BorderPane border){
+        // Creates the class selection grid pane
         GridPane characterClass = new GridPane();
-        Label title = new Label("Select a Class: ");
-        Button warriorButton = new Button("Warrior");
-        characterClass.add(title, 0, 0);
-        characterClass.add(warriorButton, 1, 0);
-        border.setCenter(characterClass);
 
+        // Adds the label to the class selction
+        Label title = new Label("Select a Class: ");
+        characterClass.add(title, 0, 0);
+
+        // Adds the warrior class option to the grid pane
+        Button warriorButton = new Button("Warrior");
+        characterClass.add(warriorButton, 1, 0);
+
+        // Sets player class and updates the rest of the model
         warriorButton.setOnAction(event -> {
             this.playerClass = "Warrior";
             GameModel modelUpdate = new GameModel(this.name, this.race, this.playerClass);
             this.model = modelUpdate;
             displayCharacter(border);
         });
+
+        border.setCenter(characterClass);
     }
 
+    /**
+     * Method to display the character stats on the scene.
+     * @param border Border Pane to update
+     */
     public void displayCharacter(BorderPane border){
+        // Creates the top label for the border pane
         Label title = new Label("Your Character Stats: ");
         border.setTop(title);
 
+        // Prints the character stats to the center of the border pane
         Label characterStats = new Label(model.printCharacterStats());
         border.setCenter(characterStats);
 
+        // Creates the label for the character acceptance buttons
         GridPane acceptGrid = new GridPane();
         Label acceptTitle = new Label("Is this okay? ");
         acceptGrid.add(acceptTitle, 0, 0);
 
+        // Adds confirm button to the accept grid pane
         Button yesButton = new Button("Yes");
         acceptGrid.add(yesButton, 1, 0);
 
+        // Adds deny button to the accept grid pane
         Button noButton = new Button("No");
         acceptGrid.add(noButton, 2, 0);
 
