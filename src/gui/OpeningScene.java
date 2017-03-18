@@ -50,6 +50,8 @@ public class OpeningScene {
         Label description = new Label("Welcome to the world of Nonsense Quest!\n" +
                                       "To begin your adventure:");
         description.setAlignment(Pos.CENTER);
+        description.setFont(GameInterface.PIXEL_FONT_MEDIUM);
+        description.setPadding(new Insets(50.0));
         border.setTop(description);
 
         // Creates the text box to gather the users name
@@ -70,7 +72,6 @@ public class OpeningScene {
         // Updates the scene
         Scene opening = new Scene(border);
         this.primaryStage.setScene(opening);
-        this.primaryStage.show();
     }
 
     /**
@@ -132,11 +133,15 @@ public class OpeningScene {
     public void displayCharacter(BorderPane border){
         // Creates the top label for the border pane
         Label title = new Label("Your Character Stats: ");
+        title.setFont(GameInterface.PIXEL_FONT_MEDIUM);
+        title.setPadding(new Insets(50.0));
         border.setTop(title);
 
-        // Prints the character stats to the center of the border pane
+        // Prints the character stats to the left of the border pane and clears the center border pane
         Label characterStats = new Label(model.printCharacterStats());
-        border.setCenter(characterStats);
+        border.setLeft(characterStats);
+        Label placeholder = new Label("");
+        border.setCenter(placeholder);
 
         // Creates the label for the character acceptance buttons
         GridPane acceptGrid = new GridPane();

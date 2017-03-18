@@ -20,6 +20,8 @@ public abstract class PlayerClass {
         this.weightModifier = weightModifier;
     }
 
+    public String getName(){ return  name; }
+
     public int getHealthModifier() {
         return healthModifier;
     }

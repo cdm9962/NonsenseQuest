@@ -15,6 +15,6 @@ public class GameModel {
     };
 
     public String printCharacterStats(){
-        return this.player.toString();
+        return this.player.displayCharacter();
     }
 }
