@@ -46,6 +46,7 @@ public class GameInterface extends Application implements Observer {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        Font.loadFont(GameInterface.class.getResource("NonsenseV3.ttf").toExternalForm(), 10);
         primaryStage.setTitle(TITLE);
         primaryStage.setScene(new Scene(makeSplash()));
         primaryStage.setResizable(true);
@@ -71,7 +72,7 @@ public class GameInterface extends Application implements Observer {
         BorderPane border = new BorderPane();
 
         Label label = new Label("Welcome to Nonsense Quest!");
-        label.setFont(new Font(30));
+        label.setFont(Font.loadFont(GameInterface.class.getResource("NonsenseV3.ttf").toExternalForm(), 30));
         label.setTextFill(javafx.scene.paint.Paint.valueOf("blue"));
         label.setAlignment(Pos.CENTER);
         Pane pane = new Pane(label);
