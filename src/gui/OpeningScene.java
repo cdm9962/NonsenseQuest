@@ -172,6 +172,10 @@ public class OpeningScene {
         // Adds confirm button to the accept grid pane
         Button yesButton = new Button("Yes");
         acceptGrid.add(yesButton, 1, 0);
+        yesButton.setOnAction(event1 -> {
+            SceneOne nextScene = new SceneOne(this.model, this.primaryStage);
+            nextScene.startScene();
+        });
 
         // Adds deny button to the accept grid pane
         Button noButton = new Button("No");
