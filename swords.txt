@@ -1,0 +1,2 @@
+Name | Description | Damage | Rarity | Value | Weight |
+Rusty Sword | This sword is likely to give you tetanus if not held right. | Common | 10 | 5.0 | 20.0 |

@@ -1,5 +1,7 @@
 package model;
 
+import model.items.Sword;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -28,7 +30,7 @@ public class FileScanner {
      * @return char[][] representing a map the scanned text
      * @throws FileNotFoundException
      */
-    public char[][] scanFile(String filename) throws FileNotFoundException {
+    public char[][] scanMap(String filename) throws FileNotFoundException {
         // Creates the scanner object
         InputStream stream = new FileInputStream(filename);
         Scanner scanner = new Scanner(stream);
@@ -57,6 +59,46 @@ public class FileScanner {
         // Closes the file and returns the map
         scanner.close();
         return map;
+    }
+
+    public Sword scanSword(String filename, int row) throws FileNotFoundException {
+        // Creates the scanner object
+        InputStream stream = new FileInputStream(filename);
+        Scanner scanner = new Scanner(stream);
+
+        for(int i = 0; i < row; i++){
+            scanner.nextLine();
+            if(i == row - 1){
+                return new Sword(getString(scanner), getString(scanner), getString(scanner), getInt(scanner), getDouble(scanner), getDouble(scanner));
+            }
+        }
+        return null;
+    }
+
+    public String getString(Scanner scanner){
+        String string = "";
+        while (true){
+            String temp = scanner.next();
+            if(temp.equals("|")){
+                break;
+            } else {
+                string += " ";
+                string += temp;
+            }
+        }
+        return string;
+    }
+
+    public int getInt(Scanner scanner){
+        int result = scanner.nextInt();
+        scanner.next();
+        return result;
+    }
+
+    public double getDouble(Scanner scanner){
+        double result = scanner.nextDouble();
+        scanner.next();
+        return result;
     }
 
     /**

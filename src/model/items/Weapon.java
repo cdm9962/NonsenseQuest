@@ -8,8 +8,8 @@ package model.items;
 public abstract class Weapon extends Item{
     private int damage;
 
-    public Weapon(String name, String description, int damage, String rarity, boolean equipable, double value, double weight){
-        super(name, description, rarity, equipable, value, weight);
+    public Weapon(String name, String description, String rarity, int damage, double value, double weight){
+        super(name, description, rarity, true, value, weight);
         this.damage = damage;
     }
 }

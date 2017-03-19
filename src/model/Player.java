@@ -9,6 +9,7 @@ import model.races.Dragon;
 import model.races.Human;
 import model.races.Race;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 /**
@@ -93,7 +94,13 @@ public class Player {
             this.limits.setMaxMovement(Human.HUMAN_DEFAULT_MOVEMENT + this.playerClass.getMovementModifier());
             this.limits.setMaxWeight(Human.HUMAN_DEFAULT_WEIGHT + this.playerClass.getWeightModifier());
             this.inventory = new ArrayList<>();
-            this.inventory.add(new Sword("Rusty Sowrd", "This thing blows.", 10, "Common", true, 1.0, 20.0));
+            FileScanner scanner = new FileScanner();
+            try {
+                this.inventory.add(scanner.scanSword("swords.txt", 1));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            //this.inventory.add(new Sword("Rusty Sowrd", "This thing blows.", 10, "Common", 1.0, 20.0));
 
         // Dragon Character constructor
         } else if(race.equals(Dragon.DRAGON_RACE)){
@@ -126,7 +133,7 @@ public class Player {
                 "\n  experience: " + experience +
                 "\n  level: " + level +
                 "\n  inventory weight: " + limits.getMinWeight() +
-                "\n  inventory: [" + displayInventory() + "]";
+                "\n  inventory: [" + displayInventory() + " ]";
     }
 
     public String displayInventory(){

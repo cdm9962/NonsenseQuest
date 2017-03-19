@@ -26,7 +26,7 @@ public class StageMap {
         FileScanner scanner = new FileScanner();
 
         try {
-            this.map = scanner.scanFile(filename);
+            this.map = scanner.scanMap(filename);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
