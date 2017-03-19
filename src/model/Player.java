@@ -4,6 +4,7 @@ import model.classes.PlayerClass;
 import model.classes.Thief;
 import model.classes.Warrior;
 import model.items.Item;
+import model.items.Sword;
 import model.races.Dragon;
 import model.races.Human;
 import model.races.Race;
@@ -92,6 +93,8 @@ public class Player {
             this.limits.setMaxMovement(Human.HUMAN_DEFAULT_MOVEMENT + this.playerClass.getMovementModifier());
             this.limits.setMaxWeight(Human.HUMAN_DEFAULT_WEIGHT + this.playerClass.getWeightModifier());
             this.inventory = new ArrayList<>();
+            this.inventory.add(new Sword("Rusty Sowrd", "This thing blows.", 10, "Common", true, 1.0, 20.0));
+
         // Dragon Character constructor
         } else if(race.equals(Dragon.DRAGON_RACE)){
             this.race = new Dragon();
@@ -123,7 +126,15 @@ public class Player {
                 "\n  experience: " + experience +
                 "\n  level: " + level +
                 "\n  inventory weight: " + limits.getMinWeight() +
-                "\n  inventory: " + inventory;
+                "\n  inventory: [" + displayInventory() + "]";
+    }
+
+    public String displayInventory(){
+        String result = "";
+        for(int i = 0; i < inventory.size(); i++){
+            result += inventory.get(i).getName();
+        }
+        return result;
     }
 
     @Override
