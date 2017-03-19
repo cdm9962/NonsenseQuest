@@ -33,10 +33,18 @@ public class GameInterface extends Application implements Observer {
     // Custom Font values
     public static final Font PIXEL_FONT_LARGE = Font.loadFont(GameInterface.class.getResource("pixelfont.ttf").toExternalForm(), 50);
     public static final Font PIXEL_FONT_MEDIUM = Font.loadFont(GameInterface.class.getResource("pixelfont.ttf").toExternalForm(), 30);
-    public static final Font PIXEL_FONT_SMALE = Font.loadFont(GameInterface.class.getResource("pixelfont.ttf").toExternalForm(), 20);
+    public static final Font PIXEL_FONT_SMALL = Font.loadFont(GameInterface.class.getResource("pixelfont.ttf").toExternalForm(), 20);
 
-    // Constant string values
+    // Constant values
     public static final String TITLE = "Nonsense Quest";
+    public static final String INTRO_LABEL = "Welcome to Nonsense Quest!";
+    public static final String INTRO_BUTTON_LABEL = "Start Adventure!";
+    public static final int DEFAULT_INSETS = 50;
+    public static final int STAGE_SIZE = 1000;
+
+    // JavaFx color values
+    public static final String COLOR_GRAY = "-fx-background-color: GRAY;";
+    public static final String PAINT_BLUE = "blue";
 
     /**
      * Constructor for the game interface.
@@ -54,8 +62,8 @@ public class GameInterface extends Application implements Observer {
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle(TITLE);
         primaryStage.setScene(new Scene(makeSplash()));
-        primaryStage.setHeight(900);
-        primaryStage.setWidth(900);
+        primaryStage.setHeight(STAGE_SIZE);
+        primaryStage.setWidth(STAGE_SIZE);
         primaryStage.show();
         this.primaryStage = primaryStage;
     }
@@ -77,22 +85,22 @@ public class GameInterface extends Application implements Observer {
     private BorderPane makeSplash(){
         // Create the border pane
         BorderPane border = new BorderPane();
-        border.setPadding(new Insets(50.0));
-        border.setStyle("-fx-background-color: GRAY;");
+        border.setPadding(new Insets(DEFAULT_INSETS));
+        border.setStyle(COLOR_GRAY);
 
         // Create the top title label
-        Label label = new Label("Welcome to Nonsense Quest!");
-        label.setPadding(new Insets(30.0));
+        Label label = new Label(INTRO_LABEL);
+        label.setPadding(new Insets(DEFAULT_INSETS));
         label.setFont(PIXEL_FONT_LARGE);
-        label.setTextFill(javafx.scene.paint.Paint.valueOf("blue"));
+        label.setTextFill(Paint.valueOf(PAINT_BLUE));
         label.setAlignment(Pos.CENTER);
         Pane pane = new Pane(label);
         border.setTop(pane);
 
         // Create the launch button
         GridPane grid = new GridPane();
-        grid.setPadding(new Insets(30.0));
-        Button start = new Button("Start Adventure!");
+        grid.setPadding(new Insets(DEFAULT_INSETS));
+        Button start = new Button(INTRO_BUTTON_LABEL);
         // Launches opening scene
         start.setOnAction(event -> {
             OpeningScene openingScene = new OpeningScene(this.model, this.primaryStage);
