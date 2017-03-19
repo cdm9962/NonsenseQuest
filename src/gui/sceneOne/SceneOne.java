@@ -17,7 +17,7 @@ public class SceneOne {
 
     private Stage primaryStage;
 
-    public static final String STAGE_ONE_TITLE = "Scene one: Select a stage.";
+    public static final String SCENE_ONE_TITLE = "Scene one: Select a stage.";
 
     public SceneOne(GameModel model, Stage primaryStage){
         this.model = model;
@@ -29,12 +29,12 @@ public class SceneOne {
         BorderPane border = new BorderPane();
         border.setPadding(new Insets(50.0));
 
-        Label title = new Label(STAGE_ONE_TITLE);
+        Label title = new Label(SCENE_ONE_TITLE);
         border.setTop(title);
 
         GridPane buttonGrid = new GridPane();
 
-        Button stageOneButton = new Button("Stage One");
+        Button stageOneButton = new Button(StageOne.STAGE_ONE_TITLE);
         stageOneButton.setOnAction(event -> {
             StageOne stageOne = new StageOne(this.model, this.primaryStage);
             stageOne.startScene();

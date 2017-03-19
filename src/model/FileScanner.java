@@ -13,6 +13,8 @@ import java.util.Scanner;
 public class FileScanner {
     // The scanner object
     private Scanner scanner;
+    private int rows;
+    private int cols;
 
     /**
      * Constructor fot the file scanner
@@ -34,11 +36,11 @@ public class FileScanner {
         // Variables for file reading
         String curr;
         scanner.nextLine();
-        int rows = Integer.parseInt(scanner.next());
-        int cols = Integer.parseInt(scanner.next());
+        this.rows = Integer.parseInt(scanner.next());
+        this.cols = Integer.parseInt(scanner.next());
         int row = 0;
         int col = 0;
-        char[][] map = new char[rows][cols];
+        char[][] map = new char[this.rows][this.cols];
 
         // Scans through each character in the file and adds them to the map
         while (scanner.hasNext()){
@@ -46,7 +48,7 @@ public class FileScanner {
             map[row][col] = curr.charAt(0);
             col++;
             // Updates column and row position
-            if(col > cols - 1){
+            if(col > this.cols - 1){
                 col = 0;
                 row++;
             }
@@ -57,5 +59,19 @@ public class FileScanner {
         return map;
     }
 
+    /**
+     * Getter method for the number of rows in the map.
+     * @return int representing the number of rows in the map
+     */
+    public int getRows() {
+        return rows;
+    }
 
+    /**
+     * Getter method for the number of columns in the map.
+     * @return int representing the number of columns in the map
+     */
+    public int getCols() {
+        return cols;
+    }
 }

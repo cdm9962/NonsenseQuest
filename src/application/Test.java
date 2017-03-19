@@ -1,4 +1,6 @@
-package model;
+package application;
+
+import model.Player;
 
 /**
  * Class for testing model functionality.

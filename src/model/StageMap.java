@@ -10,6 +10,8 @@ import java.io.FileNotFoundException;
 public class StageMap {
     // Character array representative of the stage map
     private char[][] map;
+    private int rows;
+    private int cols;
 
     // Constant character representations of map objects
     public static final char MAP_ROAD = '|';
@@ -27,6 +29,9 @@ public class StageMap {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+        this.rows = scanner.getRows();
+        this.cols = scanner.getCols();
     }
 
     /**
@@ -35,5 +40,31 @@ public class StageMap {
      */
     public char[][] getMap(){
         return this.map;
+    }
+
+    /**
+     * Getter method for the number of rows in the map.
+     * @return int representing the number of rows in the map
+     */
+    public int getRows(){
+        return this.rows;
+    }
+
+    /**
+     * Getter method for the number of columns in the map.
+     * @return int representing the number of columns in the map
+     */
+    public int getCols(){
+        return this.cols;
+    }
+
+    /**
+     * Method to get the character at a specific location on the map. Uses zero based indexing.
+     * @param row int representing the desired row
+     * @param col int representing the desired column
+     * @return char representing the desired character
+     */
+    public char getLocation(int row, int col){
+        return this.map[row][col];
     }
 }
