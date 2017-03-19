@@ -112,18 +112,18 @@ public class Player {
 
     public String displayCharacter(){
         return "Player:\n" +
-                " name: '" + name + '\'' +
-                "\n race: " + race.getName() +
-                "\n height: " + race.getHeight() +
-                "\n weight: " + race.getWeight() +
-                "\n playerClass: " + playerClass.getName() +
-                "\n health: " + health +
-                "\n mana: " + mana +
-                "\n movement: " + movement +
-                "\n experience: " + experience +
-                "\n level: " + level +
-                "\n weight: " + limits.getMaxWeight() +
-                "\n inventory: " + inventory;
+                "  name: " + name +
+                "\n  race: " + race.getName() +
+                "\n  class: " + playerClass.getName() +
+                "\n  height: " + race.getHeight() +
+                "\n  weight: " + race.getWeight() +
+                "\n  health: " + health +
+                "\n  mana: " + mana +
+                "\n  movement: " + movement +
+                "\n  experience: " + experience +
+                "\n  level: " + level +
+                "\n  inventory weight: " + limits.getMinWeight() +
+                "\n  inventory: " + inventory;
     }
 
     @Override
@@ -137,7 +137,7 @@ public class Player {
                 "\n movement: " + movement +
                 "\n experience: " + experience +
                 "\n level: " + level +
-                "\n weight: " + weight +
+                "\n weight: " + limits.getMinWeight() +
                 "\n limits: " + limits.toString() +
                 "\n inventory: " + inventory;
     }

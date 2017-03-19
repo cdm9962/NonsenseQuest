@@ -1,5 +1,6 @@
 package gui.sceneOne;
 
+import gui.GameInterface;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -52,6 +53,7 @@ public class SceneOne {
         border.setCenter(buttonGrid);
 
         Label playerStats = new Label(this.model.printCharacterStats());
+        playerStats.setFont(GameInterface.PIXEL_FONT_SMALL);
         border.setRight(playerStats);
 
         // Updates the scene

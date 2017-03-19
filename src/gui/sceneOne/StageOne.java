@@ -1,9 +1,11 @@
 package gui.sceneOne;
 
+import gui.GameInterface;
 import gui.MapBuilder;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -37,6 +39,10 @@ public class StageOne {
         MapBuilder map = new MapBuilder(this.model);
         GridPane mapGrid = map.buildMap();
         border.setCenter(mapGrid);
+
+        Label playerStats = new Label(this.model.printCharacterStats());
+        playerStats.setFont(GameInterface.PIXEL_FONT_SMALL);
+        border.setRight(playerStats);
 
         Scene stageOne = new Scene(border);
         this.primaryStage.setScene(stageOne);

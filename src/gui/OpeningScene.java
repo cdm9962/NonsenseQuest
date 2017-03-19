@@ -164,8 +164,9 @@ public class OpeningScene {
         border.setTop(title);
 
         // Prints the character stats to the left of the border pane and clears the center border pane
-        Label characterStats = new Label(model.printCharacterStats());
-        border.setLeft(characterStats);
+        Label playerStats = new Label(model.printCharacterStats());
+        playerStats.setFont(GameInterface.PIXEL_FONT_SMALL);
+        border.setLeft(playerStats);
         Label placeholder = new Label("");
         border.setCenter(placeholder);
 
