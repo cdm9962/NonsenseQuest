@@ -1,2 +1,3 @@
 Name | Description | Damage | Rarity | Value | Weight |
 Rusty Sword | This sword is likely to give you tetanus if not held right. | Common | 10 | 5.0 | 20.0 |
+God Sword | This sword is not meant for mere mortals. | Super Ultra Mega Rare | 999 | 7823.0 | 18.0 |

@@ -33,7 +33,7 @@ public class FileScanner {
     public char[][] scanMap(String filename) throws FileNotFoundException {
         // Creates the scanner object
         InputStream stream = new FileInputStream(filename);
-        Scanner scanner = new Scanner(stream);
+        this.scanner = new Scanner(stream);
 
         // Variables for file reading
         String curr;
@@ -61,24 +61,43 @@ public class FileScanner {
         return map;
     }
 
+    /**
+     * Method to scan in a sword weapon from a text file.
+     * @param filename String representing the file name to pull the sword from
+     * @param row int representing the row to pull the sword from
+     * @return Sword object representing the scanned in sword
+     * @throws FileNotFoundException
+     */
     public Sword scanSword(String filename, int row) throws FileNotFoundException {
         // Creates the scanner object
         InputStream stream = new FileInputStream(filename);
-        Scanner scanner = new Scanner(stream);
+        this.scanner = new Scanner(stream);
 
+        // Run through the rows in the file until it reaches the proper row
         for(int i = 0; i < row; i++){
             scanner.nextLine();
+            // Creates the sword object when it reaches the proper line
             if(i == row - 1){
-                return new Sword(getString(scanner), getString(scanner), getString(scanner), getInt(scanner), getDouble(scanner), getDouble(scanner));
+                Sword sword = new Sword(getString(), getString(), getString(), getInt(), getDouble(), getDouble());
+                // Closes the file and returns the sword
+                scanner.close();
+                return sword;
             }
         }
+
+        // Error sword not found
         return null;
     }
 
-    public String getString(Scanner scanner){
+    /**
+     * Method to pull a string from an item list.
+     * @return String representing the desired text
+     */
+    public String getString(){
         String string = "";
+        // Loops through and concatenates the string until it reaches the stop character
         while (true){
-            String temp = scanner.next();
+            String temp = this.scanner.next();
             if(temp.equals("|")){
                 break;
             } else {
@@ -89,15 +108,23 @@ public class FileScanner {
         return string;
     }
 
-    public int getInt(Scanner scanner){
-        int result = scanner.nextInt();
-        scanner.next();
+    /**
+     * Method to pull an integer from an item list.
+     * @return int representing the desired value
+     */
+    public int getInt(){
+        int result = this.scanner.nextInt();
+        this.scanner.next();
         return result;
     }
 
-    public double getDouble(Scanner scanner){
+    /**
+     * Method to pull a double from an item list.
+     * @return double representing the desired value
+     */
+    public double getDouble(){
         double result = scanner.nextDouble();
-        scanner.next();
+        this.scanner.next();
         return result;
     }
 

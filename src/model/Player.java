@@ -11,6 +11,7 @@ import model.races.Race;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * The player object class.  Holds all of the player data.
@@ -97,10 +98,10 @@ public class Player {
             FileScanner scanner = new FileScanner();
             try {
                 this.inventory.add(scanner.scanSword("swords.txt", 1));
+                this.inventory.add((scanner.scanSword("swords.txt", 2)));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-            //this.inventory.add(new Sword("Rusty Sowrd", "This thing blows.", 10, "Common", 1.0, 20.0));
 
         // Dragon Character constructor
         } else if(race.equals(Dragon.DRAGON_RACE)){
@@ -136,10 +137,18 @@ public class Player {
                 "\n  inventory: [" + displayInventory() + " ]";
     }
 
+    /**
+     * Method to print the inventory items.
+     * @return String representing the characters inventory
+     */
     public String displayInventory(){
         String result = "";
+        // Loops through each item in the inventory and prints the name value
         for(int i = 0; i < inventory.size(); i++){
             result += inventory.get(i).getName();
+            if(i != inventory.size() - 1){
+                result += ",";
+            }
         }
         return result;
     }

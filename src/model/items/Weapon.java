@@ -12,4 +12,6 @@ public abstract class Weapon extends Item{
         super(name, description, rarity, true, value, weight);
         this.damage = damage;
     }
+
+
 }
