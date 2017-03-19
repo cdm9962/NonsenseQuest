@@ -1,5 +1,6 @@
 package gui.sceneOne;
 
+import gui.MapBuilder;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -28,18 +29,14 @@ public class StageOne {
     public void startScene() {
         // Creates the border pane for the scene
         BorderPane border = new BorderPane();
+        border.setPadding(new Insets(50.0));
 
         this.model.setStageMap(STAGE_ONE_FILENAME);
         this.model.getStageMap();
 
-        GridPane mapGrid = new GridPane();
-        for(int row = 0; row < this.model.getStageMap().getRows(); row++){
-            for(int col = 0; col < this.model.getStageMap().getCols(); col++){
-                if(this.model.getStageMap().getLocation(row, col) == StageMap.MAP_EMPTY){
-                    Button button = new Button();
-                }
-            }
-        }
+        MapBuilder map = new MapBuilder(this.model);
+        GridPane mapGrid = map.buildMap();
+        border.setCenter(mapGrid);
 
         Scene stageOne = new Scene(border);
         this.primaryStage.setScene(stageOne);

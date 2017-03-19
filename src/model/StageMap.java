@@ -16,6 +16,7 @@ public class StageMap {
     // Constant character representations of map objects
     public static final char MAP_ROAD = '|';
     public static final char MAP_EMPTY = '.';
+    public static final char MAP_CHARACTER = 'C';
 
     /**
      * Constructor for the stage map. Reads the map from a given file.
