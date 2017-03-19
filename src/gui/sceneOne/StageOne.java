@@ -3,7 +3,9 @@ package gui.sceneOne;
 import javafx.geometry.Insets;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.FileScanner;
 import model.GameModel;
+import model.StageMap;
 
 /**
  * @author Connor D. Milligan
@@ -23,6 +25,8 @@ public class StageOne {
     public void startScene() {
         // Creates the border pane for the scene
         BorderPane border = new BorderPane();
+
+        StageMap map = new StageMap("stageone.txt");
 
     }
 }
