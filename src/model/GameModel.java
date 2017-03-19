@@ -1,7 +1,5 @@
 package model;
 
-import javafx.scene.Scene;
-
 /**
  * The model for the game.  Updates based on user interactions.
  *
