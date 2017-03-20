@@ -1,6 +1,10 @@
 package model;
 
 import model.items.Sword;
+import model.map.CharacterSquare;
+import model.map.EmptySquare;
+import model.map.RoadSquare;
+import model.map.Square;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

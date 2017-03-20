@@ -1,4 +1,6 @@
-package model;
+package model.map;
+
+import model.FileScanner;
 
 import java.io.FileNotFoundException;
 

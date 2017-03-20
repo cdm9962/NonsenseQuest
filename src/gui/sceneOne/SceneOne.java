@@ -14,17 +14,26 @@ import model.GameModel;
  * @author Connor D. Milligan, Nathan Hall
  */
 public class SceneOne {
+    // Private state necessary for the scene
     private GameModel model;
-
     private Stage primaryStage;
 
+    // Constant string values
     public static final String SCENE_ONE_TITLE = "Scene one: Select a stage.";
 
+    /**
+     * SceneOne constructor.
+     * @param model GameModel representing the attributes of the game
+     * @param primaryStage Stage of the current game
+     */
     public SceneOne(GameModel model, Stage primaryStage){
         this.model = model;
         this.primaryStage = primaryStage;
     }
 
+    /**
+     * Method to start the scene and update the stage and game data.
+     */
     public void startScene(){
         // Creates the border pane for the scene
         BorderPane border = new BorderPane();

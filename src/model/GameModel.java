@@ -1,5 +1,7 @@
 package model;
 
+import model.map.StageMap;
+
 /**
  * The model for the game.  Updates based on user interactions.
  *

@@ -7,6 +7,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.*;
+import model.map.CharacterSquare;
+import model.map.EmptySquare;
+import model.map.RoadSquare;
+import model.map.Square;
 
 /**
  * Utility class for building the stage map.
@@ -17,6 +21,7 @@ public class MapBuilder {
     // The private game model for the map builder
     private GameModel model;
 
+    //
     private Stage primaryStage;
 
     /**
@@ -30,7 +35,7 @@ public class MapBuilder {
 
     /**
      * Method to create a map grid based on the map data stored in the model.
-     * @return GridPane a visual representation of the stage map
+     * @return BorderPane a visual representation of the stage map
      */
     public BorderPane buildMap(){
         // Creates the grid

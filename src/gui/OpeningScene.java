@@ -23,7 +23,7 @@ import model.races.Human;
  * @author Connor D. Milligan, Nathan Hall
  */
 public class OpeningScene {
-    // Private state for nessisary for the scene
+    // Private state necessary for the scene
     private GameModel model;
     private Stage primaryStage;
 
