@@ -30,7 +30,7 @@ public class FileScanner {
      * @return char[][] representing a map the scanned text
      * @throws FileNotFoundException
      */
-    public char[][] scanMap(String filename) throws FileNotFoundException {
+    public Square[][] scanMap(String filename) throws FileNotFoundException {
         // Creates the scanner object
         InputStream stream = new FileInputStream(filename);
         this.scanner = new Scanner(stream);
@@ -42,12 +42,12 @@ public class FileScanner {
         this.cols = Integer.parseInt(scanner.next());
         int row = 0;
         int col = 0;
-        char[][] map = new char[this.rows][this.cols];
+        Square[][] map = new Square[this.rows][this.cols];
 
         // Scans through each character in the file and adds them to the map
         while (scanner.hasNext()){
             curr = scanner.next();
-            map[row][col] = curr.charAt(0);
+            map[row][col] = addSquare(curr.charAt(0));
             col++;
             // Updates column and row position
             if(col > this.cols - 1){
@@ -59,6 +59,18 @@ public class FileScanner {
         // Closes the file and returns the map
         scanner.close();
         return map;
+    }
+
+    public Square addSquare(char label){
+        if(label == RoadSquare.ROAD_SQUARE_CHARACTER){
+            return new RoadSquare();
+        } else if(label == EmptySquare.EMPTY_SQUARE_CHARACTER){
+            return new EmptySquare();
+        } else if(label == CharacterSquare.CHARACTER_SQUARE_CHARACTER){
+            return new CharacterSquare();
+        } else {
+            return null;
+        }
     }
 
     /**

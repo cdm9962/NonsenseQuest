@@ -9,14 +9,9 @@ import java.io.FileNotFoundException;
  */
 public class StageMap {
     // Character array representative of the stage map
-    private char[][] map;
+    private Square[][] map;
     private int rows;
     private int cols;
-
-    // Constant character representations of map objects
-    public static final char MAP_ROAD = '|';
-    public static final char MAP_EMPTY = '.';
-    public static final char MAP_CHARACTER = 'C';
 
     /**
      * Constructor for the stage map. Reads the map from a given file.
@@ -39,7 +34,7 @@ public class StageMap {
      * Getter method for the map.
      * @return char[][] representing the stage map
      */
-    public char[][] getMap(){
+    public Square[][] getMap(){
         return this.map;
     }
 
@@ -65,7 +60,7 @@ public class StageMap {
      * @param col int representing the desired column
      * @return char representing the desired character
      */
-    public char getLocation(int row, int col){
+    public Square getLocation(int row, int col){
         return this.map[row][col];
     }
 }
