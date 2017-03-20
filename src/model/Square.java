@@ -14,4 +14,8 @@ public abstract class Square {
         this.description = description;
         this.isAdjacent = isAdjacent;
     }
+
+    public String getDescription(){
+        return this.description;
+    }
 }

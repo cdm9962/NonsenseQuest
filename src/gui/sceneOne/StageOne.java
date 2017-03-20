@@ -36,8 +36,8 @@ public class StageOne {
         this.model.setStageMap(STAGE_ONE_FILENAME);
         this.model.getStageMap();
 
-        MapBuilder map = new MapBuilder(this.model);
-        GridPane mapGrid = map.buildMap();
+        MapBuilder map = new MapBuilder(this.model, this.primaryStage);
+        BorderPane mapGrid = map.buildMap();
         border.setCenter(mapGrid);
 
         Label playerStats = new Label(this.model.printCharacterStats());

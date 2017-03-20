@@ -9,6 +9,7 @@ public class GameModel {
     // The private state of the game model
     private Player player;
     private StageMap stageMap;
+    private String currSquareDescription;
 
     /**
      * Constructor for the game model.
@@ -19,6 +20,7 @@ public class GameModel {
     public GameModel(String name, String race, String playerClass ){
         this.player = new Player(name, race, playerClass);
         stageMap = null;
+        currSquareDescription = null;
     }
 
     /**
@@ -44,5 +46,9 @@ public class GameModel {
      */
     public StageMap getStageMap(){
         return this.stageMap;
+    }
+
+    public String getCurrSquareDescription(){
+        return this.currSquareDescription;
     }
 }
