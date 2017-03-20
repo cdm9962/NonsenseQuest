@@ -79,7 +79,7 @@ public class FileScanner {
             // Creates the sword object when it reaches the proper line
             if(i == row - 1){
                 Sword sword = new Sword(getString(), getString(), getString(), getInt(), getDouble(), getDouble());
-                // Closes the file and returns the sword
+                // Closes the file and returns the sword object
                 scanner.close();
                 return sword;
             }
