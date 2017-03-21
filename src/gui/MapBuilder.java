@@ -3,8 +3,8 @@ package gui;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import model.*;
 import model.map.CharacterSquare;
@@ -54,7 +54,10 @@ public class MapBuilder {
 
                 // Creates empty space buttons
                 if(currSquare instanceof EmptySquare){
-                    Button emptyButton = new Button(Character.toString(EmptySquare.EMPTY_SQUARE_CHARACTER));
+                    //Button emptyButton = new Button(Character.toString(EmptySquare.EMPTY_SQUARE_CHARACTER));
+                    Button emptyButton = new Button();
+                    Background grassTexture = new Background(new BackgroundImage(new Image("file:grass.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
+                    emptyButton.setBackground(grassTexture);
                     emptyButton.setMinSize(50.0, 50.0);
                     mapGrid.add(emptyButton, col, row);
                     emptyButton.setOnAction(event -> {
@@ -63,7 +66,10 @@ public class MapBuilder {
 
                 // Creates road space buttons
                 } else if(currSquare instanceof RoadSquare){
-                    Button roadButton = new Button(Character.toString(RoadSquare.ROAD_SQUARE_CHARACTER));
+                    //Button roadButton = new Button(Character.toString(RoadSquare.ROAD_SQUARE_CHARACTER));
+                    Button roadButton = new Button();
+                    Background roadTexture = new Background(new BackgroundImage(new Image("file:dirtpathvert.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
+                    roadButton.setBackground(roadTexture);
                     roadButton.setMinSize(50.0, 50.0);
                     mapGrid.add(roadButton, col, row);
                     roadButton.setOnAction(event -> {
