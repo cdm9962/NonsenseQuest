@@ -7,10 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import model.*;
-import model.map.CharacterSquare;
-import model.map.EmptySquare;
-import model.map.RoadSquare;
-import model.map.Square;
+import model.map.*;
 
 /**
  * Utility class for building the stage map.
@@ -73,6 +70,17 @@ public class MapBuilder {
                     roadButton.setMinSize(50.0, 50.0);
                     mapGrid.add(roadButton, col, row);
                     roadButton.setOnAction(event -> {
+                        squareDescription.setText(currSquare.getDescription());
+                    });
+
+                } else if(currSquare instanceof DirtSquare){
+                    //Button roadButton = new Button(Character.toString(RoadSquare.ROAD_SQUARE_CHARACTER));
+                    Button dirtButton = new Button();
+                    Background dirtTexture = new Background(new BackgroundImage(new Image("file:dirt.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
+                    dirtButton.setBackground(dirtTexture);
+                    dirtButton.setMinSize(50.0, 50.0);
+                    mapGrid.add(dirtButton, col, row);
+                    dirtButton.setOnAction(event -> {
                         squareDescription.setText(currSquare.getDescription());
                     });
 

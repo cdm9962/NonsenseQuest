@@ -1,10 +1,7 @@
 package model;
 
 import model.items.Sword;
-import model.map.CharacterSquare;
-import model.map.EmptySquare;
-import model.map.RoadSquare;
-import model.map.Square;
+import model.map.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -68,8 +65,10 @@ public class FileScanner {
     public Square addSquare(char label){
         if(label == RoadSquare.ROAD_SQUARE_CHARACTER){
             return new RoadSquare();
-        } else if(label == EmptySquare.EMPTY_SQUARE_CHARACTER){
+        } else if(label == EmptySquare.EMPTY_SQUARE_CHARACTER) {
             return new EmptySquare();
+        } else if(label == DirtSquare.DIRT_SQUARE_CHARACTER){
+            return new DirtSquare();
         } else if(label == CharacterSquare.CHARACTER_SQUARE_CHARACTER){
             return new CharacterSquare();
         } else {
