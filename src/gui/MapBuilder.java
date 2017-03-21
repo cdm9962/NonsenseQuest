@@ -38,6 +38,8 @@ public class MapBuilder {
         // Creates the grid
         BorderPane border = new BorderPane();
         GridPane mapGrid = new GridPane();
+        mapGrid.setHgap(5);
+        mapGrid.setVgap(5);
         border.setLeft(mapGrid);
         Label squareDescription = new Label();
         squareDescription.setPadding(new Insets(GameInterface.DEFAULT_INSETS));
