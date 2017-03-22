@@ -60,7 +60,11 @@ public class MapBuilder {
                     grassButton.setMinSize(50.0, 50.0);
                     mapGrid.add(grassButton, col, row);
                     grassButton.setOnAction(event -> {
-                        squareDescription.setText(currSquare.getDescription());
+                        if(currSquare.getIsAdjacent()){
+                            squareDescription.setText("This square is adjacent");
+                        } else {
+                            squareDescription.setText(currSquare.getDescription());
+                        }
                     });
 
                 // Creates road space buttons
@@ -94,10 +98,33 @@ public class MapBuilder {
                     characterButton.setOnAction(event -> {
                         squareDescription.setText(currSquare.getDescription());
                     });
+                    markAdjacentSquares(row, this.model.getStageMap().getRows(), col, this.model.getStageMap().getCols());
                 }
             }
         }
 
         return border;
+    }
+
+    public void markAdjacentSquares(int row, int rows, int col, int cols){
+        // Toggles square above
+        if(row > 0){
+            this.model.getStageMap().getLocation(row - 1, col).toggleIsAdjacent();
+        }
+
+        // Toggles square below
+        if(row < rows - 1){
+            this.model.getStageMap().getLocation(row + 1, col).toggleIsAdjacent();
+        }
+
+        // Toggles square to the left
+        if(col > 0){
+            this.model.getStageMap().getLocation(row, col - 1).toggleIsAdjacent();
+        }
+
+        // Toggles square to the right
+        if(col < cols - 1){
+            this.model.getStageMap().getLocation(row, col + 1).toggleIsAdjacent();
+        }
     }
 }

@@ -30,4 +30,12 @@ public abstract class Square {
     public String getDescription(){
         return this.description;
     }
+
+    public void toggleIsAdjacent(){
+        this.isAdjacent = !this.isAdjacent;
+    }
+
+    public boolean getIsAdjacent(){
+        return this.isAdjacent;
+    }
 }
