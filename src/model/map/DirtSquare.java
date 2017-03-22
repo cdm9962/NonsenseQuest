@@ -9,7 +9,7 @@ public class DirtSquare extends Square {
     // Constant square values
     public static char DIRT_SQUARE_CHARACTER = '/';
     public static String DIRT_SQUARE_NAME = "Dirt";
-    public static String DIRT_SQUARE_DESCRIPTION = "This area look to be well traveled.";
+    public static String DIRT_SQUARE_DESCRIPTION = "This area looks to be well traveled.";
 
     /**
      * Dirt Square constructor.

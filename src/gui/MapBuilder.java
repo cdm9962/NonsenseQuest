@@ -51,21 +51,21 @@ public class MapBuilder {
             for(int col = 0; col < this.model.getStageMap().getCols(); col++){
                 Square currSquare = this.model.getStageMap().getLocation(row, col);
 
-                // Creates empty space buttons
-                if(currSquare instanceof EmptySquare){
-                    //Button emptyButton = new Button(Character.toString(EmptySquare.EMPTY_SQUARE_CHARACTER));
-                    Button emptyButton = new Button();
+                // Creates grass space buttons
+                if(currSquare instanceof GrassSquare){
+                    //Button emptyButton = new Button(Character.toString(GrassSquare.EMPTY_SQUARE_CHARACTER));
+                    Button grassButton = new Button();
                     Background grassTexture = new Background(new BackgroundImage(new Image("file:grass.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
-                    emptyButton.setBackground(grassTexture);
-                    emptyButton.setMinSize(50.0, 50.0);
-                    mapGrid.add(emptyButton, col, row);
-                    emptyButton.setOnAction(event -> {
+                    grassButton.setBackground(grassTexture);
+                    grassButton.setMinSize(50.0, 50.0);
+                    mapGrid.add(grassButton, col, row);
+                    grassButton.setOnAction(event -> {
                         squareDescription.setText(currSquare.getDescription());
                     });
 
                 // Creates road space buttons
-                } else if(currSquare instanceof RoadSquare){
-                    //Button roadButton = new Button(Character.toString(RoadSquare.ROAD_SQUARE_CHARACTER));
+                } else if(currSquare instanceof DirtRoadSquare){
+                    //Button roadButton = new Button(Character.toString(DirtRoadSquare.ROAD_SQUARE_CHARACTER));
                     Button roadButton = new Button();
                     Background roadTexture = new Background(new BackgroundImage(new Image("file:dirtpathvert.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
                     roadButton.setBackground(roadTexture);
@@ -76,7 +76,7 @@ public class MapBuilder {
                     });
 
                 } else if(currSquare instanceof DirtSquare){
-                    //Button roadButton = new Button(Character.toString(RoadSquare.ROAD_SQUARE_CHARACTER));
+                    //Button roadButton = new Button(Character.toString(DirtRoadSquare.ROAD_SQUARE_CHARACTER));
                     Button dirtButton = new Button();
                     Background dirtTexture = new Background(new BackgroundImage(new Image("file:dirt.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
                     dirtButton.setBackground(dirtTexture);

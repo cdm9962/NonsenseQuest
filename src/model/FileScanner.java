@@ -63,10 +63,10 @@ public class FileScanner {
     }
 
     public Square addSquare(char label){
-        if(label == RoadSquare.ROAD_SQUARE_CHARACTER){
-            return new RoadSquare();
-        } else if(label == EmptySquare.EMPTY_SQUARE_CHARACTER) {
-            return new EmptySquare();
+        if(label == DirtRoadSquare.DIRT_ROAD_SQUARE_CHARACTER){
+            return new DirtRoadSquare();
+        } else if(label == GrassSquare.GRASS_SQUARE_CHARACTER) {
+            return new GrassSquare();
         } else if(label == DirtSquare.DIRT_SQUARE_CHARACTER){
             return new DirtSquare();
         } else if(label == CharacterSquare.CHARACTER_SQUARE_CHARACTER){
