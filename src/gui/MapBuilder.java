@@ -90,6 +90,17 @@ public class MapBuilder {
                         squareDescription.setText(currSquare.getDescription());
                     });
 
+                } else if(currSquare instanceof TreeSquare){
+                    //Button roadButton = new Button(Character.toString(DirtRoadSquare.ROAD_SQUARE_CHARACTER));
+                    Button treeButton = new Button();
+                    Background treeTexture = new Background(new BackgroundImage(new Image(currSquare.getFilename()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
+                    treeButton.setBackground(treeTexture);
+                    treeButton.setMinSize(50.0, 50.0);
+                    mapGrid.add(treeButton, col, row);
+                    treeButton.setOnAction(event -> {
+                        squareDescription.setText(currSquare.getDescription());
+                    });
+
                 // Creates character space buttons
                 } else if(currSquare instanceof CharacterSquare){
                     Button characterButton = new Button(Character.toString(CharacterSquare.CHARACTER_SQUARE_CHARACTER));

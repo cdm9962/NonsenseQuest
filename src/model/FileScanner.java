@@ -2,6 +2,7 @@ package model;
 
 import model.items.Sword;
 import model.map.*;
+import sun.reflect.generics.tree.Tree;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -75,8 +76,12 @@ public class FileScanner {
             return new DirtRoadSquare(DirtRoadSquare.BOTTOM_LEFT_DIRT_ROAD_FILE);
         } else if(label == GrassSquare.GRASS_SQUARE_CHARACTER) {
             return new GrassSquare();
-        } else if(label == DirtSquare.DIRT_SQUARE_CHARACTER){
+        } else if(label == DirtSquare.DIRT_SQUARE_CHARACTER) {
             return new DirtSquare();
+        } else if(label == TreeSquare.MAPLE_TREE_SQUARE_CHARACTER) {
+            return new TreeSquare(TreeSquare.MAPLE_TREE_SQUARE_FILE);
+        } else if(label == TreeSquare.PINE_TREE_SQUARE_CHARACTER){
+            return new TreeSquare(TreeSquare.PINE_TREE_SQUARE_FILE);
         } else if(label == CharacterSquare.CHARACTER_SQUARE_CHARACTER){
             return new CharacterSquare();
         } else {
