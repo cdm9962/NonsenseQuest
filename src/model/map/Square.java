@@ -7,17 +7,20 @@ package model.map;
  */
 public abstract class Square {
     // The private state of the map square
+    private String filename;
     private String name;
     private String description;
     private boolean isAdjacent;
 
     /**
      * Sqaure constructor.
+     * @param filename String representing the image filename for the square
      * @param name String representing the name of the square
      * @param description String representing the description of the square
      * @param isAdjacent boolean representing if the square is adjacent to the character
      */
-    public Square(String name, String description, boolean isAdjacent){
+    public Square(String filename, String name, String description, boolean isAdjacent){
+        this.filename = filename;
         this.name = name;
         this.description = description;
         this.isAdjacent = isAdjacent;
@@ -37,5 +40,9 @@ public abstract class Square {
 
     public boolean getIsAdjacent(){
         return this.isAdjacent;
+    }
+
+    public String getFilename(){
+        return this.filename;
     }
 }

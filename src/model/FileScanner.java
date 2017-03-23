@@ -63,8 +63,16 @@ public class FileScanner {
     }
 
     public Square addSquare(char label){
-        if(label == DirtRoadSquare.STRAIGHT_DIRT_ROAD_SQUARE_CHARACTER){
-            return new DirtRoadSquare();
+        if(label == DirtRoadSquare.STRAIGHT_DIRT_ROAD_SQUARE_CHARACTER) {
+            return new DirtRoadSquare(DirtRoadSquare.STRAIGHT_DIRT_ROAD_FILE);
+        } else if(label == DirtRoadSquare.TOP_LEFT_DIRT_ROAD_SQUARE_CHARACTER) {
+            return new DirtRoadSquare(DirtRoadSquare.TOP_LEFT_DIRT_ROAD_FILE);
+        } else if(label == DirtRoadSquare.TOP_RIGHT_DIRT_ROAD_SQUARE_CHARACTER) {
+            return new DirtRoadSquare(DirtRoadSquare.TOP_RIGHT_DIRT_ROAD_FILE);
+        } else if(label == DirtRoadSquare.BOTTOM_RIGHT_DIRT_ROAD_SQUARE_CHARACTER) {
+            return new DirtRoadSquare(DirtRoadSquare.BOTTOM_RIGHT_DIRT_ROAD_FILE);
+        } else if(label == DirtRoadSquare.BOTTOM_LEFT_DIRT_ROAD_SQUARE_CHARACTER){
+            return new DirtRoadSquare(DirtRoadSquare.BOTTOM_LEFT_DIRT_ROAD_FILE);
         } else if(label == GrassSquare.GRASS_SQUARE_CHARACTER) {
             return new GrassSquare();
         } else if(label == DirtSquare.DIRT_SQUARE_CHARACTER){

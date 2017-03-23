@@ -71,7 +71,7 @@ public class MapBuilder {
                 } else if(currSquare instanceof DirtRoadSquare){
                     //Button roadButton = new Button(Character.toString(DirtRoadSquare.ROAD_SQUARE_CHARACTER));
                     Button roadButton = new Button();
-                    Background roadTexture = new Background(new BackgroundImage(new Image("file:dirtpathvert.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
+                    Background roadTexture = new Background(new BackgroundImage(new Image(currSquare.getFilename()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
                     roadButton.setBackground(roadTexture);
                     roadButton.setMinSize(50.0, 50.0);
                     mapGrid.add(roadButton, col, row);

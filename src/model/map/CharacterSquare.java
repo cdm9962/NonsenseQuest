@@ -15,6 +15,6 @@ public class CharacterSquare extends Square {
      * Character Square constructor.
      */
     public CharacterSquare() {
-        super(CHARACTER_SQUARE_NAME, CHARACTER_SQUARE_DESCRIPTION, false);
+        super(null, CHARACTER_SQUARE_NAME, CHARACTER_SQUARE_DESCRIPTION, false);
     }
 }
