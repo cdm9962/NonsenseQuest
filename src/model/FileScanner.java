@@ -63,7 +63,7 @@ public class FileScanner {
     }
 
     public Square addSquare(char label){
-        if(label == DirtRoadSquare.DIRT_ROAD_SQUARE_CHARACTER){
+        if(label == DirtRoadSquare.STRAIGHT_DIRT_ROAD_SQUARE_CHARACTER){
             return new DirtRoadSquare();
         } else if(label == GrassSquare.GRASS_SQUARE_CHARACTER) {
             return new GrassSquare();
