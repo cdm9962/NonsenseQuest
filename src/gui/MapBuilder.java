@@ -15,10 +15,8 @@ import model.map.*;
  * @author Connor D. Milligan, Nathan Hall
  */
 public class MapBuilder {
-    // The private game model for the map builder
+    // The private state necessary for the map builder
     private GameModel model;
-
-    //
     private Stage primaryStage;
 
     /**
@@ -102,14 +100,14 @@ public class MapBuilder {
                     });
 
                 // Creates character space buttons
-                } else if(currSquare instanceof CharacterSquare){
-                    Button characterButton = new Button(Character.toString(CharacterSquare.CHARACTER_SQUARE_CHARACTER));
-                    characterButton.setMinSize(50.0, 50.0);
-                    mapGrid.add(characterButton, col, row);
-                    characterButton.setOnAction(event -> {
-                        squareDescription.setText(currSquare.getDescription());
-                    });
-                    markAdjacentSquares(row, this.model.getStageMap().getRows(), col, this.model.getStageMap().getCols());
+//                } else if(currSquare instanceof CharacterSquare){
+//                    Button characterButton = new Button(Character.toString(CharacterSquare.CHARACTER_SQUARE_CHARACTER));
+//                    characterButton.setMinSize(50.0, 50.0);
+//                    mapGrid.add(characterButton, col, row);
+//                    characterButton.setOnAction(event -> {
+//                        squareDescription.setText(currSquare.getDescription());
+//                    });
+//                    markAdjacentSquares(row, this.model.getStageMap().getRows(), col, this.model.getStageMap().getCols());
                 }
             }
         }

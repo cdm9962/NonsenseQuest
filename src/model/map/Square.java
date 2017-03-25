@@ -11,6 +11,12 @@ public abstract class Square {
     private String name;
     private String description;
     private boolean isAdjacent;
+    private boolean containsCharacter;
+    private Character enemy;
+
+    public static char CHARACTER_SQUARE_CHARACTER = 'C';
+    public static String CHARACTER_SQUARE_NAME = "Character";
+    public static String CHARACTER_SQUARE_DESCRIPTION = "This is you.";
 
     /**
      * Sqaure constructor.
@@ -19,11 +25,13 @@ public abstract class Square {
      * @param description String representing the description of the square
      * @param isAdjacent boolean representing if the square is adjacent to the character
      */
-    public Square(String filename, String name, String description, boolean isAdjacent){
+    public Square(String filename, String name, String description, boolean isAdjacent, boolean containsCharacter, Character enemy){
         this.filename = filename;
         this.name = name;
         this.description = description;
         this.isAdjacent = isAdjacent;
+        this.containsCharacter = containsCharacter;
+        this.enemy = enemy;
     }
 
     /**
@@ -44,5 +52,16 @@ public abstract class Square {
 
     public String getFilename(){
         return this.filename;
+    }
+
+    public boolean containsEnemy(){
+        return this.enemy != null;
+    }
+
+    public boolean isContainsCharacter(){
+        return this.containsCharacter;
+    }
+    public void togleContainsCharacter(){
+        this.containsCharacter = !this.containsCharacter;
     }
 }

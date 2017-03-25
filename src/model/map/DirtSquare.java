@@ -16,6 +16,6 @@ public class DirtSquare extends Square {
      * Dirt Square constructor.
      */
     public DirtSquare() {
-        super(DIRT_SQUARE_FILE, DIRT_SQUARE_NAME, DIRT_SQUARE_DESCRIPTION, false);
+        super(DIRT_SQUARE_FILE, DIRT_SQUARE_NAME, DIRT_SQUARE_DESCRIPTION, false, false, null);
     }
 }

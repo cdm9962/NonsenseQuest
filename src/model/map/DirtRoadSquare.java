@@ -26,7 +26,7 @@ public class DirtRoadSquare extends Square {
      * Dirt Road Square constructor.
      */
     public DirtRoadSquare(String filename) {
-        super(filename, DIRT_ROAD_SQUARE_NAME, DIRT_ROAD_SQUARE_DESCRIPTION, false);
+        super(filename, DIRT_ROAD_SQUARE_NAME, DIRT_ROAD_SQUARE_DESCRIPTION, false, false, null);
     }
 
     /**

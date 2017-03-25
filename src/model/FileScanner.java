@@ -49,7 +49,11 @@ public class FileScanner {
         // Scans through each character in the file and adds them to the map
         while (scanner.hasNext()){
             curr = scanner.next();
-            map[row][col] = addSquare(curr.charAt(0));
+            if(curr.charAt(0) == Square.CHARACTER_SQUARE_CHARACTER) {
+                map[row][col] = addSquare(curr.charAt(1), false);
+            } else {
+                map[row][col] = addSquare(curr.charAt(0), true);
+            }
             col++;
             // Updates column and row position
             if(col > this.cols - 1){
@@ -63,7 +67,7 @@ public class FileScanner {
         return map;
     }
 
-    public Square addSquare(char label){
+    public Square addSquare(char label, boolean isCharacterSquare){
         if(label == DirtRoadSquare.STRAIGHT_DIRT_ROAD_SQUARE_CHARACTER) {
             return new DirtRoadSquare(DirtRoadSquare.STRAIGHT_DIRT_ROAD_FILE);
         } else if(label == DirtRoadSquare.TOP_LEFT_DIRT_ROAD_SQUARE_CHARACTER) {
@@ -82,8 +86,8 @@ public class FileScanner {
             return new TreeSquare(TreeSquare.MAPLE_TREE_SQUARE_FILE);
         } else if(label == TreeSquare.PINE_TREE_SQUARE_CHARACTER){
             return new TreeSquare(TreeSquare.PINE_TREE_SQUARE_FILE);
-        } else if(label == CharacterSquare.CHARACTER_SQUARE_CHARACTER){
-            return new CharacterSquare();
+//        } else if(label == Square.CHARACTER_SQUARE_CHARACTER){
+//            addSquare(stringLabel.substring(1), true);
         } else {
             return null;
         }
