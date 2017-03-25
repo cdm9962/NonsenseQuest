@@ -15,7 +15,7 @@ public class GrassSquare extends Square {
     /**
      * Grass Square constructor.
      */
-    public GrassSquare() {
-        super(GRASS_SQUARE_FILE, GRASS_SQUARE_NAME, GRASS_SQUARE_DESCRIPTION, false, false, null);
+    public GrassSquare(boolean containsCharacter) {
+        super(GRASS_SQUARE_FILE, GRASS_SQUARE_NAME, GRASS_SQUARE_DESCRIPTION, false, containsCharacter, null);
     }
 }

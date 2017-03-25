@@ -25,26 +25,7 @@ public class DirtRoadSquare extends Square {
     /**
      * Dirt Road Square constructor.
      */
-    public DirtRoadSquare(String filename) {
-        super(filename, DIRT_ROAD_SQUARE_NAME, DIRT_ROAD_SQUARE_DESCRIPTION, false, false, null);
-    }
-
-    /**
-     * Method for determining what type of dirt road path square is required.
-     * @param character char representing the type of dirt road square
-     * @return DirtRoadSquare representing a square on the board
-     */
-    public DirtRoadSquare addDirtRoadSquare(char character){
-        if(character == STRAIGHT_DIRT_ROAD_SQUARE_CHARACTER){
-            return new DirtRoadSquare(STRAIGHT_DIRT_ROAD_FILE);
-        } else if(character == TOP_LEFT_DIRT_ROAD_SQUARE_CHARACTER){
-            return new DirtRoadSquare(TOP_LEFT_DIRT_ROAD_FILE);
-        } else if(character == TOP_RIGHT_DIRT_ROAD_SQUARE_CHARACTER){
-            return new DirtRoadSquare(TOP_RIGHT_DIRT_ROAD_FILE);
-        } else if(character == BOTTOM_RIGHT_DIRT_ROAD_SQUARE_CHARACTER){
-            return new DirtRoadSquare(BOTTOM_RIGHT_DIRT_ROAD_FILE);
-        } else {
-            return new DirtRoadSquare(BOTTOM_RIGHT_DIRT_ROAD_FILE);
-        }
+    public DirtRoadSquare(String filename, boolean containsCharacter) {
+        super(filename, DIRT_ROAD_SQUARE_NAME, DIRT_ROAD_SQUARE_DESCRIPTION, false, containsCharacter, null);
     }
 }

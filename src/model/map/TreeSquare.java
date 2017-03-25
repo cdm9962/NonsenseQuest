@@ -18,7 +18,7 @@ public class TreeSquare extends Square {
     /**
      * TreeSquare Square constructor.
      */
-    public TreeSquare(String filename) {
-        super(filename, TREE_SQUARE_NAME, TREE_SQUARE_DESCRIPTION, false, false, null);
+    public TreeSquare(String filename, boolean containsCharacter) {
+        super(filename, TREE_SQUARE_NAME, TREE_SQUARE_DESCRIPTION, false, containsCharacter, null);
     }
 }

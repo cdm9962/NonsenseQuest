@@ -50,9 +50,9 @@ public class FileScanner {
         while (scanner.hasNext()){
             curr = scanner.next();
             if(curr.charAt(0) == Square.CHARACTER_SQUARE_CHARACTER) {
-                map[row][col] = addSquare(curr.charAt(1), false);
+                map[row][col] = addSquare(curr.charAt(1), true);
             } else {
-                map[row][col] = addSquare(curr.charAt(0), true);
+                map[row][col] = addSquare(curr.charAt(0), false);
             }
             col++;
             // Updates column and row position
@@ -69,25 +69,23 @@ public class FileScanner {
 
     public Square addSquare(char label, boolean isCharacterSquare){
         if(label == DirtRoadSquare.STRAIGHT_DIRT_ROAD_SQUARE_CHARACTER) {
-            return new DirtRoadSquare(DirtRoadSquare.STRAIGHT_DIRT_ROAD_FILE);
+            return new DirtRoadSquare(DirtRoadSquare.STRAIGHT_DIRT_ROAD_FILE, isCharacterSquare);
         } else if(label == DirtRoadSquare.TOP_LEFT_DIRT_ROAD_SQUARE_CHARACTER) {
-            return new DirtRoadSquare(DirtRoadSquare.TOP_LEFT_DIRT_ROAD_FILE);
+            return new DirtRoadSquare(DirtRoadSquare.TOP_LEFT_DIRT_ROAD_FILE, isCharacterSquare);
         } else if(label == DirtRoadSquare.TOP_RIGHT_DIRT_ROAD_SQUARE_CHARACTER) {
-            return new DirtRoadSquare(DirtRoadSquare.TOP_RIGHT_DIRT_ROAD_FILE);
+            return new DirtRoadSquare(DirtRoadSquare.TOP_RIGHT_DIRT_ROAD_FILE, isCharacterSquare);
         } else if(label == DirtRoadSquare.BOTTOM_RIGHT_DIRT_ROAD_SQUARE_CHARACTER) {
-            return new DirtRoadSquare(DirtRoadSquare.BOTTOM_RIGHT_DIRT_ROAD_FILE);
+            return new DirtRoadSquare(DirtRoadSquare.BOTTOM_RIGHT_DIRT_ROAD_FILE, isCharacterSquare);
         } else if(label == DirtRoadSquare.BOTTOM_LEFT_DIRT_ROAD_SQUARE_CHARACTER){
-            return new DirtRoadSquare(DirtRoadSquare.BOTTOM_LEFT_DIRT_ROAD_FILE);
+            return new DirtRoadSquare(DirtRoadSquare.BOTTOM_LEFT_DIRT_ROAD_FILE, isCharacterSquare);
         } else if(label == GrassSquare.GRASS_SQUARE_CHARACTER) {
-            return new GrassSquare();
+            return new GrassSquare(isCharacterSquare);
         } else if(label == DirtSquare.DIRT_SQUARE_CHARACTER) {
-            return new DirtSquare();
+            return new DirtSquare(isCharacterSquare);
         } else if(label == TreeSquare.MAPLE_TREE_SQUARE_CHARACTER) {
-            return new TreeSquare(TreeSquare.MAPLE_TREE_SQUARE_FILE);
+            return new TreeSquare(TreeSquare.MAPLE_TREE_SQUARE_FILE,isCharacterSquare);
         } else if(label == TreeSquare.PINE_TREE_SQUARE_CHARACTER){
-            return new TreeSquare(TreeSquare.PINE_TREE_SQUARE_FILE);
-//        } else if(label == Square.CHARACTER_SQUARE_CHARACTER){
-//            addSquare(stringLabel.substring(1), true);
+            return new TreeSquare(TreeSquare.PINE_TREE_SQUARE_FILE, isCharacterSquare);
         } else {
             return null;
         }

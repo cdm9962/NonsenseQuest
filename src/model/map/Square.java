@@ -39,7 +39,13 @@ public abstract class Square {
      * @return String representing the square description
      */
     public String getDescription(){
-        return this.description;
+        if(this.isAdjacent){
+            return "You can move to this square.";
+        } else if (this.containsCharacter) {
+            return "You are here.";
+        } else {
+            return this.description;
+        }
     }
 
     public void toggleIsAdjacent(){

@@ -1,6 +1,7 @@
 package gui;
 
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -98,16 +99,12 @@ public class MapBuilder {
                     treeButton.setOnAction(event -> {
                         squareDescription.setText(currSquare.getDescription());
                     });
+                }
 
-                // Creates character space buttons
-//                } else if(currSquare instanceof CharacterSquare){
-//                    Button characterButton = new Button(Character.toString(CharacterSquare.CHARACTER_SQUARE_CHARACTER));
-//                    characterButton.setMinSize(50.0, 50.0);
-//                    mapGrid.add(characterButton, col, row);
-//                    characterButton.setOnAction(event -> {
-//                        squareDescription.setText(currSquare.getDescription());
-//                    });
-//                    markAdjacentSquares(row, this.model.getStageMap().getRows(), col, this.model.getStageMap().getCols());
+                // Locates the character square and marks adjacency
+                if (currSquare.isContainsCharacter()){
+                    setCharacterSquare(mapGrid, col, row);
+                    markAdjacentSquares(row, this.model.getStageMap().getRows(), col, this.model.getStageMap().getCols());
                 }
             }
         }
@@ -115,6 +112,13 @@ public class MapBuilder {
         return border;
     }
 
+    /**
+     * Method to updated the model with adjacent squares.
+     * @param row int representing the row the character is in
+     * @param rows int representing the total number of rows
+     * @param col int representing the column the character is in
+     * @param cols int representing the total number of columns
+     */
     public void markAdjacentSquares(int row, int rows, int col, int cols){
         // Toggles square above
         if(row > 0){
@@ -134,6 +138,22 @@ public class MapBuilder {
         // Toggles square to the right
         if(col < cols - 1){
             this.model.getStageMap().getLocation(row, col + 1).toggleIsAdjacent();
+        }
+    }
+
+    /**
+     * Method to set the characters current location on the stage map.
+     * @param gridPane GridPane representing the stage map
+     * @param col int representing the column location of the character
+     * @param row int representing the row location of the character
+     */
+    public void setCharacterSquare(GridPane gridPane, int col, int row) {
+        for (Node node : gridPane.getChildren()) {
+            if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
+                if(node instanceof Button){
+                    node.setStyle("-fx-border-color: blue; -fx-border-width: 5px;");
+                }
+            }
         }
     }
 }
