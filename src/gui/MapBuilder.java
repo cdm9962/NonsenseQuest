@@ -208,7 +208,7 @@ public class MapBuilder {
         for (Node node : gridPane.getChildren()) {
             if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
                 if(node instanceof Button){
-                    node.setStyle("-fx-border-color: blue; -fx-border-width: 5px;");
+                    node.setStyle("-fx-border-color: blue; -fx-border-width: 3px;");
                 }
             }
         }
@@ -223,7 +223,7 @@ public class MapBuilder {
         for (Node node : gridPane.getChildren()) {
             if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
                 if(node instanceof Button){
-                    node.setStyle("-fx-border-color: yellow; -fx-border-width: 5px;");
+                    node.setStyle("-fx-border-color: yellow; -fx-border-width: 3px;");
                 }
             }
         }

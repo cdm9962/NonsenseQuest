@@ -37,6 +37,7 @@ public class GameInterface extends Application implements Observer {
     public static final Font PIXEL_FONT_MEDIUM = Font.loadFont(GameInterface.class.getResource("/resources/images/pixelfont.ttf").toExternalForm(), 30);
     public static final Font PIXEL_FONT_SMALL = Font.loadFont(GameInterface.class.getResource("/resources/images/pixelfont.ttf").toExternalForm(), 20);
     public static final String SPLASH_FILE = "/resources/images/splash.png";
+    public static final String WOOD_BUTTON_FILE = "/resources/images/woodbutton.png";
 
     // Constant values
     public static final String TITLE = "Nonsense Quest";
@@ -54,7 +55,7 @@ public class GameInterface extends Application implements Observer {
      * Constructor for the game interface.
      */
     public GameInterface(){
-        this.model = null;
+        model = null;
     }
 
     @Override
@@ -101,9 +102,12 @@ public class GameInterface extends Application implements Observer {
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(DEFAULT_INSETS));
         Button start = new Button(INTRO_BUTTON_LABEL);
+        start.setFont(PIXEL_FONT_SMALL);
+        start.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(WOOD_BUTTON_FILE).toExternalForm()),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         // Launches opening scene
         start.setOnAction(event -> {
-            OpeningScene openingScene = new OpeningScene(this.model, this.primaryStage);
+            OpeningScene openingScene = new OpeningScene(model, primaryStage);
             openingScene.startScene();
         });
         grid.add(start, 0, 0);
@@ -111,7 +115,7 @@ public class GameInterface extends Application implements Observer {
         // Adds button to the scene
         AnchorPane anchor = new AnchorPane(grid);
         anchor.setBottomAnchor(grid, 10.0);
-        anchor.setRightAnchor(grid, 618.0);
+        anchor.setRightAnchor(grid, 575.0);
         border.setBottom(anchor);
 
         return border;
