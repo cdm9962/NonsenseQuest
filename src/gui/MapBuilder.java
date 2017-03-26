@@ -53,7 +53,8 @@ public class MapBuilder {
                 // Creates grass space buttons
                 if(currSquare instanceof GrassSquare){
                     Button grassButton = new Button();
-                    Background grassTexture = new Background(new BackgroundImage(new Image(getClass().getResource(currSquare.getFilename()).toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
+                    Background grassTexture = new Background(new BackgroundImage(new Image(getClass().getResource(currSquare.getFilename()).toExternalForm()),
+                            BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
                     grassButton.setBackground(grassTexture);
                     grassButton.setMinSize(50.0, 50.0);
                     mapGrid.add(grassButton, col, row);
@@ -68,12 +69,18 @@ public class MapBuilder {
                 // Creates road space buttons
                 } else if(currSquare instanceof DirtPathSquare){
                     Button roadButton = new Button();
-                    Background roadTexture = new Background(new BackgroundImage(new Image(getClass().getResource(currSquare.getFilename()).toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
+                    Background roadTexture = new Background(new BackgroundImage(new Image(getClass().getResource(currSquare.getFilename()).toExternalForm()),
+                            BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
                     roadButton.setBackground(roadTexture);
                     roadButton.setMinSize(50.0, 50.0);
                     mapGrid.add(roadButton, col, row);
+                    final int finalRow = row;
+                    final int finalCol = col;
                     roadButton.setOnAction(event -> {
                         squareDescription.setText(currSquare.getDescription());
+                        if(currSquare.getIsAdjacent()){
+                            moveCharacter(currSquare, mapGrid, finalRow, finalCol);
+                        }
                     });
 
                 // Creates dirt space buttons
@@ -91,7 +98,8 @@ public class MapBuilder {
                 // Creates tree space buttons
                 } else if(currSquare instanceof TreeSquare){
                     Button treeButton = new Button();
-                    Background treeTexture = new Background(new BackgroundImage(new Image(getClass().getResource(currSquare.getFilename()).toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
+                    Background treeTexture = new Background(new BackgroundImage(new Image(getClass().getResource(currSquare.getFilename()).toExternalForm()),
+                            BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
                     treeButton.setBackground(treeTexture);
                     treeButton.setMinSize(50.0, 50.0);
                     mapGrid.add(treeButton, col, row);
@@ -103,7 +111,7 @@ public class MapBuilder {
                 // Locates the character square and marks adjacency
                 if (currSquare.isContainsCharacter()){
                     setCharacterSquare(mapGrid, col, row);
-                    markAdjacentSquares(row, this.model.getStageMap().getRows(), col, this.model.getStageMap().getCols());
+                    markAdjacentSquares(mapGrid, row, this.model.getStageMap().getRows(), col, this.model.getStageMap().getCols());
                 }
             }
         }
@@ -118,25 +126,53 @@ public class MapBuilder {
      * @param col int representing the column the character is in
      * @param cols int representing the total number of columns
      */
-    public void markAdjacentSquares(int row, int rows, int col, int cols){
+    public void markAdjacentSquares(GridPane mapgrid, int row, int rows, int col, int cols){
         // Toggles square above
         if(row > 0){
             this.model.getStageMap().getLocation(row - 1, col).toggleIsAdjacent();
+            setAdjacentSquare(mapgrid, col, row - 1);
         }
 
         // Toggles square below
         if(row < rows - 1){
             this.model.getStageMap().getLocation(row + 1, col).toggleIsAdjacent();
+            setAdjacentSquare(mapgrid, col, row + 1);
         }
 
         // Toggles square to the left
         if(col > 0){
             this.model.getStageMap().getLocation(row, col - 1).toggleIsAdjacent();
+            setAdjacentSquare(mapgrid, col - 1, row);
         }
 
         // Toggles square to the right
         if(col < cols - 1){
             this.model.getStageMap().getLocation(row, col + 1).toggleIsAdjacent();
+            setAdjacentSquare(mapgrid, col + 1, row);
+        }
+
+        // Toggle top left square
+        if(row > 0 && col > 0){
+            this.model.getStageMap().getLocation(row - 1, col - 1).toggleIsAdjacent();
+            setAdjacentSquare(mapgrid, col - 1, row - 1);
+        }
+
+        // Toggle top right square
+        if(row > 0 && col < cols - 1){
+            this.model.getStageMap().getLocation(row - 1, col + 1).toggleIsAdjacent();
+            setAdjacentSquare(mapgrid, col + 1, row - 1);
+        }
+
+        // Toggle bottom left square
+        if(row < rows - 1 && col > 0){
+            this.model.getStageMap().getLocation(row + 1, col - 1).toggleIsAdjacent();
+            setAdjacentSquare(mapgrid, col - 1, row + 1);
+        }
+
+        // Toggle bottom right square
+        if(row < rows - 1 && col < cols - 1){
+            this.model.getStageMap().getLocation(row + 1, col + 1).toggleIsAdjacent();
+            setAdjacentSquare(mapgrid, col + 1, row + 1);
         }
     }
 
@@ -154,5 +190,26 @@ public class MapBuilder {
                 }
             }
         }
+    }
+    /**
+     * Method to set the adjacent square locations on the stage map.
+     * @param gridPane GridPane representing the stage map
+     * @param col int representing the column location of an adjacent square
+     * @param row int representing the row location of the and adjacent square
+     */
+    public void setAdjacentSquare(GridPane gridPane, int col, int row) {
+        for (Node node : gridPane.getChildren()) {
+            if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
+                if(node instanceof Button){
+                    node.setStyle("-fx-border-color: yellow; -fx-border-width: 5px;");
+                }
+            }
+        }
+    }
+
+    public void moveCharacter(Square currSquare, GridPane mapGrid, int row, int col){
+        currSquare.togleContainsCharacter();
+        setCharacterSquare(mapGrid, col, row);
+        markAdjacentSquares(mapGrid, row, this.model.getStageMap().getRows(), col, this.model.getStageMap().getCols());
     }
 }
