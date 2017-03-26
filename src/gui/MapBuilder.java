@@ -52,9 +52,8 @@ public class MapBuilder {
 
                 // Creates grass space buttons
                 if(currSquare instanceof GrassSquare){
-                    //Button emptyButton = new Button(Character.toString(GrassSquare.EMPTY_SQUARE_CHARACTER));
                     Button grassButton = new Button();
-                    Background grassTexture = new Background(new BackgroundImage(new Image("file:grass.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
+                    Background grassTexture = new Background(new BackgroundImage(new Image(getClass().getResource(currSquare.getFilename()).toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
                     grassButton.setBackground(grassTexture);
                     grassButton.setMinSize(50.0, 50.0);
                     mapGrid.add(grassButton, col, row);
@@ -67,10 +66,9 @@ public class MapBuilder {
                     });
 
                 // Creates road space buttons
-                } else if(currSquare instanceof DirtRoadSquare){
-                    //Button roadButton = new Button(Character.toString(DirtRoadSquare.ROAD_SQUARE_CHARACTER));
+                } else if(currSquare instanceof DirtPathSquare){
                     Button roadButton = new Button();
-                    Background roadTexture = new Background(new BackgroundImage(new Image(currSquare.getFilename()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
+                    Background roadTexture = new Background(new BackgroundImage(new Image(getClass().getResource(currSquare.getFilename()).toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
                     roadButton.setBackground(roadTexture);
                     roadButton.setMinSize(50.0, 50.0);
                     mapGrid.add(roadButton, col, row);
@@ -78,10 +76,11 @@ public class MapBuilder {
                         squareDescription.setText(currSquare.getDescription());
                     });
 
+                // Creates dirt space buttons
                 } else if(currSquare instanceof DirtSquare){
-                    //Button roadButton = new Button(Character.toString(DirtRoadSquare.ROAD_SQUARE_CHARACTER));
                     Button dirtButton = new Button();
-                    Background dirtTexture = new Background(new BackgroundImage(new Image("file:dirt.png"), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
+                    Background dirtTexture = new Background(new BackgroundImage(new Image(getClass().getResource(currSquare.getFilename()).toExternalForm()),
+                            BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
                     dirtButton.setBackground(dirtTexture);
                     dirtButton.setMinSize(50.0, 50.0);
                     mapGrid.add(dirtButton, col, row);
@@ -89,10 +88,10 @@ public class MapBuilder {
                         squareDescription.setText(currSquare.getDescription());
                     });
 
+                // Creates tree space buttons
                 } else if(currSquare instanceof TreeSquare){
-                    //Button roadButton = new Button(Character.toString(DirtRoadSquare.ROAD_SQUARE_CHARACTER));
                     Button treeButton = new Button();
-                    Background treeTexture = new Background(new BackgroundImage(new Image(currSquare.getFilename()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
+                    Background treeTexture = new Background(new BackgroundImage(new Image(getClass().getResource(currSquare.getFilename()).toExternalForm()), BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
                     treeButton.setBackground(treeTexture);
                     treeButton.setMinSize(50.0, 50.0);
                     mapGrid.add(treeButton, col, row);

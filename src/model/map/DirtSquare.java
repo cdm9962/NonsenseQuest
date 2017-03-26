@@ -10,7 +10,7 @@ public class DirtSquare extends Square {
     public static char DIRT_SQUARE_CHARACTER = '/';
     public static String DIRT_SQUARE_NAME = "Dirt";
     public static String DIRT_SQUARE_DESCRIPTION = "This area looks to be well traveled.";
-    public static String DIRT_SQUARE_FILE = "file:dirt";
+    public static String DIRT_SQUARE_FILE = "/resources/images/dirt.png";
 
     /**
      * Dirt Square constructor.

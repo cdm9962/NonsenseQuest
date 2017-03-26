@@ -2,7 +2,6 @@ package model;
 
 import model.items.Sword;
 import model.map.*;
-import sun.reflect.generics.tree.Tree;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -68,16 +67,18 @@ public class FileScanner {
     }
 
     public Square addSquare(char label, boolean isCharacterSquare){
-        if(label == DirtRoadSquare.STRAIGHT_DIRT_ROAD_SQUARE_CHARACTER) {
-            return new DirtRoadSquare(DirtRoadSquare.STRAIGHT_DIRT_ROAD_FILE, isCharacterSquare);
-        } else if(label == DirtRoadSquare.TOP_LEFT_DIRT_ROAD_SQUARE_CHARACTER) {
-            return new DirtRoadSquare(DirtRoadSquare.TOP_LEFT_DIRT_ROAD_FILE, isCharacterSquare);
-        } else if(label == DirtRoadSquare.TOP_RIGHT_DIRT_ROAD_SQUARE_CHARACTER) {
-            return new DirtRoadSquare(DirtRoadSquare.TOP_RIGHT_DIRT_ROAD_FILE, isCharacterSquare);
-        } else if(label == DirtRoadSquare.BOTTOM_RIGHT_DIRT_ROAD_SQUARE_CHARACTER) {
-            return new DirtRoadSquare(DirtRoadSquare.BOTTOM_RIGHT_DIRT_ROAD_FILE, isCharacterSquare);
-        } else if(label == DirtRoadSquare.BOTTOM_LEFT_DIRT_ROAD_SQUARE_CHARACTER){
-            return new DirtRoadSquare(DirtRoadSquare.BOTTOM_LEFT_DIRT_ROAD_FILE, isCharacterSquare);
+        if(label == DirtPathSquare.VERTICAL_DIRT_PATH_SQUARE_CHARACTER) {
+            return new DirtPathSquare(DirtPathSquare.VERTICAL_DIRT_PATH_FILE, isCharacterSquare);
+        } else if(label == DirtPathSquare.HORIZONTAL_DIRT_PATH_SQUARE_CHARACTER) {
+                return new DirtPathSquare(DirtPathSquare.HORIZONTAL_DIRT_PATH_FILE, isCharacterSquare);
+        } else if(label == DirtPathSquare.TOP_LEFT_DIRT_PATH_SQUARE_CHARACTER) {
+            return new DirtPathSquare(DirtPathSquare.TOP_LEFT_DIRT_PATH_FILE, isCharacterSquare);
+        } else if(label == DirtPathSquare.TOP_RIGHT_DIRT_PATH_SQUARE_CHARACTER) {
+            return new DirtPathSquare(DirtPathSquare.TOP_RIGHT_DIRT_PATH_FILE, isCharacterSquare);
+        } else if(label == DirtPathSquare.BOTTOM_RIGHT_DIRT_PATH_SQUARE_CHARACTER) {
+            return new DirtPathSquare(DirtPathSquare.BOTTOM_RIGHT_DIRT_PATH_FILE, isCharacterSquare);
+        } else if(label == DirtPathSquare.BOTTOM_LEFT_DIRT_PATH_SQUARE_CHARACTER){
+            return new DirtPathSquare(DirtPathSquare.BOTTOM_LEFT_DIRT_PATH_FILE, isCharacterSquare);
         } else if(label == GrassSquare.GRASS_SQUARE_CHARACTER) {
             return new GrassSquare(isCharacterSquare);
         } else if(label == DirtSquare.DIRT_SQUARE_CHARACTER) {
