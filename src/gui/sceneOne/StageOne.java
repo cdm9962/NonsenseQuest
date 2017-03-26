@@ -18,7 +18,7 @@ public class StageOne {
     private Stage primaryStage;
 
     public static final String STAGE_ONE_TITLE = "Stage One";
-    public static final String STAGE_ONE_FILENAME = "stageone.txt";
+    public static final String STAGE_ONE_FILENAME = "/resources/stagemaps/stageone.txt";
 
     public StageOne(GameModel model, Stage primaryStage){
         this.model = model;

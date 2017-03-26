@@ -3,7 +3,7 @@ package model;
 import model.map.StageMap;
 
 /**
- * The model for the game.  Updates based on user interactions.
+ * The model for the game. Updates based on user interactions.
  *
  * @author Connor D. Milligan, Nathan Hall
  */

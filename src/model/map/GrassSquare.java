@@ -14,6 +14,7 @@ public class GrassSquare extends Square {
 
     /**
      * Grass Square constructor.
+     * @param containsCharacter boolean to determine if the square holds the character
      */
     public GrassSquare(boolean containsCharacter) {
         super(GRASS_SQUARE_FILE, GRASS_SQUARE_NAME, GRASS_SQUARE_DESCRIPTION, false, containsCharacter, null);

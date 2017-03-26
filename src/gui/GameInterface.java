@@ -31,9 +31,9 @@ public class GameInterface extends Application implements Observer {
     private Stage primaryStage;
 
     // Custom Font values
-    public static final Font PIXEL_FONT_LARGE = Font.loadFont(GameInterface.class.getResource("pixelfont.ttf").toExternalForm(), 50);
-    public static final Font PIXEL_FONT_MEDIUM = Font.loadFont(GameInterface.class.getResource("pixelfont.ttf").toExternalForm(), 30);
-    public static final Font PIXEL_FONT_SMALL = Font.loadFont(GameInterface.class.getResource("pixelfont.ttf").toExternalForm(), 20);
+    public static final Font PIXEL_FONT_LARGE = Font.loadFont(GameInterface.class.getResource("/resources/images/pixelfont.ttf").toExternalForm(), 50);
+    public static final Font PIXEL_FONT_MEDIUM = Font.loadFont(GameInterface.class.getResource("/resources/images/pixelfont.ttf").toExternalForm(), 30);
+    public static final Font PIXEL_FONT_SMALL = Font.loadFont(GameInterface.class.getResource("/resources/images/pixelfont.ttf").toExternalForm(), 20);
 
     // Constant values
     public static final String TITLE = "Nonsense Quest";

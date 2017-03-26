@@ -97,8 +97,8 @@ public class Player {
             this.inventory = new ArrayList<>();
             FileScanner scanner = new FileScanner();
             try {
-                this.inventory.add(scanner.scanSword("swords.txt", 1));
-                this.inventory.add((scanner.scanSword("swords.txt", 2)));
+                this.inventory.add(scanner.scanSword("/resources/entitylists/swords.txt", 1));
+                this.inventory.add((scanner.scanSword("/resources/entitylists/swords.txt", 2)));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }

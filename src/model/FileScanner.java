@@ -33,7 +33,7 @@ public class FileScanner {
      */
     public Square[][] scanMap(String filename) throws FileNotFoundException {
         // Creates the scanner object
-        InputStream stream = new FileInputStream(filename);
+        InputStream stream = new FileInputStream(getClass().getResource(filename).getFile());
         this.scanner = new Scanner(stream);
 
         // Variables for file reading
@@ -66,6 +66,12 @@ public class FileScanner {
         return map;
     }
 
+    /**
+     * Method to determine the type of square to add to the stage map.
+     * @param label char representing the type of square
+     * @param isCharacterSquare boolean representing if the character is located on the square
+     * @return Square representing the square to add to the stage map
+     */
     public Square addSquare(char label, boolean isCharacterSquare){
         if(label == DirtPathSquare.VERTICAL_DIRT_PATH_SQUARE_CHARACTER) {
             return new DirtPathSquare(DirtPathSquare.VERTICAL_DIRT_PATH_FILE, isCharacterSquare);
@@ -101,7 +107,7 @@ public class FileScanner {
      */
     public Sword scanSword(String filename, int row) throws FileNotFoundException {
         // Creates the scanner object
-        InputStream stream = new FileInputStream(filename);
+        InputStream stream = new FileInputStream(getClass().getResource(filename).getFile());
         this.scanner = new Scanner(stream);
 
         // Run through the rows in the file until it reaches the proper row

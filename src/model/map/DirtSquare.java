@@ -14,6 +14,7 @@ public class DirtSquare extends Square {
 
     /**
      * Dirt Square constructor.
+     * @param containsCharacter boolean to determine if the square holds the character
      */
     public DirtSquare(boolean containsCharacter) {
         super(DIRT_SQUARE_FILE, DIRT_SQUARE_NAME, DIRT_SQUARE_DESCRIPTION, false, containsCharacter, null);
