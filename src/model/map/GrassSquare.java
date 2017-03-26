@@ -14,9 +14,11 @@ public class GrassSquare extends Square {
 
     /**
      * Grass Square constructor.
+     * @param row int representing the row location of the square
+     * @param row int representing the column location of the square
      * @param containsCharacter boolean to determine if the square holds the character
      */
-    public GrassSquare(boolean containsCharacter) {
-        super(GRASS_SQUARE_FILE, GRASS_SQUARE_NAME, GRASS_SQUARE_DESCRIPTION, false, containsCharacter, null);
+    public GrassSquare(int row, int col, boolean containsCharacter) {
+        super(row, col, GRASS_SQUARE_FILE, GRASS_SQUARE_NAME, GRASS_SQUARE_DESCRIPTION, false, containsCharacter, null);
     }
 }

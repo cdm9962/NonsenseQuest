@@ -14,6 +14,7 @@ public class StageMap {
     private Square[][] map;
     private int rows;
     private int cols;
+    private Square characterSquare;
 
     /**
      * Constructor for the stage map. Reads the map from a given file.
@@ -64,5 +65,13 @@ public class StageMap {
      */
     public Square getLocation(int row, int col){
         return this.map[row][col];
+    }
+
+    public void setCharacterSquare(Square characterSquare){
+        this.characterSquare = characterSquare;
+    }
+
+    public Square getCharacterSquare(){
+        return this.characterSquare;
     }
 }

@@ -18,10 +18,12 @@ public class TreeSquare extends Square {
 
     /**
      * TreeSquare Square constructor.
+     * @param row int representing the row location of the square
+     * @param col int representing the column location of the square
      * @param filename String representing the image filename
      * @param containsCharacter boolean to determine if the square holds the character
      */
-    public TreeSquare(String filename, boolean containsCharacter) {
-        super(filename, TREE_SQUARE_NAME, TREE_SQUARE_DESCRIPTION, false, containsCharacter, null);
+    public TreeSquare(int row, int col, String filename, boolean containsCharacter) {
+        super(row, col, filename, TREE_SQUARE_NAME, TREE_SQUARE_DESCRIPTION, false, containsCharacter, null);
     }
 }

@@ -28,10 +28,12 @@ public class DirtPathSquare extends Square {
 
     /**
      * Dirt Path Square constructor.
+     * @param row int representing the row location of the square
+     * @param col int representing the column location of the square
      * @param filename String representing the image filename
      * @param containsCharacter boolean to determine if the square holds the character
      */
-    public DirtPathSquare(String filename, boolean containsCharacter) {
-        super(filename, DIRT_PATH_SQUARE_NAME, DIRT_PATH_SQUARE_DESCRIPTION, false, containsCharacter, null);
+    public DirtPathSquare(int row, int col, String filename, boolean containsCharacter) {
+        super(row, col, filename, DIRT_PATH_SQUARE_NAME, DIRT_PATH_SQUARE_DESCRIPTION, false, containsCharacter, null);
     }
 }

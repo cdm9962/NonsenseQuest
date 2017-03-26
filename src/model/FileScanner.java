@@ -49,9 +49,9 @@ public class FileScanner {
         while (scanner.hasNext()){
             curr = scanner.next();
             if(curr.charAt(0) == Square.CHARACTER_SQUARE_CHARACTER) {
-                map[row][col] = addSquare(curr.charAt(1), true);
+                map[row][col] = addSquare(row, col, curr.charAt(1), true);
             } else {
-                map[row][col] = addSquare(curr.charAt(0), false);
+                map[row][col] = addSquare(row, col, curr.charAt(0), false);
             }
             col++;
             // Updates column and row position
@@ -72,27 +72,27 @@ public class FileScanner {
      * @param isCharacterSquare boolean representing if the character is located on the square
      * @return Square representing the square to add to the stage map
      */
-    public Square addSquare(char label, boolean isCharacterSquare){
+    public Square addSquare(int row, int col, char label, boolean isCharacterSquare){
         if(label == DirtPathSquare.VERTICAL_DIRT_PATH_SQUARE_CHARACTER) {
-            return new DirtPathSquare(DirtPathSquare.VERTICAL_DIRT_PATH_FILE, isCharacterSquare);
+            return new DirtPathSquare(row, col, DirtPathSquare.VERTICAL_DIRT_PATH_FILE, isCharacterSquare);
         } else if(label == DirtPathSquare.HORIZONTAL_DIRT_PATH_SQUARE_CHARACTER) {
-                return new DirtPathSquare(DirtPathSquare.HORIZONTAL_DIRT_PATH_FILE, isCharacterSquare);
+                return new DirtPathSquare(row, col, DirtPathSquare.HORIZONTAL_DIRT_PATH_FILE, isCharacterSquare);
         } else if(label == DirtPathSquare.TOP_LEFT_DIRT_PATH_SQUARE_CHARACTER) {
-            return new DirtPathSquare(DirtPathSquare.TOP_LEFT_DIRT_PATH_FILE, isCharacterSquare);
+            return new DirtPathSquare(row, col, DirtPathSquare.TOP_LEFT_DIRT_PATH_FILE, isCharacterSquare);
         } else if(label == DirtPathSquare.TOP_RIGHT_DIRT_PATH_SQUARE_CHARACTER) {
-            return new DirtPathSquare(DirtPathSquare.TOP_RIGHT_DIRT_PATH_FILE, isCharacterSquare);
+            return new DirtPathSquare(row, col, DirtPathSquare.TOP_RIGHT_DIRT_PATH_FILE, isCharacterSquare);
         } else if(label == DirtPathSquare.BOTTOM_RIGHT_DIRT_PATH_SQUARE_CHARACTER) {
-            return new DirtPathSquare(DirtPathSquare.BOTTOM_RIGHT_DIRT_PATH_FILE, isCharacterSquare);
+            return new DirtPathSquare(row, col, DirtPathSquare.BOTTOM_RIGHT_DIRT_PATH_FILE, isCharacterSquare);
         } else if(label == DirtPathSquare.BOTTOM_LEFT_DIRT_PATH_SQUARE_CHARACTER){
-            return new DirtPathSquare(DirtPathSquare.BOTTOM_LEFT_DIRT_PATH_FILE, isCharacterSquare);
+            return new DirtPathSquare(row, col, DirtPathSquare.BOTTOM_LEFT_DIRT_PATH_FILE, isCharacterSquare);
         } else if(label == GrassSquare.GRASS_SQUARE_CHARACTER) {
-            return new GrassSquare(isCharacterSquare);
+            return new GrassSquare(row, col, isCharacterSquare);
         } else if(label == DirtSquare.DIRT_SQUARE_CHARACTER) {
-            return new DirtSquare(isCharacterSquare);
+            return new DirtSquare(row, col, isCharacterSquare);
         } else if(label == TreeSquare.MAPLE_TREE_SQUARE_CHARACTER) {
-            return new TreeSquare(TreeSquare.MAPLE_TREE_SQUARE_FILE,isCharacterSquare);
+            return new TreeSquare(row, col, TreeSquare.MAPLE_TREE_SQUARE_FILE,isCharacterSquare);
         } else if(label == TreeSquare.PINE_TREE_SQUARE_CHARACTER){
-            return new TreeSquare(TreeSquare.PINE_TREE_SQUARE_FILE, isCharacterSquare);
+            return new TreeSquare(row, col, TreeSquare.PINE_TREE_SQUARE_FILE, isCharacterSquare);
         } else {
             return null;
         }

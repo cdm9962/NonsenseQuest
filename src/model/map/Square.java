@@ -7,6 +7,8 @@ package model.map;
  */
 public abstract class Square {
     // The private state of the map square
+    private int row;
+    private int col;
     private String filename;
     private String name;
     private String description;
@@ -20,7 +22,9 @@ public abstract class Square {
     public static String CHARACTER_SQUARE_DESCRIPTION = "This is you.";
 
     /**
-     * Sqaure constructor.
+     * Square constructor.
+     * @param row int representing the row location of the square
+     * @param col int representing the column location of the square
      * @param filename String representing the image filename for the square
      * @param name String representing the name of the square
      * @param description String representing the description of the square
@@ -28,7 +32,9 @@ public abstract class Square {
      * @param containsCharacter boolean to determine if the square holds the character
      * @param enemy Character that represents an enemy of the board
      */
-    public Square(String filename, String name, String description, boolean isAdjacent, boolean containsCharacter, Character enemy){
+    public Square(int row, int col, String filename, String name, String description, boolean isAdjacent, boolean containsCharacter, Character enemy){
+        this.row = row;
+        this.col = col;
         this.filename = filename;
         this.name = name;
         this.description = description;
@@ -95,5 +101,21 @@ public abstract class Square {
      */
     public void togleContainsCharacter(){
         this.containsCharacter = !this.containsCharacter;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
+    public void setCol(int col) {
+        this.col = col;
     }
 }
