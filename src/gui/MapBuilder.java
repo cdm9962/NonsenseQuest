@@ -117,7 +117,7 @@ public class MapBuilder {
                     model.getStageMap().setCharacterSquare(currSquare);
                 } else if(currSquare.isContainsEnemy()){
                     currSquare.createEnemy();
-                    setEnemySquare(mapGrid, row, col);
+                    setEnemySquare(mapGrid, col, row);
                 }
             }
         }
@@ -139,7 +139,7 @@ public class MapBuilder {
         // Toggles square above
         if(row > 0){
             model.getStageMap().getLocation(row - 1, col).toggleIsAdjacent();
-            if(model.getStageMap().getLocation(row - 1, col).getIsAdjacent()) {
+            if(model.getStageMap().getLocation(row - 1, col).getIsAdjacent() && !model.getStageMap().getLocation(row - 1, col).isContainsEnemy()) {
                 setAdjacentSquare(mapgrid, col, row - 1);
             }
         }
@@ -147,7 +147,7 @@ public class MapBuilder {
         // Toggles square below
         if(row < rows - 1){
             model.getStageMap().getLocation(row + 1, col).toggleIsAdjacent();
-            if(model.getStageMap().getLocation(row + 1, col).getIsAdjacent()) {
+            if(model.getStageMap().getLocation(row + 1, col).getIsAdjacent() && !model.getStageMap().getLocation(row + 1, col).isContainsEnemy()) {
                 setAdjacentSquare(mapgrid, col, row + 1);
             }
         }
@@ -155,7 +155,7 @@ public class MapBuilder {
         // Toggles square to the left
         if(col > 0){
             model.getStageMap().getLocation(row, col - 1).toggleIsAdjacent();
-            if(model.getStageMap().getLocation(row, col - 1).getIsAdjacent()) {
+            if(model.getStageMap().getLocation(row, col - 1).getIsAdjacent() && !model.getStageMap().getLocation(row, col - 1).isContainsEnemy()) {
                 setAdjacentSquare(mapgrid, col - 1, row);
             }
         }
@@ -163,7 +163,7 @@ public class MapBuilder {
         // Toggles square to the right
         if(col < cols - 1){
             model.getStageMap().getLocation(row, col + 1).toggleIsAdjacent();
-            if(model.getStageMap().getLocation(row, col + 1).getIsAdjacent()) {
+            if(model.getStageMap().getLocation(row, col + 1).getIsAdjacent() && !model.getStageMap().getLocation(row, col + 1).isContainsEnemy()) {
                 setAdjacentSquare(mapgrid, col + 1, row );
             }
         }
@@ -171,7 +171,7 @@ public class MapBuilder {
         // Toggle top left square
         if(row > 0 && col > 0){
             model.getStageMap().getLocation(row - 1, col - 1).toggleIsAdjacent();
-            if(model.getStageMap().getLocation(row - 1, col - 1).getIsAdjacent()) {
+            if(model.getStageMap().getLocation(row - 1, col - 1).getIsAdjacent() && !model.getStageMap().getLocation(row - 1, col - 1).isContainsEnemy()) {
                 setAdjacentSquare(mapgrid, col - 1, row - 1);
             }
         }
@@ -179,7 +179,7 @@ public class MapBuilder {
         // Toggle top right square
         if(row > 0 && col < cols - 1){
             model.getStageMap().getLocation(row - 1, col + 1).toggleIsAdjacent();
-            if(model.getStageMap().getLocation(row - 1, col + 1).getIsAdjacent()) {
+            if(model.getStageMap().getLocation(row - 1, col + 1).getIsAdjacent() && !model.getStageMap().getLocation(row - 1, col + 1).isContainsEnemy()) {
                 setAdjacentSquare(mapgrid, col + 1, row - 1);
             }
         }
@@ -187,7 +187,7 @@ public class MapBuilder {
         // Toggle bottom left square
         if(row < rows - 1 && col > 0){
             model.getStageMap().getLocation(row + 1, col - 1).toggleIsAdjacent();
-            if(model.getStageMap().getLocation(row + 1, col - 1).getIsAdjacent()) {
+            if(model.getStageMap().getLocation(row + 1, col - 1).getIsAdjacent() && !model.getStageMap().getLocation(row + 1, col - 1).isContainsEnemy()) {
                 setAdjacentSquare(mapgrid, col - 1, row + 1);
             }
         }
@@ -195,7 +195,7 @@ public class MapBuilder {
         // Toggle bottom right square
         if(row < rows - 1 && col < cols - 1){
             model.getStageMap().getLocation(row + 1, col + 1).toggleIsAdjacent();
-            if(model.getStageMap().getLocation(row + 1, col + 1).getIsAdjacent()) {
+            if(model.getStageMap().getLocation(row + 1, col + 1).getIsAdjacent() && !model.getStageMap().getLocation(row + 1, col + 1).isContainsEnemy()) {
                 setAdjacentSquare(mapgrid, col + 1, row + 1);
             }
         }
@@ -273,7 +273,7 @@ public class MapBuilder {
      */
     public void clearGrid(GridPane mapgrid){
         for(Node node : mapgrid.getChildren()) {
-            if(!node.getStyle().equals("-fx-border-color: red; -fx-border-width: 3px;")){
+            if(!node.getStyle().equals("-fx-border-color: red; -fx-border-width: 3px;")) {
                 node.setStyle("");
             }
         }

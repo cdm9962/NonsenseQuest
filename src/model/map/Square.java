@@ -130,11 +130,15 @@ public abstract class Square {
     }
 
     public boolean isContainsEnemy() {
-        return containsEnemy;
+        return this.containsEnemy;
     }
 
     public void setContainsEnemy(boolean containsEnemy) {
         this.containsEnemy = containsEnemy;
+    }
+
+    public void toggleIsEnemy(){
+        this.containsEnemy = !this.containsEnemy;
     }
 
     public Character getEnemy() {
