@@ -115,6 +115,9 @@ public class MapBuilder {
                 if (currSquare.isContainsCharacter()){
                     currSquare.togleContainsCharacter();
                     model.getStageMap().setCharacterSquare(currSquare);
+                } else if(currSquare.isContainsEnemy()){
+                    currSquare.createEnemy();
+                    setEnemySquare(mapGrid, row, col);
                 }
             }
         }
@@ -213,6 +216,23 @@ public class MapBuilder {
             }
         }
     }
+
+    /**
+     * Method to set the characters current location on the stage map.
+     * @param gridPane GridPane representing the stage map
+     * @param col int representing the column location of the character
+     * @param row int representing the row location of the character
+     */
+    public void setEnemySquare(GridPane gridPane, int col, int row) {
+        for (Node node : gridPane.getChildren()) {
+            if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
+                if(node instanceof Button){
+                    node.setStyle("-fx-border-color: red; -fx-border-width: 3px;");
+                }
+            }
+        }
+    }
+
     /**
      * Method to set the adjacent square locations on the stage map.
      * @param gridPane GridPane representing the stage map
@@ -229,6 +249,13 @@ public class MapBuilder {
         }
     }
 
+    /**
+     * Method to move the character square to a new location.
+     * @param currSquare Square object representing the square currently holding the character
+     * @param mapGrid GridPane representing the stage map
+     * @param row int representing the row location of the new square location
+     * @param col int representing the column location of the new square location
+     */
     public void moveCharacter(Square currSquare, GridPane mapGrid, int row, int col){
         markAdjacentSquares(mapGrid, model.getStageMap().getCharacterSquare().getRow(), model.getStageMap().getRows(),
                 model.getStageMap().getCharacterSquare().getCol(), model.getStageMap().getCols());
@@ -240,9 +267,15 @@ public class MapBuilder {
         markAdjacentSquares(mapGrid, row, model.getStageMap().getRows(), col, model.getStageMap().getCols());
     }
 
+    /**
+     * Method to clear all highlighting from the stage map.
+     * @param mapgrid GirdPane representing the stage map
+     */
     public void clearGrid(GridPane mapgrid){
         for(Node node : mapgrid.getChildren()) {
-            node.setStyle("");
+            if(!node.getStyle().equals("-fx-border-color: red; -fx-border-width: 3px;")){
+                node.setStyle("");
+            }
         }
     }
 }

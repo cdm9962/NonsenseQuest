@@ -1,5 +1,9 @@
 package model.map;
 
+import model.Player;
+import model.classes.Warrior;
+import model.races.Human;
+
 /**
  * Abstract class for the map squares.
  *
@@ -123,5 +127,25 @@ public abstract class Square {
 
     public void setCol(int col) {
         this.col = col;
+    }
+
+    public boolean isContainsEnemy() {
+        return containsEnemy;
+    }
+
+    public void setContainsEnemy(boolean containsEnemy) {
+        this.containsEnemy = containsEnemy;
+    }
+
+    public Character getEnemy() {
+        return enemy;
+    }
+
+    public void setEnemy(Character enemy) {
+        this.enemy = enemy;
+    }
+
+    public void createEnemy(){
+        Player enemy = new Player("Guard", "Human", "Warrior");
     }
 }
