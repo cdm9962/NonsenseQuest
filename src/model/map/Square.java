@@ -14,12 +14,16 @@ public abstract class Square {
     private String description;
     private boolean isAdjacent;
     private boolean containsCharacter;
+    private boolean containsEnemy;
     private Character enemy;
 
     // Character square constants
     public static char CHARACTER_SQUARE_CHARACTER = 'C';
     public static String CHARACTER_SQUARE_NAME = "Character";
     public static String CHARACTER_SQUARE_DESCRIPTION = "This is you.";
+    public static char ENEMY_SQUARE_CHARACTER = 'E';
+    public static String ENEMY_SQUARE_NAME = "Enemy";
+    public static String ENEMY_SQUARE_DESCRIPTION = "He looks pretty scarry";
 
     /**
      * Square constructor.
@@ -32,7 +36,8 @@ public abstract class Square {
      * @param containsCharacter boolean to determine if the square holds the character
      * @param enemy Character that represents an enemy of the board
      */
-    public Square(int row, int col, String filename, String name, String description, boolean isAdjacent, boolean containsCharacter, Character enemy){
+    public Square(int row, int col, String filename, String name, String description, boolean isAdjacent, boolean containsCharacter,
+                  boolean containsEnemy, Character enemy){
         this.row = row;
         this.col = col;
         this.filename = filename;
@@ -40,6 +45,7 @@ public abstract class Square {
         this.description = description;
         this.isAdjacent = isAdjacent;
         this.containsCharacter = containsCharacter;
+        this.containsEnemy = containsEnemy;
         this.enemy = enemy;
     }
 

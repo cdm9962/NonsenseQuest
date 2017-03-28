@@ -114,8 +114,8 @@ public class GameInterface extends Application implements Observer {
 
         // Adds button to the scene
         AnchorPane anchor = new AnchorPane(grid);
-        anchor.setBottomAnchor(grid, 10.0);
-        anchor.setRightAnchor(grid, 575.0);
+        AnchorPane.setBottomAnchor(grid, 10.0);
+        AnchorPane.setRightAnchor(grid, 575.0);
         border.setBottom(anchor);
 
         return border;

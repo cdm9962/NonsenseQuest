@@ -13,6 +13,7 @@ public class DirtPathSquare extends Square {
     public static char TOP_RIGHT_DIRT_PATH_SQUARE_CHARACTER = 'w';
     public static char BOTTOM_RIGHT_DIRT_PATH_SQUARE_CHARACTER = 'e';
     public static char BOTTOM_LEFT_DIRT_PATH_SQUARE_CHARACTER = 'r';
+    public static char INTERSECTION_DIRT_PATH_SQUARE_CHARACTER = '+';
 
     // Constant file paths
     public static String VERTICAL_DIRT_PATH_FILE = "/resources/images/dirtpathvert.png";
@@ -21,6 +22,7 @@ public class DirtPathSquare extends Square {
     public static String TOP_RIGHT_DIRT_PATH_FILE = "/resources/images/dirtpathtopright.png";
     public static String BOTTOM_RIGHT_DIRT_PATH_FILE = "/resources/images/dirtpathbottomright.png";
     public static String BOTTOM_LEFT_DIRT_PATH_FILE = "/resources/images/dirtpathbottomleft.png";
+    public static String INTERSECTION_DIRT_PATH_FILE = "/resources/images/dirtpathintersection.png";
 
     // Constant square descriptors
     public static String DIRT_PATH_SQUARE_NAME = "Path";
@@ -33,7 +35,7 @@ public class DirtPathSquare extends Square {
      * @param filename String representing the image filename
      * @param containsCharacter boolean to determine if the square holds the character
      */
-    public DirtPathSquare(int row, int col, String filename, boolean containsCharacter) {
-        super(row, col, filename, DIRT_PATH_SQUARE_NAME, DIRT_PATH_SQUARE_DESCRIPTION, false, containsCharacter, null);
+    public DirtPathSquare(int row, int col, String filename, boolean containsCharacter, boolean containsEnemy) {
+        super(row, col, filename, DIRT_PATH_SQUARE_NAME, DIRT_PATH_SQUARE_DESCRIPTION, false, containsCharacter, containsEnemy, null);
     }
 }

@@ -6,7 +6,7 @@ Built using Java and the JavaFX framework.
 ## Built By:
 
 - Connor D. Milligan - Game Designer/Programmer
-- Nathan Hall - Artist/Programmer
+- Nathan Hall - Artist/Game Designer
 
 ## Notes:
 
