@@ -228,6 +228,10 @@ public class MapBuilder {
             if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
                 if(node instanceof Button){
                     node.setStyle("-fx-border-color: red; -fx-border-width: 3px;");
+                    ((Button) node).setOnAction(event -> {
+                        CombatScene combatScene = new CombatScene(primaryStage.getScene(), model, primaryStage);
+                        combatScene.startScene();
+                    });
                 }
             }
         }
