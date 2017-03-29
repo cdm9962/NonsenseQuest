@@ -218,10 +218,10 @@ public class MapBuilder {
     }
 
     /**
-     * Method to set the characters current location on the stage map.
+     * Method to set the enemies current location on the stage map.
      * @param gridPane GridPane representing the stage map
-     * @param col int representing the column location of the character
-     * @param row int representing the row location of the character
+     * @param col int representing the column location of the enemy
+     * @param row int representing the row location of the enemy
      */
     public void setEnemySquare(GridPane gridPane, int col, int row) {
         for (Node node : gridPane.getChildren()) {
@@ -229,7 +229,7 @@ public class MapBuilder {
                 if(node instanceof Button){
                     node.setStyle("-fx-border-color: red; -fx-border-width: 3px;");
                     ((Button) node).setOnAction(event -> {
-                        CombatScene combatScene = new CombatScene(primaryStage.getScene(), model, primaryStage);
+                        CombatScene combatScene = new CombatScene(primaryStage.getScene(), model, primaryStage, model.getStageMap().getLocation(row, col).getEnemy());
                         combatScene.startScene();
                     });
                 }

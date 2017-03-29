@@ -5,6 +5,8 @@ import javafx.stage.Stage;
 import model.GameModel;
 
 /**
+ * Class for the second stage in the scene progression.
+ *
  * @author Connor D. Milligan, Nathan Hall
  */
 public class StageTwo {

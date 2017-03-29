@@ -19,7 +19,7 @@ public abstract class Square {
     private boolean isAdjacent;
     private boolean containsCharacter;
     private boolean containsEnemy;
-    private Character enemy;
+    private Player enemy;
 
     // Character square constants
     public static char CHARACTER_SQUARE_CHARACTER = 'C';
@@ -41,7 +41,7 @@ public abstract class Square {
      * @param enemy Character that represents an enemy of the board
      */
     public Square(int row, int col, String filename, String name, String description, boolean isAdjacent, boolean containsCharacter,
-                  boolean containsEnemy, Character enemy){
+                  boolean containsEnemy, Player enemy){
         this.row = row;
         this.col = col;
         this.filename = filename;
@@ -141,15 +141,15 @@ public abstract class Square {
         this.containsEnemy = !this.containsEnemy;
     }
 
-    public Character getEnemy() {
+    public Player getEnemy() {
         return enemy;
     }
 
-    public void setEnemy(Character enemy) {
+    public void setEnemy(Player enemy) {
         this.enemy = enemy;
     }
 
     public void createEnemy(){
-        Player enemy = new Player("Guard", "Human", "Warrior");
+        this.enemy = new Player("Guard", "Human", "Warrior");
     }
 }

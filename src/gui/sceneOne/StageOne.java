@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import model.GameModel;
 
 /**
+ * Class for the first stage in the scene progression.
+ *
  * @author Connor D. Milligan
  */
 public class StageOne {

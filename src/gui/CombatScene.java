@@ -8,8 +8,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.GameModel;
+import model.Player;
 
 /**
+ * Utility class for all combat scenes.
+ *
  * Created by Connor on 3/24/2017.
  */
 public class CombatScene {
@@ -17,19 +20,23 @@ public class CombatScene {
     private Scene currStage;
     private GameModel model;
     private Stage primaryStage;
+    private Player enemy;
 
     // Constant string values
     public static final String COMBAT_SCENE_TITLE = "FIGHT!!!";
 
     /**
      * CombatScene constructor.
+     * @param currStage The scene to return to after the fight
      * @param model GameModel representing the attributes of the game
      * @param primaryStage Stage of the current game
+     * @param enemy Player that the character is meant to fight
      */
-    public CombatScene(Scene currStage, GameModel model, Stage primaryStage){
+    public CombatScene(Scene currStage, GameModel model, Stage primaryStage, Player enemy){
         this.currStage = currStage;
         this.model = model;
         this.primaryStage = primaryStage;
+        this.enemy = enemy;
     }
 
     /**
@@ -48,6 +55,14 @@ public class CombatScene {
             primaryStage.setScene(currStage);
         });
         border.setCenter(homeButton);
+
+        Label playerStats = new Label(this.model.printCharacterStats());
+        playerStats.setFont(GameInterface.PIXEL_FONT_SMALL);
+        border.setRight(playerStats);
+
+        Label enemyStats = new Label(enemy.displayCharacter());
+        enemyStats.setFont(GameInterface.PIXEL_FONT_SMALL);
+        border.setLeft(enemyStats);
 
         Scene combatScene = new Scene(border);
         this.primaryStage.setScene(combatScene);
