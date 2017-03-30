@@ -1,8 +1,6 @@
 package model.map;
 
 import model.Player;
-import model.classes.Warrior;
-import model.races.Human;
 
 /**
  * Abstract class for the map squares.
