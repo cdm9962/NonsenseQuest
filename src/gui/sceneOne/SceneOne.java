@@ -41,11 +41,13 @@ public class SceneOne {
         BorderPane border = new BorderPane();
         border.setPadding(new Insets(50.0));
 
+        // Sets the scene title
         Label title = new Label(SCENE_ONE_TITLE);
         border.setTop(title);
 
         GridPane buttonGrid = new GridPane();
-
+        border.setCenter(buttonGrid);
+        // Creates the stage one selection
         Button stageOneButton = new Button(StageOne.STAGE_ONE_TITLE);
         stageOneButton.setOnAction(event -> {
             StageOne stageOne = new StageOne(this.model, this.primaryStage);
@@ -53,6 +55,7 @@ public class SceneOne {
         });
         buttonGrid.add(stageOneButton, 0, 0);
 
+        // Creates the stage two selection
         Button stageTwoButton = new Button("Stage Two");
         stageTwoButton.setDisable(true);
         stageTwoButton.setOnAction(event -> {
@@ -61,8 +64,7 @@ public class SceneOne {
         });
         buttonGrid.add(stageTwoButton, 1, 0);
 
-        border.setCenter(buttonGrid);
-
+        // Displays the character stats on the right side of the play screen
         Label playerStats = new Label(this.model.printCharacterStats());
         playerStats.setFont(GameInterface.PIXEL_FONT_SMALL);
         border.setRight(playerStats);

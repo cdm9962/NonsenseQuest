@@ -15,34 +15,47 @@ import model.GameModel;
  * @author Connor D. Milligan
  */
 public class StageOne {
+    // The private state of the first stage
     private GameModel model;
-
     private Stage primaryStage;
 
+    // Constant String values
     public static final String STAGE_ONE_TITLE = "Stage One";
     public static final String STAGE_ONE_FILENAME = "/resources/stagemaps/stageone.txt";
 
+    /**
+     * StageOne constructor.
+     * @param model GameModel representing the attributes of the game
+     * @param primaryStage Stage of the current game
+     */
     public StageOne(GameModel model, Stage primaryStage){
         this.model = model;
         this.primaryStage = primaryStage;
     }
 
+    /**
+     * Method to start the scene and update the stage and game data.
+     */
     public void startScene() {
         // Creates the border pane for the scene
         BorderPane border = new BorderPane();
         border.setPadding(new Insets(50.0));
 
+        // Reads the stage map from the text file
         this.model.setStageMap(STAGE_ONE_FILENAME);
         this.model.getStageMap();
 
+        // Builds the stage map in the model
         MapBuilder map = new MapBuilder(this.model, this.primaryStage);
         BorderPane mapGrid = map.buildMap();
         border.setCenter(mapGrid);
 
+        // Prints the character stats on the right side of the screen
         Label playerStats = new Label(this.model.printCharacterStats());
         playerStats.setFont(GameInterface.PIXEL_FONT_SMALL);
         border.setRight(playerStats);
 
+        // Displays the scene
         Scene stageOne = new Scene(border);
         this.primaryStage.setScene(stageOne);
 
