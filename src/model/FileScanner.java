@@ -1,6 +1,6 @@
 package model;
 
-import model.items.Sword;
+import model.items.Weapon;
 import model.map.*;
 
 import java.io.FileInputStream;
@@ -109,7 +109,7 @@ public class FileScanner {
      * @return Sword object representing the scanned in sword
      * @throws FileNotFoundException
      */
-    public Sword scanSword(String filename, int row) throws FileNotFoundException {
+    public Weapon scanWeapon(String filename, int row) throws FileNotFoundException {
         // Creates the scanner object
         InputStream stream = new FileInputStream(getClass().getResource(filename).getFile());
         this.scanner = new Scanner(stream);
@@ -119,7 +119,7 @@ public class FileScanner {
             scanner.nextLine();
             // Creates the sword object when it reaches the proper line
             if(i == row - 1){
-                Sword sword = new Sword(getString(), getString(), getString(), getInt(), getDouble(), getDouble());
+                Weapon sword = new Weapon(getString(), getString(), getString(), getInt(), getDouble(), getDouble(), Weapon.TYPE.SWORD);
                 // Closes the file and returns the sword object
                 scanner.close();
                 return sword;

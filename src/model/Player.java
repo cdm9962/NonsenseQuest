@@ -4,14 +4,12 @@ import model.classes.PlayerClass;
 import model.classes.Thief;
 import model.classes.Warrior;
 import model.items.Item;
-import model.items.Sword;
 import model.races.Dragon;
 import model.races.Human;
 import model.races.Race;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * The player object class.  Holds all of the player data.
@@ -97,8 +95,8 @@ public class Player {
             this.inventory = new ArrayList<>();
             FileScanner scanner = new FileScanner();
             try {
-                this.inventory.add(scanner.scanSword("/resources/entitylists/swords.txt", 1));
-                this.inventory.add((scanner.scanSword("/resources/entitylists/swords.txt", 2)));
+                this.inventory.add(scanner.scanWeapon("/resources/entitylists/swords.txt", 1));
+                this.inventory.add((scanner.scanWeapon("/resources/entitylists/swords.txt", 2)));
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
