@@ -25,4 +25,12 @@ public class Weapon extends Item{
         this.damage = damage;
         this.weaponType = weaponType;
     }
+
+    /**
+     * Getter method for the weapon damage.
+     * @return int representing the weapon damage.
+     */
+    public int getDamage(){
+        return this.damage;
+    }
 }

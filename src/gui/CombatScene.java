@@ -63,7 +63,7 @@ public class CombatScene {
         // Sets the attack button
         Button attackButton = new Button("Attack!");
         attackButton.setOnAction(event -> {
-            enemy.takeDamage(10);
+            enemy.takeDamage(model.getPlayer().calculateDamage());
             Label playerStats = new Label(this.model.printCharacterStats());
             playerStats.setFont(GameInterface.PIXEL_FONT_SMALL);
             border.setRight(playerStats);

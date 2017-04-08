@@ -4,6 +4,7 @@ import model.classes.PlayerClass;
 import model.classes.Thief;
 import model.classes.Warrior;
 import model.items.Item;
+import model.items.Weapon;
 import model.races.Dragon;
 import model.races.Human;
 import model.races.Race;
@@ -24,10 +25,12 @@ public class Player {
     private int health;
     private int mana;
     private int movement;
+    private int power;
     private long experience;
     private int level;
     private double weight;
     private Limits limits;
+    private Item activeItem;
     private ArrayList<Item> inventory;
 
     /**
@@ -38,24 +41,28 @@ public class Player {
      * @param health int representing the character's current health
      * @param mana int representing the character's current mana
      * @param movement int representing the character's current movement distance
+     * @param power int representing the players innate damage
      * @param experience long representing the character's current experience
      * @param level int representing the character's current level
      * @param weight double representing the character's current carried weight
      * @param limits Limits object representing various maximum and minimum character values
+     * @param activeItem Item object representing the players active item
      * @param inventory  ArrayList of Item objects representing the character's inventory
      */
-    public Player(String name, Race race, PlayerClass playerClass, int health, int mana, int movement, long experience,
-                  int level, double weight, Limits limits, ArrayList<Item> inventory) {
+    public Player(String name, Race race, PlayerClass playerClass, int health, int mana, int movement, int power, long experience,
+                  int level, double weight, Limits limits, Item activeItem, ArrayList<Item> inventory) {
         this.name = name;
         this.race = race;
         this.playerClass = playerClass;
         this.health = health;
         this.mana = mana;
         this.movement = movement;
+        this.power = power;
         this.experience = experience;
         this.level = level;
         this.weight = weight;
         this.limits = limits;
+        this.activeItem = activeItem;
         this.inventory = inventory;
     }
 
@@ -88,6 +95,7 @@ public class Player {
             this.level = Human.HUMAN_DEFAULT_LEVEL;
             this.weight = Limits.DEFAULT_MIN_WEIGHT;
             this.limits = new Limits(race);
+            this.power = this.playerClass.getPowerModifier();
             this.limits.setMaxHealth(Human.HUMAN_DEFAULT_HEALTH + this.playerClass.getHealthModifier());
             this.limits.setMaxMana(Human.HUMAN_DEFAULT_MANA + this.playerClass.getManaModifier());
             this.limits.setMaxMovement(Human.HUMAN_DEFAULT_MOVEMENT + this.playerClass.getMovementModifier());
@@ -97,6 +105,7 @@ public class Player {
             try {
                 this.inventory.add(scanner.scanWeapon("/resources/entitylists/swords.txt", 1));
                 this.inventory.add((scanner.scanWeapon("/resources/entitylists/swords.txt", 2)));
+                this.activeItem = this.inventory.get(1);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -184,5 +193,13 @@ public class Player {
      */
     public int getHealth(){
         return this.health;
+    }
+
+    /**
+     * Method to calculate character damage value.
+     * @return int representing the character damage value
+     */
+    public int calculateDamage(){
+        return ((Weapon) this.activeItem).getDamage() + this.power;
     }
 }
