@@ -166,4 +166,23 @@ public class Player {
                 "\n limits: " + limits.toString() +
                 "\n inventory: " + inventory;
     }
+
+    /**
+     * Method to do damage to the player character.
+     * @param damage int representing the amount of damage the player character is going to take
+     */
+    public void takeDamage(int damage){
+        this.health -= damage;
+        if(this.health < this.limits.getMinHealth()){
+            this.health = this.limits.getMinHealth();
+        }
+    }
+
+    /**
+     * Getter method for the character health.
+     * @return int representing the players current health
+     */
+    public int getHealth(){
+        return this.health;
+    }
 }

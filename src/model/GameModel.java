@@ -50,7 +50,19 @@ public class GameModel {
         return this.stageMap;
     }
 
+    /**
+     * Getter method for the square description.
+     * @return String representing the square description
+     */
     public String getCurrSquareDescription(){
         return this.currSquareDescription;
+    }
+
+    /**
+     * Getter method for the player object.
+     * @return Player object representing the player character.
+     */
+    public Player getPlayer(){
+        return this.player;
     }
 }

@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.GameModel;
 import model.Player;
@@ -47,14 +48,35 @@ public class CombatScene {
         BorderPane border = new BorderPane();
         border.setPadding(new Insets(50.0));
 
+        // Sets the scene title
         Label title = new Label(COMBAT_SCENE_TITLE);
         border.setTop(title);
 
+        // Sets the return to stage map button
+        GridPane buttonGrid = new GridPane();
         Button homeButton = new Button("Return");
         homeButton.setOnAction(event -> {
             primaryStage.setScene(currStage);
         });
-        border.setCenter(homeButton);
+        buttonGrid.add(homeButton, 0, 0);
+
+        // Sets the attack button
+        Button attackButton = new Button("Attack!");
+        attackButton.setOnAction(event -> {
+            enemy.takeDamage(10);
+            Label playerStats = new Label(this.model.printCharacterStats());
+            playerStats.setFont(GameInterface.PIXEL_FONT_SMALL);
+            border.setRight(playerStats);
+            Label enemyStats = new Label(enemy.displayCharacter());
+            enemyStats.setFont(GameInterface.PIXEL_FONT_SMALL);
+            border.setLeft(enemyStats);
+            if(enemy.getHealth() == 0){
+                primaryStage.setScene(currStage);
+            }
+        });
+        buttonGrid.add(attackButton,0 , 1);
+
+        border.setCenter(buttonGrid);
 
         Label playerStats = new Label(this.model.printCharacterStats());
         playerStats.setFont(GameInterface.PIXEL_FONT_SMALL);
