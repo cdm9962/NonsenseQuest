@@ -11,13 +11,24 @@ public abstract class PlayerClass {
     private int manaModifier;
     private int movementModifier;
     private double weightModifier;
+    private int powerModifier;
 
-    public PlayerClass(String name, int healthModifier, int manaModifier, int movementModifier, double weightModifier) {
+    /**
+     * PlayerClass constructor.
+     * @param name String representing the class name
+     * @param healthModifier int representing the health modifier from the player class
+     * @param manaModifier int representing the mana modifier from the player class
+     * @param movementModifier int representing the movement modifier from the player class
+     * @param weightModifier int representing the weight modifier from the player class
+     * @param powerModifier int representing the power modifier from the player class
+     */
+    public PlayerClass(String name, int healthModifier, int manaModifier, int movementModifier, double weightModifier, int powerModifier) {
         this.name = name;
         this.healthModifier = healthModifier;
         this.manaModifier = manaModifier;
         this.movementModifier = movementModifier;
         this.weightModifier = weightModifier;
+        this.powerModifier = powerModifier;
     }
 
     public String getName(){ return  name; }
@@ -52,6 +63,14 @@ public abstract class PlayerClass {
 
     public void setWeightModifier(double weightModifier) {
         this.weightModifier = weightModifier;
+    }
+
+    public int getPowerModifier() {
+        return powerModifier;
+    }
+
+    public void setPowerModifier(int powerModifier) {
+        this.powerModifier = powerModifier;
     }
 
     @Override

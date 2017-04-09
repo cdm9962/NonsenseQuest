@@ -21,7 +21,7 @@ public class StageOne {
 
     // Constant String values
     public static final String STAGE_ONE_TITLE = "Stage One";
-    public static final String STAGE_ONE_FILENAME = "/resources/stagemaps/stageone.txt";
+    public static final String STAGE_ONE_FILENAME = "/resources/stagemaps/stagetwo.txt";
 
     /**
      * StageOne constructor.

@@ -11,6 +11,7 @@ public class Thief extends PlayerClass {
     public static final int THIEF_MANA_MODIFIER = -20;
     public static final int THIEF_MOVEMENT_MODIFIER = 3;
     public static final double THIEF_WEIGHT_MODIFIER = 0;
+    public static final int THIEF_POWER_MODIFIER = 8;
 
     // thief player class name
     public static final String THIEF_PLAYER_CLASS = "Thief";
@@ -19,6 +20,6 @@ public class Thief extends PlayerClass {
      * The thief class constructor.
      */
     public Thief() {
-        super(THIEF_PLAYER_CLASS, THIEF_HEALTH_MODIFIER, THIEF_MANA_MODIFIER, THIEF_MOVEMENT_MODIFIER, THIEF_WEIGHT_MODIFIER);
+        super(THIEF_PLAYER_CLASS, THIEF_HEALTH_MODIFIER, THIEF_MANA_MODIFIER, THIEF_MOVEMENT_MODIFIER, THIEF_WEIGHT_MODIFIER, THIEF_POWER_MODIFIER);
     }
 }
