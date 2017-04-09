@@ -22,6 +22,8 @@ public class CombatScene {
     private GameModel model;
     private Stage primaryStage;
     private Player enemy;
+    private int enemyRow;
+    private int enemyCol;
 
     // Constant string values
     public static final String COMBAT_SCENE_TITLE = "FIGHT!!!";
@@ -33,11 +35,13 @@ public class CombatScene {
      * @param primaryStage Stage of the current game
      * @param enemy Player that the character is meant to fight
      */
-    public CombatScene(Scene currStage, GameModel model, Stage primaryStage, Player enemy){
+    public CombatScene(Scene currStage, GameModel model, Stage primaryStage, Player enemy, int enemyRow, int enemyCol){
         this.currStage = currStage;
         this.model = model;
         this.primaryStage = primaryStage;
         this.enemy = enemy;
+        this.enemyRow = enemyRow;
+        this.enemyCol = enemyCol;
     }
 
     /**
@@ -63,7 +67,14 @@ public class CombatScene {
         // Sets the attack button
         Button attackButton = new Button("Attack!");
         attackButton.setOnAction(event -> {
+            if(model.getPlayer().isFaster(enemy)){
+                enemy.takeDamage(model.getPlayer().calculateDamage());
+            } else {
+                this.model.getPlayer().takeDamage(enemy.calculateDamage());
+            }
+
             enemy.takeDamage(model.getPlayer().calculateDamage());
+            this.model.getPlayer().takeDamage(enemy.calculateDamage());
             Label playerStats = new Label(this.model.printCharacterStats());
             playerStats.setFont(GameInterface.PIXEL_FONT_SMALL);
             border.setRight(playerStats);
@@ -72,6 +83,15 @@ public class CombatScene {
             border.setLeft(enemyStats);
             if(enemy.getHealth() == 0){
                 primaryStage.setScene(currStage);
+                model.getStageMap().getLocation(enemyRow, enemyCol).toggleIsEnemy();
+                model.getStageMap().getLocation(enemyRow, enemyCol).setEnemy(null);
+
+            }
+
+            if(model.getPlayer().isFaster(enemy)){
+                this.model.getPlayer().takeDamage(enemy.calculateDamage());
+            } else {
+                enemy.takeDamage(model.getPlayer().calculateDamage());
             }
         });
         buttonGrid.add(attackButton,0 , 1);

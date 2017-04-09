@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.*;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
@@ -117,6 +118,13 @@ public class GameInterface extends Application implements Observer {
         AnchorPane.setBottomAnchor(grid, 10.0);
         AnchorPane.setRightAnchor(grid, 575.0);
         border.setBottom(anchor);
+
+        // Adds theme music to the game scene
+        AudioClip audio = new AudioClip(getClass().getResource("/resources/testtheme.wav").toExternalForm());
+        audio.setVolume(0.5f);
+        audio.setRate(2.0);
+        audio.setCycleCount(AudioClip.INDEFINITE);
+        audio.play();
 
         return border;
     }

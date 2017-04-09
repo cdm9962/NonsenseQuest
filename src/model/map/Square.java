@@ -25,7 +25,7 @@ public abstract class Square {
     public static String CHARACTER_SQUARE_DESCRIPTION = "This is you.";
     public static char ENEMY_SQUARE_CHARACTER = 'E';
     public static String ENEMY_SQUARE_NAME = "Enemy";
-    public static String ENEMY_SQUARE_DESCRIPTION = "He looks pretty scarry";
+    public static String ENEMY_SQUARE_DESCRIPTION = "He looks pretty scary";
 
     /**
      * Square constructor.

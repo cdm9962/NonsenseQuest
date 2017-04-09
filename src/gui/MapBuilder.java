@@ -229,7 +229,8 @@ public class MapBuilder {
                 if(node instanceof Button){
                     node.setStyle("-fx-border-color: red; -fx-border-width: 3px;");
                     ((Button) node).setOnAction(event -> {
-                        CombatScene combatScene = new CombatScene(primaryStage.getScene(), model, primaryStage, model.getStageMap().getLocation(row, col).getEnemy());
+                        CombatScene combatScene = new CombatScene(primaryStage.getScene(), model, primaryStage,
+                                model.getStageMap().getLocation(row, col).getEnemy(), row, col);
                         combatScene.startScene();
                     });
                 }

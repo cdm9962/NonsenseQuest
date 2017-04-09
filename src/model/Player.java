@@ -167,7 +167,15 @@ public class Player {
         if(this.activeItemRight instanceof Weapon) {
             result += ((Weapon) this.activeItemRight).getDamage();
         }
-        System.out.println(result);
         return result;
+    }
+
+    /**
+     * Method to check if the player attacks first.
+     * @param player Player object to compare the speed value with
+     * @return boolean to determine if the character is faster
+     */
+    public boolean isFaster(Player player){
+        return this.speed > player.speed;
     }
 }
