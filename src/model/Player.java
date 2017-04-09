@@ -32,7 +32,8 @@ public class Player {
     private int level;
     private double weight;
     private Limits limits;
-    private Item activeItem;
+    private Item activeItemLeft;
+    private Item activeItemRight;
     private ArrayList<Item> inventory;
 
     /**
@@ -75,7 +76,8 @@ public class Player {
             try {
                 this.inventory.add(scanner.scanWeapon("/resources/entitylists/swords.txt", 1));
                 this.inventory.add((scanner.scanWeapon("/resources/entitylists/swords.txt", 2)));
-                this.activeItem = this.inventory.get(1);
+                this.activeItemLeft = this.inventory.get(0);
+                this.activeItemRight = this.inventory.get(1);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -157,7 +159,15 @@ public class Player {
      * Method to calculate character damage value.
      * @return int representing the character damage value
      */
-    public int calculateDamage(){
-        return ((Weapon) this.activeItem).getDamage() + this.power;
+    public int calculateDamage() {
+        int result = this.power;
+        if (this.activeItemLeft instanceof Weapon) {
+            result  += ((Weapon) this.activeItemLeft).getDamage();
+        }
+        if(this.activeItemRight instanceof Weapon) {
+            result += ((Weapon) this.activeItemRight).getDamage();
+        }
+        System.out.println(result);
+        return result;
     }
 }
