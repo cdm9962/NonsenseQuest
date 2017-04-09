@@ -24,8 +24,8 @@ public class Player {
     private PlayerClass playerClass;
     private int health;
     private int power;
-    private int dextarity;
-    private int intellegence;
+    private int dexterity;
+    private int intelligence;
     private int speed;
     private int charisma;
     private long experience;
@@ -58,14 +58,17 @@ public class Player {
         if(race.equals(Human.HUMAN_RACE)){
             this.race = new Human();
             this.health = Human.HUMAN_DEFAULT_HEALTH + this.playerClass.getHealthModifier();
+            this.power = Human.HUMAN_DEFAULT_POWER + this.playerClass.getPowerModifier();
+            this.dexterity = Human.HUMAN_DEFAULT_DEXTERITY + this.playerClass.getDexterityModifier();
+            this.intelligence = Human.HUMAN_DEFAULT_INTELLIGENCE + this.playerClass.getintelligenceModifier();
+            this.speed = Human.HUMAN_DEFAULT_SPEED + this.playerClass.getSpeedModifier();
+            this.charisma = Human.HUMAN_DEFAULT_CHARISMA + this.playerClass.getCharismaModifier();
             this.experience = Human.HUMAN_DEFAULT_EXPERIENCE;
             this.level = Human.HUMAN_DEFAULT_LEVEL;
             this.weight = Limits.DEFAULT_MIN_WEIGHT;
             this.limits = new Limits(race);
             this.power = this.playerClass.getPowerModifier();
             this.limits.setMaxHealth(Human.HUMAN_DEFAULT_HEALTH + this.playerClass.getHealthModifier());
-            this.limits.setMaxMana(Human.HUMAN_DEFAULT_MANA + this.playerClass.getManaModifier());
-            this.limits.setMaxMovement(Human.HUMAN_DEFAULT_MOVEMENT + this.playerClass.getMovementModifier());
             this.limits.setMaxWeight(Human.HUMAN_DEFAULT_WEIGHT + this.playerClass.getWeightModifier());
             this.inventory = new ArrayList<>();
             FileScanner scanner = new FileScanner();
@@ -81,13 +84,16 @@ public class Player {
         } else if(race.equals(Dragon.DRAGON_RACE)){
             this.race = new Dragon();
             this.health = Dragon.DRAGON_DEFAULT_HEALTH + this.playerClass.getHealthModifier();
+            this.power = Dragon.DRAGON_DEFAULT_POWER + this.playerClass.getPowerModifier();
+            this.dexterity = Dragon.DRAGON_DEFAULT_DEXTERITY + this.playerClass.getDexterityModifier();
+            this.intelligence = Dragon.DRAGON_DEFAULT_INTELLIGENCE + this.playerClass.getintelligenceModifier();
+            this.speed = Dragon.DRAGON_DEFAULT_SPEED + this.playerClass.getSpeedModifier();
+            this.charisma = Dragon.DRAGON_DEFAULT_CHARISMA + this.playerClass.getCharismaModifier();
             this.experience = Dragon.DRAGON_DEFAULT_EXPERIENCE;
             this.level = Dragon.DRAGON_DEFAULT_LEVEL;
             this.weight = Limits.DEFAULT_MIN_WEIGHT;
             this.limits = new Limits(race);
             this.limits.setMaxHealth(Dragon.DRAGON_DEFAULT_HEALTH + this.playerClass.getHealthModifier());
-            this.limits.setMaxMana(Dragon.DRAGON_DEFAULT_MANA + this.playerClass.getManaModifier());
-            this.limits.setMaxMovement(Dragon.DRAGON_DEFAULT_MOVEMENT + this.playerClass.getMovementModifier());
             this.limits.setMaxWeight(Dragon.DRAGON_DEFAULT_WEIGHT + this.playerClass.getWeightModifier());
             this.inventory = new ArrayList<>();
         }
@@ -101,6 +107,11 @@ public class Player {
                 "\n  height: " + race.getHeight() +
                 "\n  weight: " + race.getWeight() +
                 "\n  health: " + health +
+                "\n  power: " + power +
+                "\n  dexterity: " + dexterity +
+                "\n  intelligence: " + intelligence +
+                "\n  speed: " + speed +
+                "\n  charisma: " + charisma +
                 "\n  experience: " + experience +
                 "\n  level: " + level +
                 "\n  inventory weight: " + limits.getMinWeight() +

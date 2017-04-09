@@ -11,10 +11,6 @@ public class Limits {
     // The private limit values
     private int maxHealth;
     private int minHealth;
-    private int maxMana;
-    private int minMana;
-    private int maxMovement;
-    private int minMovement;
     private long maxExperience;
     private long minExperience;
     private int maxLevel;
@@ -22,14 +18,11 @@ public class Limits {
     private double maxWeight;
     private double minWeight;
 
-    public static final String HUMAN_RACE = "Human";
 
+    // Default values
     public static final int DEFAULT_MIN_HEALTH = 0;
-    public static final int DEFAULT_MIN_MANA = 0;
-    public static final int DEFAULT_MIN_MOVEMENT = 0;
     public static final int DEFAULT_MAX_LEVEL = 50;
     public static final double DEFAULT_MIN_WEIGHT = 0;
-
     public static final long LEVEL_ONE_EXPERIENCE = 1000;
 
 
@@ -37,10 +30,6 @@ public class Limits {
      * Manual constructor for testing.
      * @param maxHealth int representing the maximum health of a character
      * @param minHealth int representing the minimum health of a character
-     * @param maxMana int representing the maximum mana of a character
-     * @param minMana int representing the minimum mana of a character
-     * @param maxMovement int representing the maximum movement distance of a character
-     * @param minMovement int representing the minimum movement distance of a character
      * @param maxExperience long representing the maximum experience points for the current level
      * @param minExperience long representing the minimum experience points for the current level
      * @param maxLevel int representing the maximum level of a character
@@ -48,14 +37,10 @@ public class Limits {
      * @param maxWeight double representing the maximum weight of a character
      * @param minWeight double representing the minimum weight of a character
      */
-    public Limits(int maxHealth, int minHealth, int maxMana, int minMana, int maxMovement, int minMovement, long maxExperience,
-                  long minExperience, int maxLevel, int minLevel, double maxWeight, double minWeight) {
+    public Limits(int maxHealth, int minHealth, long maxExperience, long minExperience, int maxLevel, int minLevel,
+                  double maxWeight, double minWeight) {
         this.maxHealth = maxHealth;
         this.minHealth = minHealth;
-        this.maxMana = maxMana;
-        this.minMana = minMana;
-        this.maxMovement = maxMovement;
-        this.minMovement = minMovement;
         this.maxExperience = maxExperience;
         this.minExperience = minExperience;
         this.maxLevel = maxLevel;
@@ -70,13 +55,9 @@ public class Limits {
      */
     public Limits(String race){
         // Human limit constructor
-        if(race.equals(HUMAN_RACE)){
+        if(race.equals(Human.HUMAN_RACE)){
             this.maxHealth = Human.HUMAN_DEFAULT_HEALTH;
             this.minHealth = DEFAULT_MIN_HEALTH;
-            this.maxMana = Human.HUMAN_DEFAULT_MANA;
-            this.minMana = DEFAULT_MIN_MANA;
-            this.maxMovement = Human.HUMAN_DEFAULT_MOVEMENT;
-            this.minMovement = DEFAULT_MIN_MOVEMENT;
             this.maxExperience = LEVEL_ONE_EXPERIENCE;
             this.minExperience = Human.HUMAN_DEFAULT_EXPERIENCE;
             this.maxLevel = DEFAULT_MAX_LEVEL;
@@ -100,38 +81,6 @@ public class Limits {
 
     public void setMinHealth(int minHealth) {
         this.minHealth = minHealth;
-    }
-
-    public int getMaxMana() {
-        return maxMana;
-    }
-
-    public void setMaxMana(int maxMana) {
-        this.maxMana = maxMana;
-    }
-
-    public int getMinMana() {
-        return minMana;
-    }
-
-    public void setMinMana(int minMana) {
-        this.minMana = minMana;
-    }
-
-    public int getMaxMovement() {
-        return maxMovement;
-    }
-
-    public void setMaxMovement(int maxMovement) {
-        this.maxMovement = maxMovement;
-    }
-
-    public int getMinMovement() {
-        return minMovement;
-    }
-
-    public void setMinMovement(int minMovement) {
-        this.minMovement = minMovement;
     }
 
     public long getMaxExperience() {
@@ -187,10 +136,6 @@ public class Limits {
         return "Limits{" +
                 "maxHealth=" + maxHealth +
                 ", minHealth=" + minHealth +
-                ", maxMana=" + maxMana +
-                ", minMana=" + minMana +
-                ", maxMovement=" + maxMovement +
-                ", minMovement=" + minMovement +
                 ", maxExperience=" + maxExperience +
                 ", minExperience=" + minExperience +
                 ", maxLevel=" + maxLevel +

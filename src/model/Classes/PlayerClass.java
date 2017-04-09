@@ -8,30 +8,32 @@ package model.classes;
 public abstract class PlayerClass {
     private String name;
     private int healthModifier;
-    private int manaModifier;
-    private int movementModifier;
+    private int dexterityModifier;
+    private int intelligenceModifier;
+    private int speedModifier;
+    private int charismaModifier;
     private double weightModifier;
     private int powerModifier;
 
-    /**
-     * PlayerClass constructor.
-     * @param name String representing the class name
-     * @param healthModifier int representing the health modifier from the player class
-     * @param manaModifier int representing the mana modifier from the player class
-     * @param movementModifier int representing the movement modifier from the player class
-     * @param weightModifier int representing the weight modifier from the player class
-     * @param powerModifier int representing the power modifier from the player class
-     */
-    public PlayerClass(String name, int healthModifier, int manaModifier, int movementModifier, double weightModifier, int powerModifier) {
+    public PlayerClass(String name, int healthModifier, int dexterityModifier, int intelligenceModifier, int speedModifier,
+                       int charismaModifier, double weightModifier, int powerModifier) {
         this.name = name;
         this.healthModifier = healthModifier;
-        this.manaModifier = manaModifier;
-        this.movementModifier = movementModifier;
+        this.dexterityModifier = dexterityModifier;
+        this.intelligenceModifier = intelligenceModifier;
+        this.speedModifier = speedModifier;
+        this.charismaModifier = charismaModifier;
         this.weightModifier = weightModifier;
         this.powerModifier = powerModifier;
     }
 
-    public String getName(){ return  name; }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public int getHealthModifier() {
         return healthModifier;
@@ -41,20 +43,36 @@ public abstract class PlayerClass {
         this.healthModifier = healthModifier;
     }
 
-    public int getManaModifier() {
-        return manaModifier;
+    public int getintelligenceModifier() {
+        return intelligenceModifier;
     }
 
-    public void setManaModifier(int manaModifier) {
-        this.manaModifier = manaModifier;
+    public void setintelligenceModifier(int intelligenceModifier) {
+        this.intelligenceModifier = intelligenceModifier;
     }
 
-    public int getMovementModifier() {
-        return movementModifier;
+    public int getDexterityModifier() {
+        return dexterityModifier;
     }
 
-    public void setMovementModifier(int movementModifier) {
-        this.movementModifier = movementModifier;
+    public void setDexterityModifier(int dexterityModifier) {
+        this.dexterityModifier = dexterityModifier;
+    }
+
+    public int getSpeedModifier() {
+        return speedModifier;
+    }
+
+    public void setSpeedModifier(int speedModifier) {
+        this.speedModifier = speedModifier;
+    }
+
+    public int getCharismaModifier() {
+        return charismaModifier;
+    }
+
+    public void setCharismaModifier(int charismaModifier) {
+        this.charismaModifier = charismaModifier;
     }
 
     public double getWeightModifier() {
@@ -71,16 +89,5 @@ public abstract class PlayerClass {
 
     public void setPowerModifier(int powerModifier) {
         this.powerModifier = powerModifier;
-    }
-
-    @Override
-    public String toString() {
-        return "PlayerClass{" +
-                "name='" + name + "' " +
-                "healthModifier=" + healthModifier +
-                ", manaModifier=" + manaModifier +
-                ", movementModifier=" + movementModifier +
-                ", weightModifier=" + weightModifier +
-                '}';
     }
 }
