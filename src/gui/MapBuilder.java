@@ -5,6 +5,8 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import model.*;
@@ -88,10 +90,38 @@ public class MapBuilder {
         mapGrid.add(squareButton, col, row);
 
         // Sets button action
-        squareButton.setOnAction(event -> {
-            squareDescription.setText(currSquare.getDescription());
-            if(currSquare.getIsAdjacent()){
-                moveCharacter(currSquare, mapGrid, currSquare.getRow(), currSquare.getCol());
+        squareButton.setOnKeyPressed((KeyEvent event) -> {
+            boolean characterMoved = false;
+            for(int i = 0; i < model.getStageMap().getRows(); i++) {
+                if(characterMoved) {
+                    break;
+                }
+                for(int j = 0; j < model.getStageMap().getCols(); j++) {
+                    Square eventSquare = model.getStageMap().getLocation(i, j);
+                    System.out.println(event.getCode().toString() + " " + i + " " + eventSquare.getRow() + " " + model.getStageMap().getCharacterSquare().getRow() + " " + eventSquare.getIsAdjacent());
+                    // Move the character up
+                    if ((event.getCode() == KeyCode.W) && (eventSquare.getCol() == model.getStageMap().getCharacterSquare().getCol())
+                            && (eventSquare.getRow() == (model.getStageMap().getCharacterSquare().getRow() - 1)) && eventSquare.getIsAdjacent()) {
+                        moveCharacter(eventSquare, mapGrid, eventSquare.getRow(), eventSquare.getCol());
+                        break;
+                    // Move the character left
+                    } else if ((event.getCode() == KeyCode.A) && (eventSquare.getCol() == model.getStageMap().getCharacterSquare().getCol() - 1)
+                            && (eventSquare.getRow() == (model.getStageMap().getCharacterSquare().getRow())) && eventSquare.getIsAdjacent()) {
+                        moveCharacter(eventSquare, mapGrid, eventSquare.getRow(), eventSquare.getCol());
+                        break;
+                    // Move the character down
+                    } else if ((event.getCode() == KeyCode.S) && (eventSquare.getCol() == model.getStageMap().getCharacterSquare().getCol())
+                            && (eventSquare.getRow() == (model.getStageMap().getCharacterSquare().getRow() + 1)) && eventSquare.getIsAdjacent()) {
+                        moveCharacter(eventSquare, mapGrid, eventSquare.getRow(), eventSquare.getCol());
+                        characterMoved = true;
+                        break;
+                    // Move the character right
+                    } else if ((event.getCode() == KeyCode.D) && (eventSquare.getCol() == model.getStageMap().getCharacterSquare().getCol() + 1)
+                            && (eventSquare.getRow() == (model.getStageMap().getCharacterSquare().getRow())) && eventSquare.getIsAdjacent()) {
+                        moveCharacter(eventSquare, mapGrid, eventSquare.getRow(), eventSquare.getCol());
+                        break;
+                    }
+                }
             }
         });
     }
