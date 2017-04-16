@@ -19,6 +19,8 @@ public class MapBuilder {
     // The private state necessary for the map builder
     private GameModel model;
     private Stage primaryStage;
+    private GridPane mapGrid;
+    private Label squareDescription;
 
     /**
      * Constructor for the map builder.
@@ -27,6 +29,8 @@ public class MapBuilder {
     public MapBuilder(GameModel model, Stage primaryStage){
         this.model = model;
         this.primaryStage = primaryStage;
+        this.mapGrid = new GridPane();
+        this.squareDescription = new Label();
     }
 
     /**
@@ -34,13 +38,11 @@ public class MapBuilder {
      * @return BorderPane a visual representation of the stage map
      */
     public BorderPane buildMap(){
-        // Creates the grid
+        // Creates the grid and square description
         BorderPane border = new BorderPane();
-        GridPane mapGrid = new GridPane();
         mapGrid.setHgap(2);
         mapGrid.setVgap(2);
         border.setLeft(mapGrid);
-        Label squareDescription = new Label();
         squareDescription.setPadding(new Insets(GameInterface.DEFAULT_INSETS));
         squareDescription.setMinSize(100, 100);
         border.setBottom(squareDescription);
@@ -49,83 +51,49 @@ public class MapBuilder {
         for(int row = 0; row < model.getStageMap().getRows(); row++){
             for(int col = 0; col < model.getStageMap().getCols(); col++){
                 Square currSquare = model.getStageMap().getLocation(row, col);
-
-                // Creates grass space buttons
-                if(currSquare instanceof GrassSquare){
-                    Button grassButton = new Button();
-                    Background grassTexture = new Background(new BackgroundImage(new Image(getClass().getResource(currSquare.getFilename()).toExternalForm()),
-                            BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
-                    grassButton.setBackground(grassTexture);
-                    grassButton.setMinSize(50.0, 50.0);
-                    mapGrid.add(grassButton, col, row);
-                    grassButton.setOnAction(event -> {
-                        squareDescription.setText(currSquare.getDescription());
-                        if(currSquare.getIsAdjacent()){
-                            moveCharacter(currSquare, mapGrid, currSquare.getRow(), currSquare.getCol());
-                        }
-                    });
-
-                // Creates road space buttons
-                } else if(currSquare instanceof DirtPathSquare){
-                    Button roadButton = new Button();
-                    Background roadTexture = new Background(new BackgroundImage(new Image(getClass().getResource(currSquare.getFilename()).toExternalForm()),
-                            BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
-                    roadButton.setBackground(roadTexture);
-                    roadButton.setMinSize(50.0, 50.0);
-                    mapGrid.add(roadButton, col, row);
-                    roadButton.setOnAction(event -> {
-                        squareDescription.setText(currSquare.getDescription());
-                        if(currSquare.getIsAdjacent()){
-                            moveCharacter(currSquare, mapGrid, currSquare.getRow(), currSquare.getCol());
-                        }
-                    });
-
-                // Creates dirt space buttons
-                } else if(currSquare instanceof DirtSquare){
-                    Button dirtButton = new Button();
-                    Background dirtTexture = new Background(new BackgroundImage(new Image(getClass().getResource(currSquare.getFilename()).toExternalForm()),
-                            BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
-                    dirtButton.setBackground(dirtTexture);
-                    dirtButton.setMinSize(50.0, 50.0);
-                    mapGrid.add(dirtButton, col, row);
-                    dirtButton.setOnAction(event -> {
-                        squareDescription.setText(currSquare.getDescription());
-                        if(currSquare.getIsAdjacent()){
-                            moveCharacter(currSquare, mapGrid, currSquare.getRow(), currSquare.getCol());
-                        }
-                    });
-
-                // Creates tree space buttons
-                } else if(currSquare instanceof TreeSquare){
-                    Button treeButton = new Button();
-                    Background treeTexture = new Background(new BackgroundImage(new Image(getClass().getResource(currSquare.getFilename()).toExternalForm()),
-                            BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
-                    treeButton.setBackground(treeTexture);
-                    treeButton.setMinSize(50.0, 50.0);
-                    mapGrid.add(treeButton, col, row);
-                    treeButton.setOnAction(event -> {
-                        squareDescription.setText(currSquare.getDescription());
-                        if(currSquare.getIsAdjacent()){
-                            moveCharacter(currSquare, mapGrid, currSquare.getRow(), currSquare.getCol());
-                        }
-                    });
-                }
+                createSquare(currSquare, row, col);
 
                 // Locates the character square and marks adjacency
                 if (currSquare.isContainsCharacter()){
                     currSquare.togleContainsCharacter();
                     model.getStageMap().setCharacterSquare(currSquare);
+                // Marks all enemy squares
                 } else if(currSquare.isContainsEnemy()){
                     currSquare.createEnemy();
                     setEnemySquare(mapGrid, col, row);
                 }
             }
         }
+        // Highlights the character and enemy squars
         setCharacterSquare(mapGrid, model.getStageMap().getCharacterSquare().getCol(), model.getStageMap().getCharacterSquare().getRow());
         markAdjacentSquares(mapGrid, model.getStageMap().getCharacterSquare().getRow(), model.getStageMap().getRows(),
                 model.getStageMap().getCharacterSquare().getCol(), model.getStageMap().getCols());
 
         return border;
+    }
+
+    /**
+     * Method to create a map square
+     * @param currSquare Square representing the currently selected square on the stage map
+     * @param row int representing the row location of the current square
+     * @param col int representing the column location of the current square
+     */
+    public void createSquare(Square currSquare, int row, int col) {
+        // Creates the button and textures
+        Button squareButton = new Button();
+        Background squareTexture = new Background(new BackgroundImage(new Image(getClass().getResource(currSquare.getFilename()).toExternalForm()),
+                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
+        squareButton.setBackground(squareTexture);
+        squareButton.setMinSize(50.0, 50.0);
+        mapGrid.add(squareButton, col, row);
+
+        // Sets button action
+        squareButton.setOnAction(event -> {
+            squareDescription.setText(currSquare.getDescription());
+            if(currSquare.getIsAdjacent()){
+                moveCharacter(currSquare, mapGrid, currSquare.getRow(), currSquare.getCol());
+            }
+        });
     }
 
     /**
@@ -232,6 +200,15 @@ public class MapBuilder {
                         CombatScene combatScene = new CombatScene(primaryStage.getScene(), model, primaryStage,
                                 model.getStageMap().getLocation(row, col).getEnemy(), row, col);
                         combatScene.startScene();
+                        node.setStyle("-fx-border-color: yellow; -fx-border-width: 3px;");
+                        setAdjacentSquare(gridPane, col, row);
+                        // Sets button action to the normal movement
+                        ((Button) node).setOnAction(event1 -> {
+                            squareDescription.setText(model.getStageMap().getLocation(row, col).getDescription());
+                            if(model.getStageMap().getLocation(row, col).getIsAdjacent()){
+                                moveCharacter(model.getStageMap().getLocation(row, col), mapGrid, row, col);
+                            }
+                        });
                     });
                 }
             }

@@ -13,7 +13,6 @@ public class Dragon extends Race {
     public static final int DRAGON_DEFAULT_INTELLIGENCE = 100;
     public static final int DRAGON_DEFAULT_SPEED = 100;
     public static final int DRAGON_DEFAULT_CHARISMA = 80;
-    public static final int DRAGON_DEFAULT_MOVEMENT = 10;
     public static final int DRAGON_DEFAULT_EXPERIENCE = 0;
     public static final int DRAGON_DEFAULT_LEVEL = 1;
     public static final int DRAGON_DEFAULT_WEIGHT = 250;

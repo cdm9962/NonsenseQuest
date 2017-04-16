@@ -7,6 +7,7 @@ package model.races;
  */
 public abstract class Race {
     private String name;
+    private String description;
     private double height;
     private double weight;
 
