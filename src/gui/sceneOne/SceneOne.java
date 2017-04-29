@@ -39,7 +39,7 @@ public class SceneOne {
     public void startScene(){
         // Creates the border pane for the scene
         BorderPane border = new BorderPane();
-        border.setPadding(new Insets(50.0));
+        border.setPadding(new Insets(GameInterface.DEFAULT_INSETS));
 
         // Sets the scene title
         Label title = new Label(SCENE_ONE_TITLE);
@@ -47,6 +47,7 @@ public class SceneOne {
 
         GridPane buttonGrid = new GridPane();
         border.setCenter(buttonGrid);
+
         // Creates the stage one selection
         Button stageOneButton = new Button(StageOne.STAGE_ONE_TITLE);
         stageOneButton.setOnAction(event -> {

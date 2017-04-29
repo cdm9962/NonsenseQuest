@@ -39,21 +39,23 @@ public class StageOne {
     public void startScene() {
         // Creates the border pane for the scene
         BorderPane border = new BorderPane();
-        border.setPadding(new Insets(50.0));
+        border.setPadding(new Insets(GameInterface.DEFAULT_INSETS));
 
         // Reads the stage map from the text file
         this.model.setStageMap(STAGE_ONE_FILENAME);
         this.model.getStageMap();
 
-        // Builds the stage map in the model
-        MapBuilder map = new MapBuilder(this.model, this.primaryStage);
-        BorderPane mapGrid = map.buildMap();
-        border.setCenter(mapGrid);
-
         // Prints the character stats on the right side of the screen
         Label playerStats = new Label(this.model.printCharacterStats());
         playerStats.setFont(GameInterface.PIXEL_FONT_SMALL);
-        border.setRight(playerStats);
+        BorderPane rightPane = new BorderPane();
+        rightPane.setTop(playerStats);
+        border.setRight(rightPane);
+
+        // Builds the stage map in the model
+        MapBuilder map = new MapBuilder(this.model, this.primaryStage);
+        BorderPane mapGrid = map.buildMap(border);
+        border.setCenter(mapGrid);
 
         // Displays the scene
         Scene stageOne = new Scene(border);

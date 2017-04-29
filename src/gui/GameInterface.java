@@ -39,6 +39,7 @@ public class GameInterface extends Application implements Observer {
     public static final Font PIXEL_FONT_SMALL = Font.loadFont(GameInterface.class.getResource("/resources/images/pixelfont.ttf").toExternalForm(), 20);
     public static final String SPLASH_FILE = "/resources/images/splash.png";
     public static final String WOOD_BUTTON_FILE = "/resources/images/woodbutton.png";
+    public static final String SPLASH_SONG = "/resources/testtheme.wav";
 
     // Constant values
     public static final String TITLE = "Nonsense Quest";
@@ -120,7 +121,7 @@ public class GameInterface extends Application implements Observer {
         border.setBottom(anchor);
 
         // Adds theme music to the game scene
-        AudioClip audio = new AudioClip(getClass().getResource("/resources/testtheme.wav").toExternalForm());
+        AudioClip audio = new AudioClip(getClass().getResource(SPLASH_SONG).toExternalForm());
         audio.setVolume(0.5f);
         audio.setRate(2.0);
         audio.setCycleCount(AudioClip.INDEFINITE);

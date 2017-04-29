@@ -39,7 +39,7 @@ public class MapBuilder {
      * Method to create a map grid based on the map data stored in the model.
      * @return BorderPane a visual representation of the stage map
      */
-    public BorderPane buildMap(){
+    public BorderPane buildMap(BorderPane stagePane){
         // Creates the grid and square description
         BorderPane border = new BorderPane();
         mapGrid.setHgap(2);
@@ -47,7 +47,7 @@ public class MapBuilder {
         border.setLeft(mapGrid);
         squareDescription.setPadding(new Insets(GameInterface.DEFAULT_INSETS));
         squareDescription.setMinSize(100, 100);
-        border.setBottom(squareDescription);
+        ((BorderPane) stagePane.getRight()).setBottom(squareDescription);
 
         // Loops through each row and column in the grid
         for(int row = 0; row < model.getStageMap().getRows(); row++){
@@ -66,7 +66,7 @@ public class MapBuilder {
                 }
             }
         }
-        // Highlights the character and enemy squars
+        // Highlights the character and enemy squares
         setCharacterSquare(mapGrid, model.getStageMap().getCharacterSquare().getCol(), model.getStageMap().getCharacterSquare().getRow());
         markAdjacentSquares(mapGrid, model.getStageMap().getCharacterSquare().getRow(), model.getStageMap().getRows(),
                 model.getStageMap().getCharacterSquare().getCol(), model.getStageMap().getCols());
@@ -94,7 +94,7 @@ public class MapBuilder {
             squareDescription.setText(currSquare.getDescription());
         });
 
-        // Sets button action
+        // Sets WASD movement tracking
         squareButton.setOnKeyPressed((KeyEvent event) -> {
             boolean characterMoved = false;
             for(int i = 0; i < model.getStageMap().getRows(); i++) {
@@ -102,30 +102,34 @@ public class MapBuilder {
                 if(characterMoved) {
                     break;
                 }
+                // Loops until it finds the desired square to move to
                 for(int j = 0; j < model.getStageMap().getCols(); j++) {
                     Square eventSquare = model.getStageMap().getLocation(i, j);
                     // Move the character up
                     if ((event.getCode() == KeyCode.W) && (eventSquare.getCol() == model.getStageMap().getCharacterSquare().getCol())
                             && (eventSquare.getRow() == (model.getStageMap().getCharacterSquare().getRow() - 1)) && eventSquare.getIsAdjacent()) {
+                        // Starts combat if the next square is an enemy square
                         if(eventSquare.containsEnemy()) {
                             CombatScene combatScene = new CombatScene(primaryStage.getScene(), model, primaryStage,
                                     eventSquare.getEnemy(), eventSquare.getRow(), eventSquare.getCol());
                             combatScene.startScene();
                         }
+                        // Moves normally
                         if(!eventSquare.containsEnemy()) {
                             moveCharacter(eventSquare, mapGrid, eventSquare.getRow(), eventSquare.getCol());
-                            markAdjacentSquares(mapGrid, eventSquare.getRow(), model.getStageMap().getRows(), currSquare.getCol(), model.getStageMap().getCols());
                         }
                         break;
 
                     // Move the character left
                     } else if ((event.getCode() == KeyCode.A) && (eventSquare.getCol() == model.getStageMap().getCharacterSquare().getCol() - 1)
                             && (eventSquare.getRow() == (model.getStageMap().getCharacterSquare().getRow())) && eventSquare.getIsAdjacent()) {
+                        // Starts combat if the next square is an enemy square
                         if(eventSquare.containsEnemy()) {
                             CombatScene combatScene = new CombatScene(primaryStage.getScene(), model, primaryStage,
                                     eventSquare.getEnemy(), eventSquare.getRow(), eventSquare.getCol());
                             combatScene.startScene();
                         }
+                        // Moves normally
                         if(!eventSquare.containsEnemy()) {
                             moveCharacter(eventSquare, mapGrid, eventSquare.getRow(), eventSquare.getCol());
                         }
@@ -134,11 +138,13 @@ public class MapBuilder {
                     // Move the character down
                     } else if ((event.getCode() == KeyCode.S) && (eventSquare.getCol() == model.getStageMap().getCharacterSquare().getCol())
                             && (eventSquare.getRow() == (model.getStageMap().getCharacterSquare().getRow() + 1)) && eventSquare.getIsAdjacent()) {
+                        // Starts combat if the next square is an enemy square
                         if(eventSquare.containsEnemy()) {
                             CombatScene combatScene = new CombatScene(primaryStage.getScene(), model, primaryStage,
                                     eventSquare.getEnemy(), eventSquare.getRow(), eventSquare.getCol());
                             combatScene.startScene();
                         }
+                        // Moves normally
                         if(!eventSquare.containsEnemy()) {
                             moveCharacter(eventSquare, mapGrid, eventSquare.getRow(), eventSquare.getCol());
                             characterMoved = true;
@@ -148,11 +154,13 @@ public class MapBuilder {
                     // Move the character right
                     } else if ((event.getCode() == KeyCode.D) && (eventSquare.getCol() == model.getStageMap().getCharacterSquare().getCol() + 1)
                             && (eventSquare.getRow() == (model.getStageMap().getCharacterSquare().getRow())) && eventSquare.getIsAdjacent()) {
+                        // Starts combat if the next square is an enemy square
                         if(eventSquare.containsEnemy()) {
                             CombatScene combatScene = new CombatScene(primaryStage.getScene(), model, primaryStage,
                                     eventSquare.getEnemy(), eventSquare.getRow(), eventSquare.getCol());
                             combatScene.startScene();
                         }
+                        // Moves normally
                         if(!eventSquare.containsEnemy()) {
                             moveCharacter(eventSquare, mapGrid, eventSquare.getRow(), eventSquare.getCol());
                         }
@@ -263,20 +271,6 @@ public class MapBuilder {
             if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
                 if(node instanceof Button){
                     node.setStyle("-fx-border-color: red; -fx-border-width: 3px;");
-//                    ((Button) node).setOnAction(event -> {
-//                        CombatScene combatScene = new CombatScene(primaryStage.getScene(), model, primaryStage,
-//                                model.getStageMap().getLocation(row, col).getEnemy(), row, col);
-//                        combatScene.startScene();
-//                        node.setStyle("-fx-border-color: yellow; -fx-border-width: 3px;");
-//                        setAdjacentSquare(gridPane, col, row);
-//                        // Sets button action to the normal movement
-//                        ((Button) node).setOnAction(event1 -> {
-//                            squareDescription.setText(model.getStageMap().getLocation(row, col).getDescription());
-//                            if(model.getStageMap().getLocation(row, col).getIsAdjacent()){
-//                                moveCharacter(model.getStageMap().getLocation(row, col), mapGrid, row, col);
-//                            }
-//                        });
-//                    });
                 }
             }
         }
