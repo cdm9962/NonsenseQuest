@@ -89,36 +89,73 @@ public class MapBuilder {
         squareButton.setMinSize(50.0, 50.0);
         mapGrid.add(squareButton, col, row);
 
+        // Displays the square description when a square is clicked on
+        squareButton.setOnAction(event -> {
+            squareDescription.setText(currSquare.getDescription());
+        });
+
         // Sets button action
         squareButton.setOnKeyPressed((KeyEvent event) -> {
             boolean characterMoved = false;
             for(int i = 0; i < model.getStageMap().getRows(); i++) {
+                // Stops the character from moving down more that one square at a time
                 if(characterMoved) {
                     break;
                 }
                 for(int j = 0; j < model.getStageMap().getCols(); j++) {
                     Square eventSquare = model.getStageMap().getLocation(i, j);
-                    System.out.println(event.getCode().toString() + " " + i + " " + eventSquare.getRow() + " " + model.getStageMap().getCharacterSquare().getRow() + " " + eventSquare.getIsAdjacent());
                     // Move the character up
                     if ((event.getCode() == KeyCode.W) && (eventSquare.getCol() == model.getStageMap().getCharacterSquare().getCol())
                             && (eventSquare.getRow() == (model.getStageMap().getCharacterSquare().getRow() - 1)) && eventSquare.getIsAdjacent()) {
-                        moveCharacter(eventSquare, mapGrid, eventSquare.getRow(), eventSquare.getCol());
+                        if(eventSquare.containsEnemy()) {
+                            CombatScene combatScene = new CombatScene(primaryStage.getScene(), model, primaryStage,
+                                    eventSquare.getEnemy(), eventSquare.getRow(), eventSquare.getCol());
+                            combatScene.startScene();
+                        }
+                        if(!eventSquare.containsEnemy()) {
+                            moveCharacter(eventSquare, mapGrid, eventSquare.getRow(), eventSquare.getCol());
+                            markAdjacentSquares(mapGrid, eventSquare.getRow(), model.getStageMap().getRows(), currSquare.getCol(), model.getStageMap().getCols());
+                        }
                         break;
+
                     // Move the character left
                     } else if ((event.getCode() == KeyCode.A) && (eventSquare.getCol() == model.getStageMap().getCharacterSquare().getCol() - 1)
                             && (eventSquare.getRow() == (model.getStageMap().getCharacterSquare().getRow())) && eventSquare.getIsAdjacent()) {
-                        moveCharacter(eventSquare, mapGrid, eventSquare.getRow(), eventSquare.getCol());
+                        if(eventSquare.containsEnemy()) {
+                            CombatScene combatScene = new CombatScene(primaryStage.getScene(), model, primaryStage,
+                                    eventSquare.getEnemy(), eventSquare.getRow(), eventSquare.getCol());
+                            combatScene.startScene();
+                        }
+                        if(!eventSquare.containsEnemy()) {
+                            moveCharacter(eventSquare, mapGrid, eventSquare.getRow(), eventSquare.getCol());
+                        }
                         break;
+
                     // Move the character down
                     } else if ((event.getCode() == KeyCode.S) && (eventSquare.getCol() == model.getStageMap().getCharacterSquare().getCol())
                             && (eventSquare.getRow() == (model.getStageMap().getCharacterSquare().getRow() + 1)) && eventSquare.getIsAdjacent()) {
-                        moveCharacter(eventSquare, mapGrid, eventSquare.getRow(), eventSquare.getCol());
-                        characterMoved = true;
+                        if(eventSquare.containsEnemy()) {
+                            CombatScene combatScene = new CombatScene(primaryStage.getScene(), model, primaryStage,
+                                    eventSquare.getEnemy(), eventSquare.getRow(), eventSquare.getCol());
+                            combatScene.startScene();
+                        }
+                        if(!eventSquare.containsEnemy()) {
+                            moveCharacter(eventSquare, mapGrid, eventSquare.getRow(), eventSquare.getCol());
+                            characterMoved = true;
+                        }
                         break;
+
                     // Move the character right
                     } else if ((event.getCode() == KeyCode.D) && (eventSquare.getCol() == model.getStageMap().getCharacterSquare().getCol() + 1)
                             && (eventSquare.getRow() == (model.getStageMap().getCharacterSquare().getRow())) && eventSquare.getIsAdjacent()) {
-                        moveCharacter(eventSquare, mapGrid, eventSquare.getRow(), eventSquare.getCol());
+                        if(eventSquare.containsEnemy()) {
+                            CombatScene combatScene = new CombatScene(primaryStage.getScene(), model, primaryStage,
+                                    eventSquare.getEnemy(), eventSquare.getRow(), eventSquare.getCol());
+                            combatScene.startScene();
+                        }
+                        if(!eventSquare.containsEnemy()) {
+                            moveCharacter(eventSquare, mapGrid, eventSquare.getRow(), eventSquare.getCol());
+                        }
                         break;
                     }
                 }
@@ -226,20 +263,20 @@ public class MapBuilder {
             if (GridPane.getColumnIndex(node) == col && GridPane.getRowIndex(node) == row) {
                 if(node instanceof Button){
                     node.setStyle("-fx-border-color: red; -fx-border-width: 3px;");
-                    ((Button) node).setOnAction(event -> {
-                        CombatScene combatScene = new CombatScene(primaryStage.getScene(), model, primaryStage,
-                                model.getStageMap().getLocation(row, col).getEnemy(), row, col);
-                        combatScene.startScene();
-                        node.setStyle("-fx-border-color: yellow; -fx-border-width: 3px;");
-                        setAdjacentSquare(gridPane, col, row);
-                        // Sets button action to the normal movement
-                        ((Button) node).setOnAction(event1 -> {
-                            squareDescription.setText(model.getStageMap().getLocation(row, col).getDescription());
-                            if(model.getStageMap().getLocation(row, col).getIsAdjacent()){
-                                moveCharacter(model.getStageMap().getLocation(row, col), mapGrid, row, col);
-                            }
-                        });
-                    });
+//                    ((Button) node).setOnAction(event -> {
+//                        CombatScene combatScene = new CombatScene(primaryStage.getScene(), model, primaryStage,
+//                                model.getStageMap().getLocation(row, col).getEnemy(), row, col);
+//                        combatScene.startScene();
+//                        node.setStyle("-fx-border-color: yellow; -fx-border-width: 3px;");
+//                        setAdjacentSquare(gridPane, col, row);
+//                        // Sets button action to the normal movement
+//                        ((Button) node).setOnAction(event1 -> {
+//                            squareDescription.setText(model.getStageMap().getLocation(row, col).getDescription());
+//                            if(model.getStageMap().getLocation(row, col).getIsAdjacent()){
+//                                moveCharacter(model.getStageMap().getLocation(row, col), mapGrid, row, col);
+//                            }
+//                        });
+//                    });
                 }
             }
         }
