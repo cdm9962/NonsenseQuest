@@ -1,23 +1,16 @@
 package gui;
 
 import javafx.application.Application;
-import javafx.geometry.*;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.media.AudioClip;
-import javafx.scene.paint.*;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import model.GameModel;
 
-import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -34,12 +27,12 @@ public class GameInterface extends Application implements Observer {
     private Stage primaryStage;
 
     // Custom resources values
-    public static final Font PIXEL_FONT_LARGE = Font.loadFont(GameInterface.class.getResource("/resources/images/pixelfont.ttf").toExternalForm(), 50);
-    public static final Font PIXEL_FONT_MEDIUM = Font.loadFont(GameInterface.class.getResource("/resources/images/pixelfont.ttf").toExternalForm(), 30);
-    public static final Font PIXEL_FONT_SMALL = Font.loadFont(GameInterface.class.getResource("/resources/images/pixelfont.ttf").toExternalForm(), 20);
-    public static final String SPLASH_FILE = "/resources/images/splash.png";
-    public static final String WOOD_BUTTON_FILE = "/resources/images/woodbutton.png";
-    public static final String SPLASH_SONG = "/resources/testtheme.wav";
+    public static final Font PIXEL_FONT_LARGE = Font.loadFont(GameInterface.class.getResource("/images/uiResources/pixelfont.ttf").toExternalForm(), 50);
+    public static final Font PIXEL_FONT_MEDIUM = Font.loadFont(GameInterface.class.getResource("/images/uiResources/pixelfont.ttf").toExternalForm(), 30);
+    public static final Font PIXEL_FONT_SMALL = Font.loadFont(GameInterface.class.getResource("/images/uiResources/pixelfont.ttf").toExternalForm(), 20);
+    public static final String SPLASH_FILE = "/images/uiResources/splash.png";
+    public static final String WOOD_BUTTON_FILE = "/images/uiResources/woodbutton.png";
+    public static final String SPLASH_SONG = "/audio/testtheme.wav";
 
     // Constant values
     public static final String TITLE = "Nonsense Quest";

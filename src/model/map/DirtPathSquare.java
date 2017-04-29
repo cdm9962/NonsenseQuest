@@ -16,13 +16,13 @@ public class DirtPathSquare extends Square {
     public static char INTERSECTION_DIRT_PATH_SQUARE_CHARACTER = '+';
 
     // Constant file paths
-    public static String VERTICAL_DIRT_PATH_FILE = "/resources/images/dirtpathvert.png";
-    public static String HORIZONTAL_DIRT_PATH_FILE = "/resources/images/dirtpathhorz.png";
-    public static String TOP_LEFT_DIRT_PATH_FILE = "/resources/images/dirtpathtopleft.png";
-    public static String TOP_RIGHT_DIRT_PATH_FILE = "/resources/images/dirtpathtopright.png";
-    public static String BOTTOM_RIGHT_DIRT_PATH_FILE = "/resources/images/dirtpathbottomright.png";
-    public static String BOTTOM_LEFT_DIRT_PATH_FILE = "/resources/images/dirtpathbottomleft.png";
-    public static String INTERSECTION_DIRT_PATH_FILE = "/resources/images/dirtpathintersection.png";
+    public static String VERTICAL_DIRT_PATH_FILE = "/images/squares/dirtpathvert.png";
+    public static String HORIZONTAL_DIRT_PATH_FILE = "/images/squares/dirtpathhorz.png";
+    public static String TOP_LEFT_DIRT_PATH_FILE = "/images/squares/dirtpathtopleft.png";
+    public static String TOP_RIGHT_DIRT_PATH_FILE = "/images/squares/dirtpathtopright.png";
+    public static String BOTTOM_RIGHT_DIRT_PATH_FILE = "/images/squares/dirtpathbottomright.png";
+    public static String BOTTOM_LEFT_DIRT_PATH_FILE = "/images/squares/dirtpathbottomleft.png";
+    public static String INTERSECTION_DIRT_PATH_FILE = "/images/squares/dirtpathintersection.png";
 
     // Constant square descriptors
     public static String DIRT_PATH_SQUARE_NAME = "Path";

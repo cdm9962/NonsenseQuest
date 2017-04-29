@@ -13,8 +13,8 @@ public class TreeSquare extends Square {
     public static String TREE_SQUARE_DESCRIPTION = "What a fine looking tree.";
 
     // Constant file paths
-    public static String MAPLE_TREE_SQUARE_FILE = "/resources/images/mapletree.png";
-    public static String PINE_TREE_SQUARE_FILE = "/resources/images/pinetree.png";
+    public static String MAPLE_TREE_SQUARE_FILE = "/images/squares/mapletree.png";
+    public static String PINE_TREE_SQUARE_FILE = "/images/squares/pinetree.png";
 
     /**
      * TreeSquare Square constructor.

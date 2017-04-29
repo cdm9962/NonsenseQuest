@@ -10,7 +10,7 @@ public class GrassSquare extends Square {
     public static char GRASS_SQUARE_CHARACTER = '.';
     public static String GRASS_SQUARE_NAME = "Grass";
     public static String GRASS_SQUARE_DESCRIPTION = "A nice patch of soft grass.";
-    public static String GRASS_SQUARE_FILE = "/resources/images/grass.png";
+    public static String GRASS_SQUARE_FILE = "/images/squares/grass.png";
 
     /**
      * Grass Square constructor.
