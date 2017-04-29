@@ -5,11 +5,12 @@ package model.items;
  *
  * @author Connor D. Milligan, Nathan Hall
  */
-public class Weapon extends Item{
+public abstract class Weapon extends Item {
     // The private state of the weapon
     private int damage;
     private TYPE weaponType;
 
+    // The weapon type
     public enum TYPE {SWORD, STAFF, DAGGER}
 
     /**
@@ -19,9 +20,12 @@ public class Weapon extends Item{
      * @param rarity String representing the rarity of the item
      * @param value double representing the sell value of the item
      * @param weight double representing the carrying weight of the item
+     * @param imageFilename String representing the image file location
+     * @param damage int representing the base damage of the weapon
+     * @param weaponType TYPE representing the type of weapon it is
      */
-    public Weapon(String name, String description, String rarity, int damage, double value, double weight, TYPE weaponType){
-        super(name, description, rarity, true, value, weight);
+    public Weapon(String name, String description, String rarity, double value, double weight, String imageFilename, int damage, TYPE weaponType) {
+        super(name, description, rarity, true, value, weight, imageFilename);
         this.damage = damage;
         this.weaponType = weaponType;
     }

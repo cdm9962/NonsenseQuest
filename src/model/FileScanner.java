@@ -1,5 +1,6 @@
 package model;
 
+import model.items.Sword;
 import model.items.Weapon;
 import model.map.*;
 
@@ -119,7 +120,7 @@ public class FileScanner {
             scanner.nextLine();
             // Creates the sword object when it reaches the proper line
             if(i == row - 1){
-                Weapon sword = new Weapon(getString(), getString(), getString(), getInt(), getDouble(), getDouble(), Weapon.TYPE.SWORD);
+                Weapon sword = addWeapon();
                 // Closes the file and returns the sword object
                 scanner.close();
                 return sword;
@@ -128,6 +129,27 @@ public class FileScanner {
 
         // Error sword not found
         return null;
+    }
+
+    /**
+     * Method to create a weapon.
+     * @return Weapon representing the newly created weapon.
+     */
+    public Weapon addWeapon() {
+        String name = getString();
+        if(name.equals("Rusty Sword")) {
+            return new Sword(name, getString(), getString(), getInt(), getDouble(), getDouble(), Sword.RUSTY_SWORD_FILE, Sword.SWORDTYPE.RUSTY);
+        } else if(name.equals("Iron Sword")) {
+            return new Sword(name, getString(), getString(), getInt(), getDouble(), getDouble(), Sword.IRON_SWORD_FILE, Sword.SWORDTYPE.IRON);
+        } else if(name.equals("Masterwork Sword")) {
+            return new Sword(name, getString(), getString(), getInt(), getDouble(), getDouble(), Sword.MASTERWORK_SWORD_FILE, Sword.SWORDTYPE.MASTERWORK);
+        } else if(name.equals("Spiked Sword")) {
+            return new Sword(name, getString(), getString(), getInt(), getDouble(), getDouble(), Sword.SPIKED_SWORD_FILE, Sword.SWORDTYPE.SPIKED);
+        } else if(name.equals("God Sword")) {
+            return new Sword(name, getString(), getString(), getInt(), getDouble(), getDouble(), Sword.GOD_SWORD_FILE, Sword.SWORDTYPE.GOD);
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -142,7 +164,9 @@ public class FileScanner {
             if(temp.equals("|")){
                 break;
             } else {
-                string += " ";
+                if(string.length() > 0) {
+                    string += " ";
+                }
                 string += temp;
             }
         }

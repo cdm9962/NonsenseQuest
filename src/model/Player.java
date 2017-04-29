@@ -74,8 +74,8 @@ public class Player {
             this.inventory = new ArrayList<>();
             FileScanner scanner = new FileScanner();
             try {
-                this.inventory.add(scanner.scanWeapon("/resources/entitylists/swords.txt", 1));
-                this.inventory.add((scanner.scanWeapon("/resources/entitylists/swords.txt", 2)));
+                this.inventory.add(scanner.scanWeapon("/entityLists/swords.txt", 1));
+                this.inventory.add((scanner.scanWeapon("/entityLists/swords.txt", 2)));
                 this.activeItemLeft = this.inventory.get(0);
                 this.activeItemRight = this.inventory.get(1);
             } catch (FileNotFoundException e) {
@@ -117,7 +117,7 @@ public class Player {
                 "\n  experience: " + experience +
                 "\n  level: " + level +
                 "\n  inventory weight: " + limits.getMinWeight() +
-                "\n  inventory: [" + displayInventory() + " ]";
+                "\n  inventory: [ " + displayInventory() + " ]";
     }
 
     /**
@@ -130,7 +130,7 @@ public class Player {
         for(int i = 0; i < inventory.size(); i++){
             result += inventory.get(i).getName();
             if(i != inventory.size() - 1){
-                result += ",";
+                result += ", ";
             }
         }
         return result;

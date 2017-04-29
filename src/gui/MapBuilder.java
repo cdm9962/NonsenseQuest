@@ -83,7 +83,7 @@ public class MapBuilder {
     public void createSquare(Square currSquare, int row, int col) {
         // Creates the button and textures
         Button squareButton = new Button();
-        Background squareTexture = new Background(new BackgroundImage(new Image(getClass().getResource(currSquare.getFilename()).toExternalForm()),
+        Background squareTexture = new Background(new BackgroundImage(new Image(getClass().getResource(currSquare.getImageFilename()).toExternalForm()),
                 BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
         squareButton.setBackground(squareTexture);
         squareButton.setMinSize(50.0, 50.0);

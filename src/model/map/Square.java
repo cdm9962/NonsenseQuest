@@ -11,7 +11,7 @@ public abstract class Square {
     // The private state of the map square
     private int row;
     private int col;
-    private String filename;
+    private String imageFilename;
     private String name;
     private String description;
     private boolean isAdjacent;
@@ -31,18 +31,18 @@ public abstract class Square {
      * Square constructor.
      * @param row int representing the row location of the square
      * @param col int representing the column location of the square
-     * @param filename String representing the image filename for the square
+     * @param imageFilename String representing the image imageFilename for the square
      * @param name String representing the name of the square
      * @param description String representing the description of the square
      * @param isAdjacent boolean representing if the square is adjacent to the character
      * @param containsCharacter boolean to determine if the square holds the character
      * @param enemy Character that represents an enemy of the board
      */
-    public Square(int row, int col, String filename, String name, String description, boolean isAdjacent, boolean containsCharacter,
+    public Square(int row, int col, String imageFilename, String name, String description, boolean isAdjacent, boolean containsCharacter,
                   boolean containsEnemy, Player enemy){
         this.row = row;
         this.col = col;
-        this.filename = filename;
+        this.imageFilename = imageFilename;
         this.name = name;
         this.description = description;
         this.isAdjacent = isAdjacent;
@@ -56,13 +56,6 @@ public abstract class Square {
      * @return String representing the square description
      */
     public String getDescription(){
-//        if(this.isAdjacent){
-//            return "You can move to this square.";
-//        } else if (this.containsCharacter) {
-//            return "You are here.";
-//        } else {
-//            return this.description;
-//        }
         return this.description;
     }
 
@@ -82,11 +75,11 @@ public abstract class Square {
     }
 
     /**
-     * Getter method for the stage map filename.
-     * @return String representing the stage map filename
+     * Getter method for the stage map imageFilename.
+     * @return String representing the stage map imageFilename
      */
-    public String getFilename(){
-        return this.filename;
+    public String getImageFilename(){
+        return this.imageFilename;
     }
 
     /**

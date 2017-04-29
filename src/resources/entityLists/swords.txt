@@ -1,6 +1,6 @@
 Name | Description | Rarity | Damage | Value | Weight |
 Rusty Sword | This sword is likely to give you tetanus if not held right. | Common | 10 | 5.0 | 20.0 |
-Wood Sword | A bit basic, but at least it's pointy! | Common | 12 | 7.5 | 10.0 |
-Bronze Sword | A weapon crafted with love, but not precision. | Common | 15 | 10.0 | 18.0 |
-Iron Sword | A mass produced yet effective weapon. | Common | 18 | 20.0 | 20.0
+Iron Sword | A bit basic, but at least it's pointy! | Common | 12 | 7.5 | 10.0 |
+Masterwork Sword | A weapon crafted with love, but not precision. | Common | 15 | 10.0 | 18.0 |
+Spiked Sword | A mass produced yet effective weapon. | Common | 18 | 20.0 | 20.0
 God Sword | This sword is not meant for mere mortals. | Super Ultra Mega Rare | 999 | 7823.0 | 18.0 |
