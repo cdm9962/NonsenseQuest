@@ -178,4 +178,28 @@ public class Player {
     public boolean isFaster(Player player){
         return this.speed > player.speed;
     }
+
+    public Item getActiveItemLeft() {
+        return activeItemLeft;
+    }
+
+    public void setActiveItemLeft(Item activeItemLeft) {
+        this.activeItemLeft = activeItemLeft;
+    }
+
+    public Item getActiveItemRight() {
+        return activeItemRight;
+    }
+
+    public void setActiveItemRight(Item activeItemRight) {
+        this.activeItemRight = activeItemRight;
+    }
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(ArrayList<Item> inventory) {
+        this.inventory = inventory;
+    }
 }
