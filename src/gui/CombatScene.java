@@ -75,9 +75,8 @@ public class CombatScene {
 
             enemy.takeDamage(model.getPlayer().calculateDamage());
             this.model.getPlayer().takeDamage(enemy.calculateDamage());
-            Label playerStats = new Label(this.model.printCharacterStats());
-            playerStats.setFont(GameInterface.PIXEL_FONT_SMALL);
-            border.setRight(playerStats);
+            CharacterDisplay characterDisplay = new CharacterDisplay(model);
+            border.setRight(characterDisplay.displayStats());
             Label enemyStats = new Label(enemy.displayCharacter());
             enemyStats.setFont(GameInterface.PIXEL_FONT_SMALL);
             border.setLeft(enemyStats);
@@ -98,9 +97,8 @@ public class CombatScene {
 
         border.setCenter(buttonGrid);
 
-        Label playerStats = new Label(this.model.printCharacterStats());
-        playerStats.setFont(GameInterface.PIXEL_FONT_SMALL);
-        border.setRight(playerStats);
+        CharacterDisplay characterDisplay = new CharacterDisplay(model);
+        border.setRight(characterDisplay.displayStats());
 
         Label enemyStats = new Label(enemy.displayCharacter());
         enemyStats.setFont(GameInterface.PIXEL_FONT_SMALL);

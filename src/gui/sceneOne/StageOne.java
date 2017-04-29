@@ -1,5 +1,6 @@
 package gui.sceneOne;
 
+import gui.CharacterDisplay;
 import gui.GameInterface;
 import gui.MapBuilder;
 import javafx.geometry.Insets;
@@ -46,10 +47,9 @@ public class StageOne {
         this.model.getStageMap();
 
         // Prints the character stats on the right side of the screen
-        Label playerStats = new Label(this.model.printCharacterStats());
-        playerStats.setFont(GameInterface.PIXEL_FONT_SMALL);
+        CharacterDisplay characterDisplay = new CharacterDisplay(model);
         BorderPane rightPane = new BorderPane();
-        rightPane.setTop(playerStats);
+        rightPane.setTop(characterDisplay.displayStats());
         border.setRight(rightPane);
 
         // Builds the stage map in the model

@@ -166,30 +166,10 @@ public class OpeningScene {
         border.setTop(title);
 
         // Prints the character stats to the left of the border pane and clears the center border pane
-        BorderPane characterPane = new BorderPane();
-        Label playerStats = new Label(model.printCharacterStats());
-        playerStats.setFont(GameInterface.PIXEL_FONT_SMALL);
-        characterPane.setTop(playerStats);
+        CharacterDisplay characterDisplay = new CharacterDisplay(model);
+        border.setLeft(characterDisplay.displayStats());
 
-        GridPane itemPane = new GridPane();
-        itemPane.setPadding(new Insets(5.0));
-        characterPane.setCenter(itemPane);
-
-        Button itemSlot1 = new Button();
-        itemSlot1.setMinSize(GameInterface.DEFAULT_INSETS, GameInterface.DEFAULT_INSETS);
-        Background squareTexture1 = new Background(new BackgroundImage(new javafx.scene.image.Image(getClass().getResource(model.getPlayer().getActiveItemLeft().getImageFilename()).toExternalForm()),
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
-        itemSlot1.setBackground(squareTexture1);
-        itemPane.add(itemSlot1, 0, 0);
-
-        Button itemSlot2 = new Button();
-        itemSlot2.setMinSize(GameInterface.DEFAULT_INSETS, GameInterface.DEFAULT_INSETS);
-        Background squareTexture2 = new Background(new BackgroundImage(new javafx.scene.image.Image(getClass().getResource(model.getPlayer().getActiveItemRight().getImageFilename()).toExternalForm()),
-                BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
-        itemSlot2.setBackground(squareTexture2);
-        itemPane.add(itemSlot2, 1, 0);
-
-        border.setLeft(characterPane);
+        // Removes text from the previous scene
         Label placeholder = new Label("");
         border.setCenter(placeholder);
 

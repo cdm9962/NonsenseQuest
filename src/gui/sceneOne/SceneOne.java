@@ -1,5 +1,6 @@
 package gui.sceneOne;
 
+import gui.CharacterDisplay;
 import gui.GameInterface;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -66,9 +67,8 @@ public class SceneOne {
         buttonGrid.add(stageTwoButton, 1, 0);
 
         // Displays the character stats on the right side of the play screen
-        Label playerStats = new Label(this.model.printCharacterStats());
-        playerStats.setFont(GameInterface.PIXEL_FONT_SMALL);
-        border.setRight(playerStats);
+        CharacterDisplay characterDisplay = new CharacterDisplay(model);
+        border.setRight(characterDisplay.displayStats());
 
         // Updates the scene
         Scene sceneOne = new Scene(border);

@@ -1,5 +1,6 @@
 package gui;
 
+import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -37,7 +38,8 @@ public class MapBuilder {
 
     /**
      * Method to create a map grid based on the map data stored in the model.
-     * @return BorderPane a visual representation of the stage map
+     * @return BorderPane representing a visual representation of the stage map
+     * @param stagePane BorderPane representing the current UI
      */
     public BorderPane buildMap(BorderPane stagePane){
         // Creates the grid and square description
