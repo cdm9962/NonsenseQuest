@@ -22,6 +22,7 @@ public class MapBuilder {
     // The private state necessary for the map builder
     private GameModel model;
     private Stage primaryStage;
+    private BorderPane stagePane;
     private GridPane mapGrid;
     private Label squareDescription;
 
@@ -29,9 +30,10 @@ public class MapBuilder {
      * Constructor for the map builder.
      * @param model GameModel representing the game attributes
      */
-    public MapBuilder(GameModel model, Stage primaryStage){
+    public MapBuilder(GameModel model, Stage primaryStage, BorderPane stagePane){
         this.model = model;
         this.primaryStage = primaryStage;
+        this.stagePane = stagePane;
         this.mapGrid = new GridPane();
         this.squareDescription = new Label();
     }
@@ -39,9 +41,8 @@ public class MapBuilder {
     /**
      * Method to create a map grid based on the map data stored in the model.
      * @return BorderPane representing a visual representation of the stage map
-     * @param stagePane BorderPane representing the current UI
      */
-    public BorderPane buildMap(BorderPane stagePane){
+    public BorderPane buildMap(){
         // Creates the grid and square description
         BorderPane border = new BorderPane();
         mapGrid.setHgap(2);
@@ -170,6 +171,8 @@ public class MapBuilder {
                     }
                 }
             }
+            CharacterDisplay characterDisplay = new CharacterDisplay(model);
+            ((BorderPane) ((BorderPane) stagePane.getRight()).getTop()).setTop(characterDisplay.updateStats());
         });
     }
 

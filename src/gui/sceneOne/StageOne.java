@@ -53,8 +53,8 @@ public class StageOne {
         border.setRight(rightPane);
 
         // Builds the stage map in the model
-        MapBuilder map = new MapBuilder(this.model, this.primaryStage);
-        BorderPane mapGrid = map.buildMap(border);
+        MapBuilder map = new MapBuilder(this.model, this.primaryStage, border);
+        BorderPane mapGrid = map.buildMap();
         border.setCenter(mapGrid);
 
         // Displays the scene

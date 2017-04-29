@@ -63,4 +63,17 @@ public class CharacterDisplay {
 
         return characterPane;
     }
+
+    /**
+     * Method to update the character stats on the game UI.
+     * @return BorderPane representing the character stats display
+     */
+    public BorderPane updateStats() {
+        // Gets the character stats text from the model
+        Label playerStats = new Label(model.printCharacterStats());
+        playerStats.setFont(GameInterface.PIXEL_FONT_SMALL);
+        characterPane.setTop(playerStats);
+
+        return characterPane;
+    }
 }

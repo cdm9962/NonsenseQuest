@@ -107,4 +107,9 @@ public class CombatScene {
         Scene combatScene = new Scene(border);
         this.primaryStage.setScene(combatScene);
     }
+
+
+    public boolean inCombat() {
+        return model.getStageMap().getLocation(enemyRow, enemyCol).isContainsEnemy();
+    }
 }
