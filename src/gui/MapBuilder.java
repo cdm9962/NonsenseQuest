@@ -98,10 +98,10 @@ public class MapBuilder {
 
         // Sets WASD movement tracking as well as other key listening
         squareButton.setOnKeyPressed((KeyEvent event) -> {
-            // Launches inventory
+            // Launches game menu
             if(event.getCode() == KeyCode.ESCAPE) {
-                InventoryScene inventoryScene = new InventoryScene(primaryStage.getScene(), model, primaryStage);
-                inventoryScene.startScene();
+                MenuScene menuScene = new MenuScene(primaryStage.getScene(), model, primaryStage);
+                menuScene.startScene();
             }
 
             // Character movement

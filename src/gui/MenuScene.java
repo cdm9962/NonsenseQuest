@@ -24,7 +24,7 @@ public class MenuScene {
     private Stage primaryStage;
 
     // Constant String values
-    public static final String INVENTORY_DISPLAY_TITLE = "Main Menu:";
+    public static final String MAIN_MENU_DISPLAY_TITLE = "Main Menu:";
 
     /**
      * MenuScene constructor.
@@ -46,8 +46,33 @@ public class MenuScene {
         BorderPane border = new BorderPane();
         border.setStyle(GameInterface.COLOR_GRAY);
 
+        // Creates the scene title
+        Label title = new Label(MAIN_MENU_DISPLAY_TITLE);
+        title.setFont(GameInterface.PIXEL_FONT_MEDIUM);
+        border.setTop(title);
+
+        // Creates the button menu
+        GridPane menuGrid = new GridPane();
+        border.setCenter(menuGrid);
+
+        // Creates the return to game button
+        Button homeButton = new Button("Return To Game");
+        homeButton.setOnAction(event -> {
+            primaryStage.setScene(currStage);
+        });
+        menuGrid.add(homeButton, 0, 0);
+
+        // Creates the display inventory button
+        Button inventoryButton = new Button("View Inventory");
+        inventoryButton.setOnAction(event -> {
+            InventoryScene inventoryScene = new InventoryScene(primaryStage.getScene(), model, primaryStage);
+            inventoryScene.startScene();
+        });
+        menuGrid.add(inventoryButton, 0, 1);
+
+
         // Displays the scene
-        Scene inventory = new Scene(border);
-        this.primaryStage.setScene(inventory);
+        Scene menu = new Scene(border);
+        this.primaryStage.setScene(menu);
     }
 }
