@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import model.GameModel;
+import model.Player;
 
 /**
  * Class to display the character information on the game UI.
@@ -23,16 +24,16 @@ public class CharacterDisplay {
     public CharacterDisplay(GameModel model){
         this.model = model;
         this.characterPane = new BorderPane();
-
+//        this.characterPane.setPadding(new Insets(5.0));
     }
 
     /**
      * Method to display the character stats on the game UI.
      * @return BorderPane representing the character stats display
      */
-    public BorderPane displayStats() {
+    public BorderPane displayStats(Player player) {
         // Gets the character stats text from the model
-        Label playerStats = new Label(model.printCharacterStats());
+        Label playerStats = new Label(player.displayCharacter());
         playerStats.setFont(GameInterface.PIXEL_FONT_SMALL);
         characterPane.setTop(playerStats);
 
@@ -68,9 +69,9 @@ public class CharacterDisplay {
      * Method to update the character stats on the game UI.
      * @return BorderPane representing the character stats display
      */
-    public BorderPane updateStats() {
+    public BorderPane updateStats(Player player) {
         // Gets the character stats text from the model
-        Label playerStats = new Label(model.printCharacterStats());
+        Label playerStats = new Label(player.displayCharacter());
         playerStats.setFont(GameInterface.PIXEL_FONT_SMALL);
         characterPane.setTop(playerStats);
 

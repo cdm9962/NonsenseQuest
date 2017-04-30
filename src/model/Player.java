@@ -130,15 +130,16 @@ public class Player {
      * @return String representing the characters inventory
      */
     public String displayInventory(){
-        String result = "";
-        // Loops through each item in the inventory and prints the name value
-        for(int i = 0; i < inventory.size(); i++){
-            result += inventory.get(i).getName();
-            if(i != inventory.size() - 1){
-                result += ", ";
-            }
-        }
-        return result;
+//        String result = "";
+//        // Loops through each item in the inventory and prints the name value
+//        for(int i = 0; i < inventory.size(); i++){
+//            result += inventory.get(i).getName();
+//            if(i != inventory.size() - 1){
+//                result += ", ";
+//            }
+//        }
+//        return result;
+        return String.valueOf(inventory.size());
     }
 
     /**

@@ -167,7 +167,7 @@ public class OpeningScene {
 
         // Prints the character stats to the left of the border pane and clears the center border pane
         CharacterDisplay characterDisplay = new CharacterDisplay(model);
-        border.setLeft(characterDisplay.displayStats());
+        border.setLeft(characterDisplay.displayStats(model.getPlayer()));
 
         // Removes text from the previous scene
         Label placeholder = new Label("");

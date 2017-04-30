@@ -49,7 +49,7 @@ public class StageOne {
         // Prints the character stats on the right side of the screen
         CharacterDisplay characterDisplay = new CharacterDisplay(model);
         BorderPane rightPane = new BorderPane();
-        rightPane.setTop(characterDisplay.displayStats());
+        rightPane.setTop(characterDisplay.displayStats(model.getPlayer()));
         border.setRight(rightPane);
 
         // Builds the stage map in the model

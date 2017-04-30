@@ -39,8 +39,8 @@ public abstract class Weapon extends Item {
     }
 
     @Override
-    public String toString() {
-        String result = super.toString();
+    public String printItemStats() {
+        String result = super.printItemStats();
         return result +
                 "\tweaponType: " + weaponType + "\n" +
                 "\tdamage: " + damage + "\n";

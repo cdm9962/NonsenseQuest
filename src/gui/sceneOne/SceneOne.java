@@ -68,7 +68,7 @@ public class SceneOne {
 
         // Displays the character stats on the right side of the play screen
         CharacterDisplay characterDisplay = new CharacterDisplay(model);
-        border.setRight(characterDisplay.displayStats());
+        border.setRight(characterDisplay.displayStats(model.getPlayer()));
 
         // Updates the scene
         Scene sceneOne = new Scene(border);

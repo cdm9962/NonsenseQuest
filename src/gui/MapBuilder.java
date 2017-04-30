@@ -1,6 +1,5 @@
 package gui;
 
-import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
@@ -180,7 +179,7 @@ public class MapBuilder {
             }
             // Updates the character stats every time the character moves to a new square
             CharacterDisplay characterDisplay = new CharacterDisplay(model);
-            ((BorderPane) ((BorderPane) stagePane.getRight()).getTop()).setTop(characterDisplay.updateStats());
+            ((BorderPane) ((BorderPane) stagePane.getRight()).getTop()).setTop(characterDisplay.updateStats(model.getPlayer()));
         });
     }
 

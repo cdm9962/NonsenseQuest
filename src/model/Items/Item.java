@@ -61,4 +61,18 @@ public abstract class Item {
     public String getImageFilename() {
         return imageFilename;
     }
+
+    /**
+     * Method to display the item stats.
+     * @return String representing the item stats
+     */
+    public String printItemStats() {
+        return  "Name: " + name + "\n" +
+                "\tDescription: " + description + "\n" +
+                "\tRarity: " + rarity + "\n" +
+                "\tEquipable: " + equipable + "\n" +
+                "\tValue: " + value + "\n" +
+                "\tWeight: " + weight + "\n" +
+                "\tImage Filename: " + imageFilename + "\n";
+    }
 }

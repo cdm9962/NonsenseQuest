@@ -76,10 +76,9 @@ public class CombatScene {
             enemy.takeDamage(model.getPlayer().calculateDamage());
             this.model.getPlayer().takeDamage(enemy.calculateDamage());
             CharacterDisplay characterDisplay = new CharacterDisplay(model);
-            border.setRight(characterDisplay.displayStats());
-            Label enemyStats = new Label(enemy.displayCharacter());
-            enemyStats.setFont(GameInterface.PIXEL_FONT_SMALL);
-            border.setLeft(enemyStats);
+            border.setRight(characterDisplay.displayStats(model.getPlayer()));
+            CharacterDisplay enemyDisplay = new CharacterDisplay(model);
+            border.setLeft(enemyDisplay.displayStats(enemy));
             if(enemy.getHealth() == 0){
                 primaryStage.setScene(currStage);
                 model.getStageMap().getLocation(enemyRow, enemyCol).toggleIsEnemy();
@@ -98,11 +97,10 @@ public class CombatScene {
         border.setCenter(buttonGrid);
 
         CharacterDisplay characterDisplay = new CharacterDisplay(model);
-        border.setRight(characterDisplay.displayStats());
+        border.setRight(characterDisplay.displayStats(model.getPlayer()));
 
-        Label enemyStats = new Label(enemy.displayCharacter());
-        enemyStats.setFont(GameInterface.PIXEL_FONT_SMALL);
-        border.setLeft(enemyStats);
+        CharacterDisplay enemyDisplay = new CharacterDisplay(model);
+        border.setLeft(enemyDisplay.displayStats(enemy));
 
         Scene combatScene = new Scene(border);
         this.primaryStage.setScene(combatScene);
