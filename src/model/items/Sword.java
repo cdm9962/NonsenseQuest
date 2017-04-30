@@ -11,6 +11,7 @@ public class Sword extends Weapon {
     public enum SWORDTYPE {RUSTY, IRON, MASTERWORK, SPIKED, GOD}
 
     // Constant file paths
+    public static final String SWORD_FILE = "/entityLists/swords.txt";
     public static final String RUSTY_SWORD_FILE = "/images/items/weapons/swordrusty.png";
     public static final String IRON_SWORD_FILE = "/images/items/weapons/swordiron.png";
     public static final String MASTERWORK_SWORD_FILE = "/images/items/weapons/swordmasterwork.png";
@@ -40,5 +41,12 @@ public class Sword extends Weapon {
      */
     public SWORDTYPE getSwordtype() {
         return swordtype;
+    }
+
+    @Override
+    public String printItemStats() {
+        String result = super.printItemStats();
+        return  result +
+                "\tSword: " + swordtype + "\n";
     }
 }

@@ -4,6 +4,7 @@ import model.classes.PlayerClass;
 import model.classes.Thief;
 import model.classes.Warrior;
 import model.items.Item;
+import model.items.Sword;
 import model.items.Weapon;
 import model.races.Dragon;
 import model.races.Human;
@@ -72,13 +73,14 @@ public class Player {
             this.limits.setMaxHealth(Human.HUMAN_DEFAULT_HEALTH + this.playerClass.getHealthModifier());
             this.limits.setMaxWeight(Human.HUMAN_DEFAULT_WEIGHT + this.playerClass.getWeightModifier());
             this.inventory = new ArrayList<>();
+            // Add starting items
             FileScanner scanner = new FileScanner();
             try {
-                this.inventory.add(scanner.scanWeapon("/entityLists/swords.txt", 1));
-                this.inventory.add((scanner.scanWeapon("/entityLists/swords.txt", 2)));
-                this.inventory.add((scanner.scanWeapon("/entityLists/swords.txt", 3)));
-                this.inventory.add((scanner.scanWeapon("/entityLists/swords.txt", 4)));
-                this.inventory.add((scanner.scanWeapon("/entityLists/swords.txt", 5)));
+                this.inventory.add(scanner.scanWeapon(Sword.SWORD_FILE, 1));
+                this.inventory.add((scanner.scanWeapon(Sword.SWORD_FILE, 2)));
+                this.inventory.add((scanner.scanWeapon(Sword.SWORD_FILE, 3)));
+                this.inventory.add((scanner.scanWeapon(Sword.SWORD_FILE, 4)));
+                this.inventory.add((scanner.scanWeapon(Sword.SWORD_FILE, 5)));
                 this.activeItemLeft = this.inventory.get(0);
                 this.activeItemRight = this.inventory.get(1);
             } catch (FileNotFoundException e) {

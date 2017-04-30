@@ -5,6 +5,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import model.GameModel;
 import model.items.Item;
@@ -43,6 +44,7 @@ public class InventoryScene {
     public void startScene() {
         // Creates the border pane for the scene
         BorderPane border = new BorderPane();
+        border.setStyle(GameInterface.COLOR_GRAY);
 
         // Sets the scene title
         Label title = new Label(INVENTORY_DISPLAY_TITLE);
@@ -63,17 +65,23 @@ public class InventoryScene {
         itemPane.setPadding(new Insets(5.0));
         itemPane.setHgap(2.0);
         itemPane.setVgap(2.0);
-        border.setCenter(itemPane);
+        border.setLeft(itemPane);
 
         // Adds items to the inventory display
         ArrayList<Item> items = model.getPlayer().getInventory();
         for(int itemIndex = 0; itemIndex < items.size(); itemIndex++) {
             Button itemSlot = new Button();
             itemSlot.setMinSize(GameInterface.DEFAULT_INSETS, GameInterface.DEFAULT_INSETS);
-            Background squareTexture1 = new Background(new BackgroundImage(new javafx.scene.image.Image(getClass().getResource(model.getPlayer().getInventory().get(itemIndex).getImageFilename()).toExternalForm()),
+            Background squareTexture = new Background(new BackgroundImage(new javafx.scene.image.Image(getClass().getResource(model.getPlayer().getInventory().get(itemIndex).getImageFilename()).toExternalForm()),
                     BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT));
-            itemSlot.setBackground(squareTexture1);
+            itemSlot.setBackground(squareTexture);
             itemPane.add(itemSlot, itemIndex, 0);
+
+            int finalItemIndex = itemIndex;
+            itemSlot.setOnAction(event -> {
+                Label itemStats = new Label(items.get(finalItemIndex).printItemStats());
+                border.setCenter(itemStats);
+            });
         }
 
         // Displays the scene

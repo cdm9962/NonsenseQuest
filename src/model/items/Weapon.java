@@ -37,4 +37,12 @@ public abstract class Weapon extends Item {
     public int getDamage(){
         return this.damage;
     }
+
+    @Override
+    public String toString() {
+        String result = super.toString();
+        return result +
+                "\tweaponType: " + weaponType + "\n" +
+                "\tdamage: " + damage + "\n";
+    }
 }
