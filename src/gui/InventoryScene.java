@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * @author Connor D. Milligan, Nathan Hall
  */
 public class InventoryScene {
-    // The private state of the second stage
+    // The private state of the inventory scene
     private Scene currStage;
     private GameModel model;
     private Stage primaryStage;
