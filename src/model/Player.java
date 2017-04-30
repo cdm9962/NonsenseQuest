@@ -76,6 +76,9 @@ public class Player {
             try {
                 this.inventory.add(scanner.scanWeapon("/entityLists/swords.txt", 1));
                 this.inventory.add((scanner.scanWeapon("/entityLists/swords.txt", 2)));
+                this.inventory.add((scanner.scanWeapon("/entityLists/swords.txt", 3)));
+                this.inventory.add((scanner.scanWeapon("/entityLists/swords.txt", 4)));
+                this.inventory.add((scanner.scanWeapon("/entityLists/swords.txt", 5)));
                 this.activeItemLeft = this.inventory.get(0);
                 this.activeItemRight = this.inventory.get(1);
             } catch (FileNotFoundException e) {

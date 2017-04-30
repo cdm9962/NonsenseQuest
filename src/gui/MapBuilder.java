@@ -97,8 +97,15 @@ public class MapBuilder {
             squareDescription.setText(currSquare.getDescription());
         });
 
-        // Sets WASD movement tracking
+        // Sets WASD movement tracking as well as other key listening
         squareButton.setOnKeyPressed((KeyEvent event) -> {
+            // Launches inventory
+            if(event.getCode() == KeyCode.ESCAPE) {
+                InventoryScene inventoryScene = new InventoryScene(primaryStage.getScene(), model, primaryStage);
+                inventoryScene.startScene();
+            }
+
+            // Character movement
             boolean characterMoved = false;
             for(int i = 0; i < model.getStageMap().getRows(); i++) {
                 // Stops the character from moving down more that one square at a time
@@ -171,6 +178,7 @@ public class MapBuilder {
                     }
                 }
             }
+            // Updates the character stats every time the character moves to a new square
             CharacterDisplay characterDisplay = new CharacterDisplay(model);
             ((BorderPane) ((BorderPane) stagePane.getRight()).getTop()).setTop(characterDisplay.updateStats());
         });
