@@ -6,8 +6,8 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import model.GameModel;
 
@@ -40,17 +40,28 @@ public class SceneOne {
     public void startScene(){
         // Creates the border pane for the scene
         BorderPane border = new BorderPane();
+        border.setStyle(GameInterface.COLOR_GRAY);
         border.setPadding(new Insets(GameInterface.DEFAULT_INSETS));
 
         // Sets the scene title
         Label title = new Label(SCENE_ONE_TITLE);
+        title.setFont(GameInterface.PIXEL_FONT_MEDIUM);
+        title.setPadding(new Insets(GameInterface.DEFAULT_INSETS));
         border.setTop(title);
 
+        // Creates the stage buttons
         GridPane buttonGrid = new GridPane();
+        buttonGrid.setHgap(GameInterface.BUTTON_INSETS);
+        buttonGrid.setVgap(GameInterface.BUTTON_INSETS);
         border.setCenter(buttonGrid);
 
         // Creates the stage one selection
         Button stageOneButton = new Button(StageOne.STAGE_ONE_TITLE);
+        stageOneButton.setFont(GameInterface.PIXEL_FONT_SMALL);
+        stageOneButton.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(GameInterface.WOOD_BUTTON_FILE).toExternalForm()),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+
+        // Launches first stage
         stageOneButton.setOnAction(event -> {
             StageOne stageOne = new StageOne(this.model, this.primaryStage);
             stageOne.startScene();
@@ -59,7 +70,12 @@ public class SceneOne {
 
         // Creates the stage two selection
         Button stageTwoButton = new Button("Stage Two");
+        stageTwoButton.setFont(GameInterface.PIXEL_FONT_SMALL);
+        stageTwoButton.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(GameInterface.WOOD_BUTTON_FILE).toExternalForm()),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         stageTwoButton.setDisable(true);
+
+        // Launches second stage
         stageTwoButton.setOnAction(event -> {
             StageTwo stageTwo = new StageTwo(this.model, this.primaryStage);
             stageTwo.startScene();

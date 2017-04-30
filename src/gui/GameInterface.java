@@ -27,23 +27,28 @@ public class GameInterface extends Application implements Observer {
     private Stage primaryStage;
 
     // Custom resources values
-    public static final Font PIXEL_FONT_LARGE = Font.loadFont(GameInterface.class.getResource("/images/uiResources/pixelfont.ttf").toExternalForm(), 50);
+    public static final Font PIXEL_FONT_LARGE = Font.loadFont(GameInterface.class.getResource("/images/uiResources/pixelfont.ttf").toExternalForm(), 40);
     public static final Font PIXEL_FONT_MEDIUM = Font.loadFont(GameInterface.class.getResource("/images/uiResources/pixelfont.ttf").toExternalForm(), 30);
     public static final Font PIXEL_FONT_SMALL = Font.loadFont(GameInterface.class.getResource("/images/uiResources/pixelfont.ttf").toExternalForm(), 20);
     public static final String SPLASH_FILE = "/images/uiResources/splash.png";
     public static final String WOOD_BUTTON_FILE = "/images/uiResources/woodbutton.png";
     public static final String SPLASH_SONG = "/audio/testtheme.wav";
 
-    // Constant values
+    // Constant String values
     public static final String TITLE = "Nonsense Quest";
     public static final String INTRO_LABEL = "Welcome to Nonsense Quest!";
     public static final String INTRO_BUTTON_LABEL = "Start Adventure!";
-    public static final int DEFAULT_INSETS = 50;
+
+    // Constant number values
+    public static final double DEFAULT_INSETS = 50.0;
+    public static final double NO_INSETS = 0.0;
+    public static final double CENTER_INSETS = 800.0;
+    public static final double BUTTON_INSETS = 3.0;
     public static final int STAGE_HEIGHT = 900;
     public static final int STAGE_WIDTH = 1600;
 
     // JavaFx color values
-    public static final String COLOR_GRAY = "-fx-background-color: GRAY;";
+    public static final String COLOR_GRAY = "-fx-background-color: gray;";
     public static final String PAINT_BLUE = "blue";
 
     /**
@@ -88,7 +93,7 @@ public class GameInterface extends Application implements Observer {
         border.setPadding(new Insets(DEFAULT_INSETS));
 
         // Create the background image
-        BackgroundImage splash= new BackgroundImage(new Image(getClass().getResource(SPLASH_FILE).toExternalForm(), 1600, 900, false, false),
+        BackgroundImage splash = new BackgroundImage(new Image(getClass().getResource(SPLASH_FILE).toExternalForm(), 1600, 900, false, false),
                 BackgroundRepeat.REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
         border.setBackground(new Background(splash));
@@ -100,6 +105,7 @@ public class GameInterface extends Application implements Observer {
         start.setFont(PIXEL_FONT_SMALL);
         start.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(WOOD_BUTTON_FILE).toExternalForm()),
                 BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+
         // Launches opening scene
         start.setOnAction(event -> {
             OpeningScene openingScene = new OpeningScene(model, primaryStage);

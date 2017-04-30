@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
@@ -23,8 +24,12 @@ public class MenuScene {
     private GameModel model;
     private Stage primaryStage;
 
-    // Constant String values
+    // Constant values
     public static final String MAIN_MENU_DISPLAY_TITLE = "Main Menu:";
+    public static final String HOME_BUTTON = "Return To Game";
+    public static final String INVENTORY_BUTTON = "View Inventory";
+    public static final double MENU_BUTTON_INSETS = 25.0;
+
 
     /**
      * MenuScene constructor.
@@ -45,25 +50,39 @@ public class MenuScene {
         // Creates the border pane for the scene
         BorderPane border = new BorderPane();
         border.setStyle(GameInterface.COLOR_GRAY);
+        border.setPadding(new Insets(GameInterface.NO_INSETS, GameInterface.NO_INSETS, GameInterface.NO_INSETS, GameInterface.CENTER_INSETS - GameInterface.DEFAULT_INSETS));
 
         // Creates the scene title
         Label title = new Label(MAIN_MENU_DISPLAY_TITLE);
-        title.setFont(GameInterface.PIXEL_FONT_MEDIUM);
+        title.setFont(GameInterface.PIXEL_FONT_LARGE);
+        title.setPadding(new Insets(GameInterface.NO_INSETS, GameInterface.NO_INSETS, GameInterface.DEFAULT_INSETS, GameInterface.NO_INSETS));
         border.setTop(title);
 
         // Creates the button menu
         GridPane menuGrid = new GridPane();
+        menuGrid.setVgap(MENU_BUTTON_INSETS);
+        menuGrid.setHgap(GameInterface.BUTTON_INSETS);
         border.setCenter(menuGrid);
 
         // Creates the return to game button
-        Button homeButton = new Button("Return To Game");
+        Button homeButton = new Button(HOME_BUTTON);
+        homeButton.setFont(GameInterface.PIXEL_FONT_SMALL);
+        homeButton.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(GameInterface.WOOD_BUTTON_FILE).toExternalForm()),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+
+        // Returns to the previous scene
         homeButton.setOnAction(event -> {
             primaryStage.setScene(currStage);
         });
         menuGrid.add(homeButton, 0, 0);
 
         // Creates the display inventory button
-        Button inventoryButton = new Button("View Inventory");
+        Button inventoryButton = new Button(INVENTORY_BUTTON);
+        inventoryButton.setFont(GameInterface.PIXEL_FONT_SMALL);
+        inventoryButton.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(GameInterface.WOOD_BUTTON_FILE).toExternalForm()),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+
+        // Starts the inventory scene
         inventoryButton.setOnAction(event -> {
             InventoryScene inventoryScene = new InventoryScene(primaryStage.getScene(), model, primaryStage);
             inventoryScene.startScene();
