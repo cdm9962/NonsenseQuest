@@ -141,7 +141,7 @@ public abstract class Square {
         this.enemy = enemy;
     }
 
-    public void createEnemy(){
+    public void createEnemy() {
         this.enemy = new Player("Guard", "Human", "Warrior");
     }
 }

@@ -9,17 +9,15 @@ import javafx.scene.layout.*;
 import javafx.scene.media.AudioClip;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import model.GameModel;
 
-import java.util.Observable;
-import java.util.Observer;
+import model.GameModel;
 
 /**
  * The graphical user interface for the game. Displays the game data.
  *
  * @author Connor D. Milligan, Nathan Hall
  */
-public class GameInterface extends Application implements Observer {
+public class GameInterface extends Application {
     // The game model for the graphical user interface
     private GameModel model;
 
@@ -76,11 +74,6 @@ public class GameInterface extends Application implements Observer {
     @Override
     public void stop() throws Exception {
         super.stop();
-    }
-
-    @Override
-    public void update(Observable o, Object arg) {
-
     }
 
     /**

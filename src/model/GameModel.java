@@ -19,7 +19,7 @@ public class GameModel {
      * @param race String representing the character's race
      * @param playerClass String representing the character's class
      */
-    public GameModel(String name, String race, String playerClass ){
+    public GameModel(String name, String race, String playerClass ) {
         this.player = new Player(name, race, playerClass);
         stageMap = null;
         currSquareDescription = null;

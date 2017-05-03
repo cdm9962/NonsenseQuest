@@ -7,6 +7,7 @@ import model.map.*;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Scanner;
 
 /**
@@ -113,6 +114,8 @@ public class FileScanner {
     public Weapon scanWeapon(String filename, int row) throws FileNotFoundException {
         // Creates the scanner object
         InputStream stream = new FileInputStream(getClass().getResource(filename).getFile());
+//        URL urlToDictionary = this.getClass().getResource("/" + "Dictionary.txt");
+//        InputStream stream = urlToDictionary.openStream();
         this.scanner = new Scanner(stream);
 
         // Run through the rows in the file until it reaches the proper row
