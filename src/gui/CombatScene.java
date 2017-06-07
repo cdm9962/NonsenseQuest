@@ -76,16 +76,7 @@ public class CombatScene {
             }
 
             // Checks for death after first attack
-            CharacterDisplay characterDisplay = new CharacterDisplay(model);
-            border.setRight(characterDisplay.displayStats(model.getPlayer()));
-            CharacterDisplay enemyDisplay = new CharacterDisplay(model);
-            border.setLeft(enemyDisplay.displayStats(enemy));
-            if(enemy.getHealth() == 0){
-                primaryStage.setScene(currStage);
-                model.getStageMap().getLocation(enemyRow, enemyCol).toggleIsEnemy();
-                model.getStageMap().getLocation(enemyRow, enemyCol).setEnemy(null);
-
-            }
+            checkDeath(border);
 
             // Slower player attacks second
             if(model.getPlayer().isFaster(enemy)){
@@ -93,6 +84,9 @@ public class CombatScene {
             } else {
                 enemy.takeDamage(model.getPlayer().resolveAbility(new QuickAttack()));
             }
+
+            // Checks for death after second attack
+            checkDeath(border);
 
         });
         buttonGrid.add(attackButton,0 , 1);
@@ -109,16 +103,28 @@ public class CombatScene {
         this.primaryStage.setScene(combatScene);
     }
 
-    public void checkDeath() {
+    /**
+     * Method to check if one of the players has died.
+     * @param border BorderPane representing the current scene
+     */
+    public void checkDeath(BorderPane border) {
+        // Updates character display for both players
+        CharacterDisplay characterDisplay = new CharacterDisplay(model);
+        border.setRight(characterDisplay.displayStats(model.getPlayer()));
+        CharacterDisplay enemyDisplay = new CharacterDisplay(model);
+        border.setLeft(enemyDisplay.displayStats(enemy));
+
+        // Checks if the enemy has died
         if(enemy.getHealth() == 0){
             primaryStage.setScene(currStage);
             model.getStageMap().getLocation(enemyRow, enemyCol).toggleIsEnemy();
             model.getStageMap().getLocation(enemyRow, enemyCol).setEnemy(null);
 
         }
-    }
 
-    public boolean inCombat() {
-        return model.getStageMap().getLocation(enemyRow, enemyCol).isContainsEnemy();
+        // Checks if the player has died
+        if(model.getPlayer().getHealth() == 0) {
+            primaryStage.setScene(currStage);
+        }
     }
 }
