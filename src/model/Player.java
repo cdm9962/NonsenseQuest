@@ -1,5 +1,9 @@
 package model;
 
+import model.abilities.Ability;
+import model.abilities.AbilityController;
+import model.abilities.DamageAbility;
+import model.abilities.QuickAttack;
 import model.classes.PlayerClass;
 import model.classes.Thief;
 import model.classes.Warrior;
@@ -35,6 +39,7 @@ public class Player {
     private Limits limits;
     private Item activeItemLeft;
     private Item activeItemRight;
+    private ArrayList<Ability> abilities;
     private ArrayList<Item> inventory;
 
     /**
@@ -72,6 +77,8 @@ public class Player {
             this.power = this.playerClass.getPowerModifier();
             this.limits.setMaxHealth(Human.HUMAN_DEFAULT_HEALTH + this.playerClass.getHealthModifier());
             this.limits.setMaxWeight(Human.HUMAN_DEFAULT_WEIGHT + this.playerClass.getWeightModifier());
+            this.abilities = new ArrayList<>();
+            this.abilities.add(new QuickAttack());
             this.inventory = new ArrayList<>();
             // Add starting items
             FileScanner scanner = new FileScanner();
@@ -165,15 +172,8 @@ public class Player {
      * Method to calculate character damage value.
      * @return int representing the character damage value
      */
-    public int calculateDamage() {
-        int result = this.power;
-        if (this.activeItemLeft instanceof Weapon) {
-            result  += ((Weapon) this.activeItemLeft).getDamage();
-        }
-        if(this.activeItemRight instanceof Weapon) {
-            result += ((Weapon) this.activeItemRight).getDamage();
-        }
-        return result;
+    public int resolveAbility(Ability ability) {
+        return new AbilityController(this).resolveAbility(ability);
     }
 
     /**
@@ -207,5 +207,113 @@ public class Player {
 
     public void setInventory(ArrayList<Item> inventory) {
         this.inventory = inventory;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Race getRace() {
+        return race;
+    }
+
+    public void setRace(Race race) {
+        this.race = race;
+    }
+
+    public PlayerClass getPlayerClass() {
+        return playerClass;
+    }
+
+    public void setPlayerClass(PlayerClass playerClass) {
+        this.playerClass = playerClass;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getPower() {
+        return power;
+    }
+
+    public void setPower(int power) {
+        this.power = power;
+    }
+
+    public int getDexterity() {
+        return dexterity;
+    }
+
+    public void setDexterity(int dexterity) {
+        this.dexterity = dexterity;
+    }
+
+    public int getIntelligence() {
+        return intelligence;
+    }
+
+    public void setIntelligence(int intelligence) {
+        this.intelligence = intelligence;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public int getCharisma() {
+        return charisma;
+    }
+
+    public void setCharisma(int charisma) {
+        this.charisma = charisma;
+    }
+
+    public long getExperience() {
+        return experience;
+    }
+
+    public void setExperience(long experience) {
+        this.experience = experience;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public Limits getLimits() {
+        return limits;
+    }
+
+    public void setLimits(Limits limits) {
+        this.limits = limits;
+    }
+
+    public ArrayList<Ability> getAbilities() {
+        return abilities;
+    }
+
+    public void setAbilities(ArrayList<Ability> abilities) {
+        this.abilities = abilities;
     }
 }

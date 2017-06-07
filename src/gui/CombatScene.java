@@ -10,6 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import model.GameModel;
 import model.Player;
+import model.abilities.QuickAttack;
 
 /**
  * Utility class for all combat scenes.
@@ -65,16 +66,16 @@ public class CombatScene {
         buttonGrid.add(homeButton, 0, 0);
 
         // Sets the attack button
-        Button attackButton = new Button("Attack!");
+        Button attackButton = new Button("Quick Attack");
         attackButton.setOnAction(event -> {
+            // Faster Player attacks first
             if(model.getPlayer().isFaster(enemy)){
-                enemy.takeDamage(model.getPlayer().calculateDamage());
+                enemy.takeDamage(model.getPlayer().resolveAbility(new QuickAttack()));
             } else {
-                this.model.getPlayer().takeDamage(enemy.calculateDamage());
+                this.model.getPlayer().takeDamage(enemy.resolveAbility(new QuickAttack()));
             }
 
-            enemy.takeDamage(model.getPlayer().calculateDamage());
-            this.model.getPlayer().takeDamage(enemy.calculateDamage());
+            // Checks for death after first attack
             CharacterDisplay characterDisplay = new CharacterDisplay(model);
             border.setRight(characterDisplay.displayStats(model.getPlayer()));
             CharacterDisplay enemyDisplay = new CharacterDisplay(model);
@@ -86,11 +87,13 @@ public class CombatScene {
 
             }
 
+            // Slower player attacks second
             if(model.getPlayer().isFaster(enemy)){
-                this.model.getPlayer().takeDamage(enemy.calculateDamage());
+                this.model.getPlayer().takeDamage(enemy.resolveAbility(new QuickAttack()));
             } else {
-                enemy.takeDamage(model.getPlayer().calculateDamage());
+                enemy.takeDamage(model.getPlayer().resolveAbility(new QuickAttack()));
             }
+
         });
         buttonGrid.add(attackButton,0 , 1);
 
@@ -106,6 +109,14 @@ public class CombatScene {
         this.primaryStage.setScene(combatScene);
     }
 
+    public void checkDeath() {
+        if(enemy.getHealth() == 0){
+            primaryStage.setScene(currStage);
+            model.getStageMap().getLocation(enemyRow, enemyCol).toggleIsEnemy();
+            model.getStageMap().getLocation(enemyRow, enemyCol).setEnemy(null);
+
+        }
+    }
 
     public boolean inCombat() {
         return model.getStageMap().getLocation(enemyRow, enemyCol).isContainsEnemy();
