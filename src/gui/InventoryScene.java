@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
@@ -25,6 +26,7 @@ public class InventoryScene {
 
     // Constant String values
     public static final String INVENTORY_DISPLAY_TITLE = "Character Inventory:";
+    public static final String HOME_BUTTON = "Return";
 
     /**
      * InventoryScene constructor.
@@ -53,7 +55,11 @@ public class InventoryScene {
 
         // Sets the return to stage map button
         GridPane buttonGrid = new GridPane();
-        Button homeButton = new Button("Return");
+        buttonGrid.setPadding(new Insets(GameInterface.BUTTON_INSETS));
+        Button homeButton = new Button(HOME_BUTTON);
+        homeButton.setFont(GameInterface.PIXEL_FONT_SMALL);
+        homeButton.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(GameInterface.WOOD_BUTTON_FILE).toExternalForm()),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         homeButton.setOnAction(event -> {
             primaryStage.setScene(currStage);
         });

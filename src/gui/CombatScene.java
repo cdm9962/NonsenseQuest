@@ -5,15 +5,15 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import model.GameModel;
 import model.Player;
-import model.abilities.QuickAttack;
+import model.abilities.*;
 
 /**
- * Utility class for all combat scenes.
+ * Utility class for managing all combat scenes.
  *
  * Created by Connor on 3/24/2017.
  */
@@ -28,6 +28,7 @@ public class CombatScene {
 
     // Constant string values
     public static final String COMBAT_SCENE_TITLE = "FIGHT!!!";
+    public static final String HOME_BUTTON = "Return";
 
     /**
      * CombatScene constructor.
@@ -51,47 +52,61 @@ public class CombatScene {
     public void startScene() {
         // Creates the border pane for the scene
         BorderPane border = new BorderPane();
-        border.setPadding(new Insets(50.0));
+        border.setPadding(new Insets(GameInterface.DEFAULT_INSETS));
 
         // Sets the scene title
         Label title = new Label(COMBAT_SCENE_TITLE);
         border.setTop(title);
 
-        // Sets the return to stage map button
+        // Creates the player action buttons
         GridPane buttonGrid = new GridPane();
-        Button homeButton = new Button("Return");
+        buttonGrid.setHgap(GameInterface.BUTTON_INSETS);
+        buttonGrid.setVgap(GameInterface.BUTTON_INSETS);
+        border.setCenter(buttonGrid);
+
+        // Sets the return to stage map button
+        Button homeButton = new Button(HOME_BUTTON);
+        buttonGrid.add(homeButton, 0, 0);
+        homeButton.setMinSize(200, 30);
+        homeButton.setFont(GameInterface.PIXEL_FONT_SMALL);
+        homeButton.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(GameInterface.WOOD_BUTTON_FILE).toExternalForm()),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         homeButton.setOnAction(event -> {
             primaryStage.setScene(currStage);
         });
-        buttonGrid.add(homeButton, 0, 0);
 
-        // Sets the attack button
-        Button attackButton = new Button("Quick Attack");
-        attackButton.setOnAction(event -> {
-            // Faster Player attacks first
-            if(model.getPlayer().isFaster(enemy)){
-                enemy.takeDamage(model.getPlayer().resolveAbility(new QuickAttack()));
-            } else {
-                this.model.getPlayer().takeDamage(enemy.resolveAbility(new QuickAttack()));
-            }
-
-            // Checks for death after first attack
-            checkDeath(border);
-
-            // Slower player attacks second
-            if(model.getPlayer().isFaster(enemy)){
-                this.model.getPlayer().takeDamage(enemy.resolveAbility(new QuickAttack()));
-            } else {
-                enemy.takeDamage(model.getPlayer().resolveAbility(new QuickAttack()));
-            }
-
-            // Checks for death after second attack
-            checkDeath(border);
-
+        // Sets the quick attack button
+        Button quickAttackButton = new Button(QuickAttack.QUICK_ATTACK_NAME);
+        buttonGrid.add(quickAttackButton,0 , 1);
+        quickAttackButton.setMinSize(200, 30);
+        quickAttackButton.setFont(GameInterface.PIXEL_FONT_SMALL);
+        quickAttackButton.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(GameInterface.WOOD_BUTTON_FILE).toExternalForm()),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        quickAttackButton.setOnAction(event -> {
+            activateBasicAbility(border, new QuickAttack());
         });
-        buttonGrid.add(attackButton,0 , 1);
 
-        border.setCenter(buttonGrid);
+        // Sets the medium attack button
+        Button mediumAttackButton = new Button(MediumAttack.MEDIUM_ATTACK_NAME);
+        buttonGrid.add(mediumAttackButton,0 , 2);
+        mediumAttackButton.setMinSize(200, 30);
+        mediumAttackButton.setFont(GameInterface.PIXEL_FONT_SMALL);
+        mediumAttackButton.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(GameInterface.WOOD_BUTTON_FILE).toExternalForm()),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        mediumAttackButton.setOnAction(event -> {
+            activateBasicAbility(border, new MediumAttack());
+        });
+
+        // Sets the heavy attack button
+        Button heavyAttackButton = new Button(HeavyAttack.HEAVY_ATTACK_NAME);
+        buttonGrid.add(heavyAttackButton,0 , 3);
+        heavyAttackButton.setMinSize(200, 30);
+        heavyAttackButton.setFont(GameInterface.PIXEL_FONT_SMALL);
+        heavyAttackButton.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(GameInterface.WOOD_BUTTON_FILE).toExternalForm()),
+                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        heavyAttackButton.setOnAction(event -> {
+            activateBasicAbility(border, new HeavyAttack());
+        });
 
         CharacterDisplay characterDisplay = new CharacterDisplay(model);
         border.setRight(characterDisplay.displayStats(model.getPlayer()));
@@ -101,6 +116,33 @@ public class CombatScene {
 
         Scene combatScene = new Scene(border);
         this.primaryStage.setScene(combatScene);
+    }
+
+    /**
+     * Method to activate a basic damage ability after the user has selected it.
+     * @param border BorderPane representing the current scene
+     * @param ability Ability representing the ability to execute
+     */
+    public void activateBasicAbility(BorderPane border, Ability ability) {
+        // Faster Player attacks first
+        if(model.getPlayer().isFaster(enemy)){
+            enemy.takeDamage(model.getPlayer().resolveAbility(ability));
+        } else {
+            this.model.getPlayer().takeDamage(enemy.resolveAbility(ability));
+        }
+
+        // Checks for death after first attack
+        checkDeath(border);
+
+        // Slower player attacks second
+        if(model.getPlayer().isFaster(enemy)){
+            this.model.getPlayer().takeDamage(enemy.resolveAbility(ability));
+        } else {
+            enemy.takeDamage(model.getPlayer().resolveAbility(ability));
+        }
+
+        // Checks for death after second attack
+        checkDeath(border);
     }
 
     /**
@@ -116,6 +158,7 @@ public class CombatScene {
 
         // Checks if the enemy has died
         if(enemy.getHealth() == 0){
+            System.out.println("\n" + enemy.getName() + " is dead!\n");
             primaryStage.setScene(currStage);
             model.getStageMap().getLocation(enemyRow, enemyCol).toggleIsEnemy();
             model.getStageMap().getLocation(enemyRow, enemyCol).setEnemy(null);
@@ -124,6 +167,7 @@ public class CombatScene {
 
         // Checks if the player has died
         if(model.getPlayer().getHealth() == 0) {
+            System.out.println("\nYou are dead!\n");
             primaryStage.setScene(currStage);
         }
     }

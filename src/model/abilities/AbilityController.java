@@ -35,7 +35,6 @@ public class AbilityController {
         if(ability instanceof DamageAbility) {
             DamageAbility damageAbility = (DamageAbility) ability;
             if (damageAbility.getAccuracy() > hits) {
-                System.out.println(player.getName() + " Hits!");
                 return calculateDamage(damageAbility);
             }
         }
@@ -66,6 +65,7 @@ public class AbilityController {
         result += ability.getDamage();
 
         // Returns the total damage of the ability
+        System.out.println(player.getName() + " Hits for " + result + " damage!");
         return result;
     }
 }
