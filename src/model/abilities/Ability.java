@@ -1,24 +1,39 @@
 package model.abilities;
 
+import model.Player;
+
+import java.util.Random;
+
 /**
  * Abstract class to hold ability attributes.
  *
  * @author Connor D. Milligan, Nathan Hall
  */
 public abstract class Ability {
-    // Private state of the ability
+    // Private state of all abilities
     private String name;
     private String description;
+    private Player player;
+    private Player opponent;
+    private Random rand;
 
     /**
      * Ability Constructor.
      * @param name String representing the name of the ability
      * @param description String representing the effect of the ability
      */
-    public Ability(String name, String description){
+    public Ability(String name, String description, Player player, Player opponent){
         this.name = name;
         this.description = description;
+        this.player = player;
+        this.opponent = opponent;
+        this.rand = new Random();
     }
+
+    /**
+     * Method to resolve an abilities effects on a player and their opponent.
+     */
+    public abstract void resolveAbility();
 
     /**
      * Getter method for the ability name.

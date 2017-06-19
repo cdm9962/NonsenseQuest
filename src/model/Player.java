@@ -1,8 +1,6 @@
 package model;
 
 import model.abilities.Ability;
-import model.abilities.AbilityController;
-import model.abilities.DamageAbility;
 import model.abilities.QuickAttack;
 import model.classes.PlayerClass;
 import model.classes.Thief;
@@ -78,7 +76,7 @@ public class Player {
             this.limits.setMaxHealth(Human.HUMAN_DEFAULT_HEALTH + this.playerClass.getHealthModifier());
             this.limits.setMaxWeight(Human.HUMAN_DEFAULT_WEIGHT + this.playerClass.getWeightModifier());
             this.abilities = new ArrayList<>();
-            this.abilities.add(new QuickAttack());
+            this.abilities.add(new QuickAttack(this, null));
             this.inventory = new ArrayList<>();
             // Add starting items
             FileScanner scanner = new FileScanner();
@@ -161,6 +159,14 @@ public class Player {
     }
 
     /**
+     * Method to check if a character is dead.
+     * @return boolean to determine if the player is dead
+     */
+    public boolean isDead() {
+        return this.health <= 0;
+    }
+
+    /**
      * Getter method for the character health.
      * @return int representing the players current health
      */
@@ -172,8 +178,8 @@ public class Player {
      * Method to calculate character damage value.
      * @return int representing the character damage value
      */
-    public int resolveAbility(Ability ability) {
-        return new AbilityController(this).resolveAbility(ability);
+    public void resolveAbility(Ability ability) {
+        ability.resolveAbility();
     }
 
     /**

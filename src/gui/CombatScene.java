@@ -22,6 +22,7 @@ public class CombatScene {
     private Scene currStage;
     private GameModel model;
     private Stage primaryStage;
+    private Player player;
     private Player enemy;
     private int enemyRow;
     private int enemyCol;
@@ -41,6 +42,7 @@ public class CombatScene {
         this.currStage = currStage;
         this.model = model;
         this.primaryStage = primaryStage;
+        this.player = model.getPlayer();
         this.enemy = enemy;
         this.enemyRow = enemyRow;
         this.enemyCol = enemyCol;
@@ -83,7 +85,7 @@ public class CombatScene {
         quickAttackButton.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(GameInterface.WOOD_BUTTON_FILE).toExternalForm()),
                 BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         quickAttackButton.setOnAction(event -> {
-            activateBasicAbility(border, new QuickAttack());
+            activateBasicAbility(border, new QuickAttack(player, enemy));
         });
 
         // Sets the medium attack button
@@ -94,7 +96,7 @@ public class CombatScene {
         mediumAttackButton.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(GameInterface.WOOD_BUTTON_FILE).toExternalForm()),
                 BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         mediumAttackButton.setOnAction(event -> {
-            activateBasicAbility(border, new MediumAttack());
+            activateBasicAbility(border, new MediumAttack(player, enemy));
         });
 
         // Sets the heavy attack button
@@ -105,11 +107,11 @@ public class CombatScene {
         heavyAttackButton.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(GameInterface.WOOD_BUTTON_FILE).toExternalForm()),
                 BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
         heavyAttackButton.setOnAction(event -> {
-            activateBasicAbility(border, new HeavyAttack());
+            activateBasicAbility(border, new HeavyAttack(player, enemy));
         });
 
         CharacterDisplay characterDisplay = new CharacterDisplay(model);
-        border.setRight(characterDisplay.displayStats(model.getPlayer()));
+        border.setRight(characterDisplay.displayStats(player));
 
         CharacterDisplay enemyDisplay = new CharacterDisplay(model);
         border.setLeft(enemyDisplay.displayStats(enemy));
@@ -125,20 +127,20 @@ public class CombatScene {
      */
     public void activateBasicAbility(BorderPane border, Ability ability) {
         // Faster Player attacks first
-        if(model.getPlayer().isFaster(enemy)){
-            enemy.takeDamage(model.getPlayer().resolveAbility(ability));
+        if(player.isFaster(enemy)){
+            player.resolveAbility(ability);
         } else {
-            this.model.getPlayer().takeDamage(enemy.resolveAbility(ability));
+            enemy.resolveAbility(ability);
         }
 
         // Checks for death after first attack
         checkDeath(border);
 
         // Slower player attacks second
-        if(model.getPlayer().isFaster(enemy)){
-            this.model.getPlayer().takeDamage(enemy.resolveAbility(ability));
+        if(player.isFaster(enemy)){
+            enemy.resolveAbility(ability);
         } else {
-            enemy.takeDamage(model.getPlayer().resolveAbility(ability));
+            player.resolveAbility(ability);
         }
 
         // Checks for death after second attack
@@ -152,12 +154,12 @@ public class CombatScene {
     public void checkDeath(BorderPane border) {
         // Updates character display for both players
         CharacterDisplay characterDisplay = new CharacterDisplay(model);
-        border.setRight(characterDisplay.displayStats(model.getPlayer()));
+        border.setRight(characterDisplay.displayStats(player));
         CharacterDisplay enemyDisplay = new CharacterDisplay(model);
         border.setLeft(enemyDisplay.displayStats(enemy));
 
         // Checks if the enemy has died
-        if(enemy.getHealth() == 0){
+        if(enemy.isDead()){
             System.out.println("\n" + enemy.getName() + " is dead!\n");
             primaryStage.setScene(currStage);
             model.getStageMap().getLocation(enemyRow, enemyCol).toggleIsEnemy();
@@ -166,7 +168,7 @@ public class CombatScene {
         }
 
         // Checks if the player has died
-        if(model.getPlayer().getHealth() == 0) {
+        if(player.isDead()) {
             System.out.println("\nYou are dead!\n");
             primaryStage.setScene(currStage);
         }

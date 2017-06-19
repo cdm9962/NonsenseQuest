@@ -1,11 +1,13 @@
 package model.abilities;
 
+import model.Player;
+
 /**
  * Heavy Attack ability.
  *
  * @author Connor D. Milligan
  */
-public class HeavyAttack extends DamageAbility {
+public class HeavyAttack extends Ability {
     // Default values for Heavy Attack
     public static final String HEAVY_ATTACK_NAME = "Heavy Attack";
     public static final String HEAVY_ATTACK_DESCRIPTION = "A well calculated strike.";
@@ -15,7 +17,12 @@ public class HeavyAttack extends DamageAbility {
     /**
      * Heavy Attack Constructor
      */
-    public HeavyAttack() {
-        super(HEAVY_ATTACK_NAME, HEAVY_ATTACK_DESCRIPTION, HEAVY_ATTACK_DAMAGE, HEAVY_ATTACK_ACCURACY);
+    public HeavyAttack(Player player, Player enemy) {
+        super(HEAVY_ATTACK_NAME, HEAVY_ATTACK_DESCRIPTION, player, enemy);
+    }
+
+    @Override
+    public void resolveAbility() {
+        System.out.println(this.getName());
     }
 }
