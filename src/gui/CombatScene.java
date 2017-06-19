@@ -102,10 +102,7 @@ public class CombatScene {
         // Sets the heavy attack button
         Button heavyAttackButton = new Button(HeavyAttack.HEAVY_ATTACK_NAME);
         buttonGrid.add(heavyAttackButton,0 , 3);
-        heavyAttackButton.setMinSize(200, 30);
-        heavyAttackButton.setFont(GameInterface.PIXEL_FONT_SMALL);
-        heavyAttackButton.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(GameInterface.WOOD_BUTTON_FILE).toExternalForm()),
-                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        model.getButtonHelper().setNormalButton(heavyAttackButton);
         heavyAttackButton.setOnAction(event -> {
             activateBasicAbility(border, new HeavyAttack(player, enemy));
         });

@@ -1,5 +1,6 @@
 package model;
 
+import gui.ButtonHelper;
 import model.map.StageMap;
 
 /**
@@ -11,6 +12,7 @@ public class GameModel {
     // The private state of the game model
     private Player player;
     private StageMap stageMap;
+    private ButtonHelper buttonHelper;
     private String currSquareDescription;
 
     /**
@@ -22,6 +24,7 @@ public class GameModel {
     public GameModel(String name, String race, String playerClass ) {
         this.player = new Player(name, race, playerClass);
         stageMap = null;
+        this.buttonHelper = new ButtonHelper();
         currSquareDescription = null;
     }
 
@@ -65,4 +68,10 @@ public class GameModel {
     public Player getPlayer(){
         return this.player;
     }
+
+    /**
+     * Getter method for the ButtonHelper object.
+     * @return ButtonHelper object to help modify button attributes.
+     */
+    public ButtonHelper getButtonHelper() { return this.buttonHelper; }
 }
