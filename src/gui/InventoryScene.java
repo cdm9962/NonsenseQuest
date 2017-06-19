@@ -57,9 +57,7 @@ public class InventoryScene {
         GridPane buttonGrid = new GridPane();
         buttonGrid.setPadding(new Insets(GameInterface.BUTTON_INSETS));
         Button homeButton = new Button(HOME_BUTTON);
-        homeButton.setFont(GameInterface.PIXEL_FONT_SMALL);
-        homeButton.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(GameInterface.WOOD_BUTTON_FILE).toExternalForm()),
-                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        model.getButtonHelper().setNormalButton(homeButton);
         homeButton.setOnAction(event -> {
             primaryStage.setScene(currStage);
         });

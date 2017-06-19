@@ -37,6 +37,12 @@ public class OpeningScene {
     private String race;
     private String playerClass;
 
+    // Constant String values
+    private static final String OPENING_LABEL = "Welcome to the world of Nonsense Quest!\n" +
+                                                "To begin your adventure:";
+    private static final String NAME_LABEL = "Enter a Character Name: ";
+
+
     /**
      * Constructor for the opening scene.
      * @param model GameModel of the current game
@@ -57,8 +63,7 @@ public class OpeningScene {
         border.setPadding(new Insets(GameInterface.DEFAULT_INSETS));
 
         // Creates the label for the top of the border pane
-        Label description = new Label("Welcome to the world of Nonsense Quest!\n" +
-                                      "To begin your adventure:");
+        Label description = new Label(OPENING_LABEL);
         description.setAlignment(Pos.CENTER);
         description.setFont(GameInterface.PIXEL_FONT_MEDIUM);
         description.setPadding(new Insets(GameInterface.DEFAULT_INSETS));
@@ -66,7 +71,7 @@ public class OpeningScene {
 
         // Creates the text box to gather the users name
         GridPane characterName = new GridPane();
-        Label title = new Label("Enter a Character Name: ");
+        Label title = new Label(NAME_LABEL);
         title.setFont(GameInterface.PIXEL_FONT_SMALL);
         characterName.add(title, 0, 0);
         TextField input = new TextField();

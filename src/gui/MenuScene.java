@@ -66,9 +66,7 @@ public class MenuScene {
 
         // Creates the return to game button
         Button homeButton = new Button(HOME_BUTTON);
-        homeButton.setFont(GameInterface.PIXEL_FONT_SMALL);
-        homeButton.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(GameInterface.WOOD_BUTTON_FILE).toExternalForm()),
-                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        model.getButtonHelper().setNormalButton(homeButton);
 
         // Returns to the previous scene
         homeButton.setOnAction(event -> {
@@ -78,9 +76,7 @@ public class MenuScene {
 
         // Creates the display inventory button
         Button inventoryButton = new Button(INVENTORY_BUTTON);
-        inventoryButton.setFont(GameInterface.PIXEL_FONT_SMALL);
-        inventoryButton.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(GameInterface.WOOD_BUTTON_FILE).toExternalForm()),
-                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        model.getButtonHelper().setNormalButton(inventoryButton);
 
         // Starts the inventory scene
         inventoryButton.setOnAction(event -> {

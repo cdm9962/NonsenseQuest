@@ -69,10 +69,7 @@ public class CombatScene {
         // Sets the return to stage map button
         Button homeButton = new Button(HOME_BUTTON);
         buttonGrid.add(homeButton, 0, 0);
-        homeButton.setMinSize(200, 30);
-        homeButton.setFont(GameInterface.PIXEL_FONT_SMALL);
-        homeButton.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(GameInterface.WOOD_BUTTON_FILE).toExternalForm()),
-                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        model.getButtonHelper().setNormalButton(homeButton);
         homeButton.setOnAction(event -> {
             primaryStage.setScene(currStage);
         });
@@ -80,10 +77,7 @@ public class CombatScene {
         // Sets the quick attack button
         Button quickAttackButton = new Button(QuickAttack.QUICK_ATTACK_NAME);
         buttonGrid.add(quickAttackButton,0 , 1);
-        quickAttackButton.setMinSize(200, 30);
-        quickAttackButton.setFont(GameInterface.PIXEL_FONT_SMALL);
-        quickAttackButton.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(GameInterface.WOOD_BUTTON_FILE).toExternalForm()),
-                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        model.getButtonHelper().setNormalButton(quickAttackButton);
         quickAttackButton.setOnAction(event -> {
             activateBasicAbility(border, new QuickAttack(player, enemy));
         });
@@ -91,10 +85,7 @@ public class CombatScene {
         // Sets the medium attack button
         Button mediumAttackButton = new Button(MediumAttack.MEDIUM_ATTACK_NAME);
         buttonGrid.add(mediumAttackButton,0 , 2);
-        mediumAttackButton.setMinSize(200, 30);
-        mediumAttackButton.setFont(GameInterface.PIXEL_FONT_SMALL);
-        mediumAttackButton.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(GameInterface.WOOD_BUTTON_FILE).toExternalForm()),
-                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        model.getButtonHelper().setNormalButton(mediumAttackButton);
         mediumAttackButton.setOnAction(event -> {
             activateBasicAbility(border, new MediumAttack(player, enemy));
         });

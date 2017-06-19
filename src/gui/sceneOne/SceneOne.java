@@ -57,9 +57,7 @@ public class SceneOne {
 
         // Creates the stage one selection
         Button stageOneButton = new Button(StageOne.STAGE_ONE_TITLE);
-        stageOneButton.setFont(GameInterface.PIXEL_FONT_SMALL);
-        stageOneButton.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(GameInterface.WOOD_BUTTON_FILE).toExternalForm()),
-                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        model.getButtonHelper().setNormalButton(stageOneButton);
 
         // Launches first stage
         stageOneButton.setOnAction(event -> {
@@ -69,10 +67,8 @@ public class SceneOne {
         buttonGrid.add(stageOneButton, 0, 0);
 
         // Creates the stage two selection
-        Button stageTwoButton = new Button("Stage Two");
-        stageTwoButton.setFont(GameInterface.PIXEL_FONT_SMALL);
-        stageTwoButton.setBackground(new Background(new BackgroundImage(new Image(getClass().getResource(GameInterface.WOOD_BUTTON_FILE).toExternalForm()),
-                BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT)));
+        Button stageTwoButton = new Button(StageTwo.STAGE_TWO_TITLE);
+        model.getButtonHelper().setNormalButton(stageTwoButton);
         stageTwoButton.setDisable(true);
 
         // Launches second stage
