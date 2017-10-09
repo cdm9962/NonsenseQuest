@@ -7,7 +7,6 @@ Built using Java and the JavaFX framework.
 
 - Connor D. Milligan - Game Designer/Programmer
 - Nathan C. Hall - Artist/Game Designer
-- Dennis J. Ulmer - Story Designer
 
 ## Notes:
 
@@ -24,8 +23,3 @@ Built using Java and the JavaFX framework.
 
 ![alt tag](https://preview.ibb.co/geVDqa/Update_2_splash.png)
 ![alt tag](https://preview.ibb.co/c24Oqa/Update_2_part_2.png)
-
-## Trello:
-
-- Development process can be tracked through Trello.
-- https://trello.com/b/LwQy6YqA/product-backlog
