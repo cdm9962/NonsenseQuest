@@ -9,6 +9,10 @@ import javafx.application.Application;
  * @author Connor D. Milligan, Nathan Hall
  */
 public class NonsenseQuest {
+    /**
+     * Main application method. Launches the game interface.
+     * @param args should be no command line arguments
+     */
     public static void main(String[] args) {
         Application.launch(GameInterface.class);
     }

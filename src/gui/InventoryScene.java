@@ -91,6 +91,5 @@ public class InventoryScene {
         // Displays the scene
         Scene inventory = new Scene(border);
         this.primaryStage.setScene(inventory);
-
     }
 }

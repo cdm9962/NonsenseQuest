@@ -85,7 +85,6 @@ public class MenuScene {
         });
         menuGrid.add(inventoryButton, 0, 1);
 
-
         // Displays the scene
         Scene menu = new Scene(border);
         this.primaryStage.setScene(menu);
