@@ -15,7 +15,7 @@ public class StageTwo {
     private Stage primaryStage;
 
     // Constant String values
-    public static final String STAGE_TWO_TITLE = "Stage one: Select a stage.";
+    public static final String STAGE_TWO_TITLE = "Stage Two";
 
     /**
      * StageTwo constructor.

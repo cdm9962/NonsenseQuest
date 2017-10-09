@@ -3,6 +3,8 @@ package model;
 import gui.ButtonHelper;
 import model.map.StageMap;
 
+import java.util.Random;
+
 /**
  * The model for the game. Updates based on user interactions.
  *
@@ -14,6 +16,9 @@ public class GameModel {
     private StageMap stageMap;
     private ButtonHelper buttonHelper;
     private String currSquareDescription;
+
+    // Global random number generator
+    public Random random;
 
     /**
      * Constructor for the game model.

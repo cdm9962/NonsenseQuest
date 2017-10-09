@@ -15,7 +15,9 @@ public abstract class Ability {
     private String description;
     private Player player;
     private Player opponent;
-    private Random rand;
+
+    // Ability random number generator
+    protected Random rand;
 
     /**
      * Ability Constructor.
@@ -33,7 +35,15 @@ public abstract class Ability {
     /**
      * Method to resolve an abilities effects on a player and their opponent.
      */
-    public abstract void resolveAbility();
+    public void resolveAbility() {
+       isHit();
+    }
+
+    /**
+     * Method to check if an ability hits.
+     * @return boolean to determine if the ability hits
+     */
+    public abstract boolean isHit();
 
     /**
      * Getter method for the ability name.

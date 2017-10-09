@@ -25,4 +25,9 @@ public class MediumAttack extends Ability {
     public void resolveAbility() {
         System.out.println(this.getName());
     }
+
+    @Override
+    public boolean isHit() {
+        return false;
+    }
 }

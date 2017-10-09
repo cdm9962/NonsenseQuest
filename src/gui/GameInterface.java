@@ -77,7 +77,7 @@ public class GameInterface extends Application {
     }
 
     /**
-     * Method to create the title bar for the application.
+     * Method to create the title screen for the application.
      * @return Pane representing the top element of the border pane
      */
     private BorderPane makeSplash(){

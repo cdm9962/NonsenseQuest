@@ -1,7 +1,7 @@
 package model.classes;
 
 /**
- * Warrior player class.
+ * Thief player class.
  *
  * @author Connor D. Milligan, Nathan Hall
  */
