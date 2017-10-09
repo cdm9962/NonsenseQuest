@@ -17,6 +17,7 @@ public class DirtSquare extends Square {
      * @param row int representing the row location of the square
      * @param col int representing the column location of the square
      * @param containsCharacter boolean to determine if the square holds the character
+     * @param containsEnemy boolean to determine if the square holds an enemy
      */
     public DirtSquare(int row, int col, boolean containsCharacter, boolean containsEnemy) {
         super(row, col, DIRT_SQUARE_FILE, DIRT_SQUARE_NAME, DIRT_SQUARE_DESCRIPTION, false, containsCharacter, containsEnemy, null);

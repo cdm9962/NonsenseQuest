@@ -36,6 +36,7 @@ public abstract class Square {
      * @param description String representing the description of the square
      * @param isAdjacent boolean representing if the square is adjacent to the character
      * @param containsCharacter boolean to determine if the square holds the character
+     * @param containsEnemy boolean to determine if the square holds an enemy
      * @param enemy Character that represents an enemy of the board
      */
     public Square(int row, int col, String imageFilename, String name, String description, boolean isAdjacent, boolean containsCharacter,

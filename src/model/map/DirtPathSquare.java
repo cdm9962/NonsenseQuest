@@ -34,6 +34,7 @@ public class DirtPathSquare extends Square {
      * @param col int representing the column location of the square
      * @param filename String representing the image filename
      * @param containsCharacter boolean to determine if the square holds the character
+     * @param containsEnemy boolean to determine if the square holds an enemy
      */
     public DirtPathSquare(int row, int col, String filename, boolean containsCharacter, boolean containsEnemy) {
         super(row, col, filename, DIRT_PATH_SQUARE_NAME, DIRT_PATH_SQUARE_DESCRIPTION, false, containsCharacter, containsEnemy, null);

@@ -22,6 +22,7 @@ public class TreeSquare extends Square {
      * @param col int representing the column location of the square
      * @param filename String representing the image filename
      * @param containsCharacter boolean to determine if the square holds the character
+     * @param containsEnemy boolean to determine if the square holds an enemy
      */
     public TreeSquare(int row, int col, String filename, boolean containsCharacter, boolean containsEnemy) {
         super(row, col, filename, TREE_SQUARE_NAME, TREE_SQUARE_DESCRIPTION, false, containsCharacter, containsEnemy, null);
