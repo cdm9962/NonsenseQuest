@@ -72,29 +72,31 @@ public class CombatScene {
             primaryStage.setScene(currStage);
         });
 
-        // Sets the quick attack button
-        Button quickAttackButton = new Button(QuickAttack.QUICK_ATTACK_NAME);
-        buttonGrid.add(quickAttackButton,0 , 1);
-        model.getButtonHelper().setNormalButton(quickAttackButton);
-        quickAttackButton.setOnAction(event -> {
-            activateBasicAbility(border, new QuickAttack(player, enemy));
-        });
+        createAbilityList(border, buttonGrid);
 
-        // Sets the medium attack button
-        Button mediumAttackButton = new Button(MediumAttack.MEDIUM_ATTACK_NAME);
-        buttonGrid.add(mediumAttackButton,0 , 2);
-        model.getButtonHelper().setNormalButton(mediumAttackButton);
-        mediumAttackButton.setOnAction(event -> {
-            activateBasicAbility(border, new MediumAttack(player, enemy));
-        });
-
-        // Sets the heavy attack button
-        Button heavyAttackButton = new Button(HeavyAttack.HEAVY_ATTACK_NAME);
-        buttonGrid.add(heavyAttackButton,0 , 3);
-        model.getButtonHelper().setNormalButton(heavyAttackButton);
-        heavyAttackButton.setOnAction(event -> {
-            activateBasicAbility(border, new HeavyAttack(player, enemy));
-        });
+//        // Sets the quick attack button
+//        Button quickAttackButton = new Button(QuickAttack.QUICK_ATTACK_NAME);
+//        buttonGrid.add(quickAttackButton,0 , 1);
+//        model.getButtonHelper().setNormalButton(quickAttackButton);
+//        quickAttackButton.setOnAction(event -> {
+//            activateBasicAbility(border, new QuickAttack(player, enemy));
+//        });
+//
+//        // Sets the medium attack button
+//        Button mediumAttackButton = new Button(MediumAttack.MEDIUM_ATTACK_NAME);
+//        buttonGrid.add(mediumAttackButton,0 , 2);
+//        model.getButtonHelper().setNormalButton(mediumAttackButton);
+//        mediumAttackButton.setOnAction(event -> {
+//            activateBasicAbility(border, new MediumAttack(player, enemy));
+//        });
+//
+//        // Sets the heavy attack button
+//        Button heavyAttackButton = new Button(HeavyAttack.HEAVY_ATTACK_NAME);
+//        buttonGrid.add(heavyAttackButton,0 , 3);
+//        model.getButtonHelper().setNormalButton(heavyAttackButton);
+//        heavyAttackButton.setOnAction(event -> {
+//            activateBasicAbility(border, new HeavyAttack(player, enemy));
+//        });
 
         CharacterDisplay characterDisplay = new CharacterDisplay(model);
         border.setRight(characterDisplay.displayStats(player));
@@ -104,6 +106,20 @@ public class CombatScene {
 
         Scene combatScene = new Scene(border);
         this.primaryStage.setScene(combatScene);
+    }
+
+    public void createAbilityList(BorderPane border, GridPane buttonGrid) {
+        int i = 1;
+        for(Ability ability : player.getAbilities()) {
+            // Sets the quick attack button
+            Button abilityButton = new Button(ability.getName());
+            buttonGrid.add(abilityButton, 0, i);
+            model.getButtonHelper().setNormalButton(abilityButton);
+            abilityButton.setOnAction(event -> {
+                activateBasicAbility(border, ability);
+            });
+            i++;
+        }
     }
 
     /**

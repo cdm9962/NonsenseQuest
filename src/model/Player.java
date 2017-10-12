@@ -1,16 +1,9 @@
 package model;
 
-import model.abilities.Ability;
-import model.abilities.QuickAttack;
-import model.classes.PlayerClass;
-import model.classes.Thief;
-import model.classes.Warrior;
-import model.items.Item;
-import model.items.Sword;
-import model.items.Weapon;
-import model.races.Dragon;
-import model.races.Human;
-import model.races.Race;
+import model.abilities.*;
+import model.classes.*;
+import model.items.*;
+import model.races.*;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -77,6 +70,8 @@ public class Player {
             this.limits.setMaxWeight(Human.HUMAN_DEFAULT_WEIGHT + this.playerClass.getWeightModifier());
             this.abilities = new ArrayList<>();
             this.abilities.add(new QuickAttack(this, null));
+            this.abilities.add(new MediumAttack(this, null));
+            this.abilities.add(new HeavyAttack(this, null));
             this.inventory = new ArrayList<>();
             // Add starting items
             FileScanner scanner = new FileScanner();
