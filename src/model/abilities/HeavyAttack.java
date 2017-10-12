@@ -26,12 +26,18 @@ public class HeavyAttack extends Ability {
 
     @Override
     public boolean isHit() {
-        double result = rand.nextDouble();
+        double variance = rand.nextDouble();
         // Hit success
-        if(result <= HEAVY_ATTACK_ACCURACY) {
+        if(variance <= HEAVY_ATTACK_ACCURACY) {
             return true;
         }
         // Hit failure
         return false;
+    }
+
+    @Override
+    public int calculateDamage() {
+        int variance = rand.nextInt(0) + (HEAVY_ATTACK_MAX_DAMAGE - HEAVY_ATTACK_MIN_DAMAGE);
+        return HEAVY_ATTACK_MIN_DAMAGE + variance;
     }
 }

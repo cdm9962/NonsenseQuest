@@ -30,4 +30,9 @@ public class MediumAttack extends Ability {
     public boolean isHit() {
         return false;
     }
+
+    @Override
+    public int calculateDamage() {
+        return 0;
+    }
 }

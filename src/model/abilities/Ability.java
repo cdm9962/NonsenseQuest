@@ -36,7 +36,8 @@ public abstract class Ability {
      * Method to resolve an abilities effects on a player and their opponent.
      */
     public void resolveAbility() {
-       isHit();
+        System.out.println("Hit: " + isHit() + "\n");
+        System.out.println("Damage: " + calculateDamage() + "\n");
     }
 
     /**
@@ -44,6 +45,12 @@ public abstract class Ability {
      * @return boolean to determine if the ability hits
      */
     public abstract boolean isHit();
+
+    /**
+     * Method to calculate the ability damage.
+     * @return int representing the ability's damage
+     */
+    public abstract int calculateDamage();
 
     /**
      * Getter method for the ability name.
