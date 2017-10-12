@@ -48,7 +48,8 @@ public class HeavyAttack extends Ability {
         // calculate random ability variance
         int variance = rand.nextInt(HEAVY_ATTACK_MAX_DAMAGE - HEAVY_ATTACK_MIN_DAMAGE);
         // calculate damage with added buffs and/or debuffs
-        int result = (int) ((HEAVY_ATTACK_MIN_DAMAGE + variance + flatBuff + flatDebuff) * (scaleBuff + scaleDebuff));
+        int result = (int) ((HEAVY_ATTACK_MIN_DAMAGE + variance + flatBuff + flatDebuff) *
+                            ((1 - scaleBuff) + (1 - scaleDebuff)));
         // check that damage does not become negative and return damage value
         if(result >= 0) {
             return result;
