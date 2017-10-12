@@ -37,7 +37,23 @@ public class HeavyAttack extends Ability {
 
     @Override
     public int calculateDamage() {
-        int variance = rand.nextInt(0) + (HEAVY_ATTACK_MAX_DAMAGE - HEAVY_ATTACK_MIN_DAMAGE);
+        // calculate random ability variance
+        int variance = rand.nextInt(HEAVY_ATTACK_MAX_DAMAGE - HEAVY_ATTACK_MIN_DAMAGE);
+        // return damage value
         return HEAVY_ATTACK_MIN_DAMAGE + variance;
+    }
+
+    @Override
+    public int calculateDamage(int flatBuff, int flatDebuff, double scaleBuff, double scaleDebuff) {
+        // calculate random ability variance
+        int variance = rand.nextInt(HEAVY_ATTACK_MAX_DAMAGE - HEAVY_ATTACK_MIN_DAMAGE);
+        // calculate damage with added buffs and/or debuffs
+        int result = (int) ((HEAVY_ATTACK_MIN_DAMAGE + variance + flatBuff + flatDebuff) * (scaleBuff + scaleDebuff));
+        // check that damage does not become negative and return damage value
+        if(result >= 0) {
+            return result;
+        } else {
+            return 0;
+        }
     }
 }

@@ -35,4 +35,9 @@ public class QuickAttack extends Ability {
     public int calculateDamage() {
         return 0;
     }
+
+    @Override
+    public int calculateDamage(int flatBuff, int flatDebuff, double scaleBuff, double scaleDebuff) {
+        return 0;
+    }
 }

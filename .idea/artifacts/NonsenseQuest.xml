@@ -6,11 +6,9 @@
         <option name="appClass" value="gui.GameInterface" />
         <option name="description" value="" />
         <option name="height" value="900" />
-        <option name="htmlPlaceholderId" value="" />
         <option name="nativeBundle" value="exe" />
         <option name="title" value="NonsenseQuest" />
         <option name="vendor" value="Connor D. Milligan" />
-        <option name="version" value="" />
         <option name="width" value="1600" />
       </options>
     </properties>

@@ -38,19 +38,30 @@ public abstract class Ability {
     public void resolveAbility() {
         System.out.println("Hit: " + isHit() + "\n");
         System.out.println("Damage: " + calculateDamage() + "\n");
+        System.out.println("Buff Damage: " + calculateDamage(10, 5, 0.2, .1) + "\n");
     }
 
     /**
-     * Method to check if an ability hits.
+     * Abstract method to check if an ability hits.
      * @return boolean to determine if the ability hits
      */
     public abstract boolean isHit();
 
     /**
-     * Method to calculate the ability damage.
+     * Abstract method to calculate the ability damage.
      * @return int representing the ability's damage
      */
     public abstract int calculateDamage();
+
+    /**
+     * Abstract method to calculate the ability damage with added buffs or debuffs
+     * @param flatBuff int representing a flat buff to an ability
+     * @param flatDebuff int representing a flat debuff to an ability
+     * @param scaleBuff double representing a scaling buff to an ability
+     * @param scaleDebuff double representing a scaling debuff to an ability
+     * @return int representing the ability's damage
+     */
+    public abstract int calculateDamage(int flatBuff, int flatDebuff, double scaleBuff, double scaleDebuff);
 
     /**
      * Getter method for the ability name.
