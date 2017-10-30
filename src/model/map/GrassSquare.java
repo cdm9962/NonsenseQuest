@@ -7,10 +7,10 @@ package model.map;
  */
 public class GrassSquare extends Square {
     // Constant square values
-    public static char GRASS_SQUARE_CHARACTER = '.';
-    public static String GRASS_SQUARE_NAME = "Grass";
-    public static String GRASS_SQUARE_DESCRIPTION = "A nice patch of soft grass.";
-    public static String GRASS_SQUARE_FILE = "/images/squares/grass.png";
+    public static final char GRASS_SQUARE_CHARACTER = '.';
+    public static final String GRASS_SQUARE_NAME = "Grass";
+    public static final String GRASS_SQUARE_DESCRIPTION = "A nice patch of soft grass.";
+    public static final String GRASS_SQUARE_FILE = "/images/squares/grass.png";
 
     /**
      * Grass Square constructor.

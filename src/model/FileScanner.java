@@ -77,6 +77,9 @@ public class FileScanner {
      * @return Square representing the square to add to the stage map
      */
     public Square addSquare(int row, int col, char label, boolean isCharacterSquare, boolean isEnemySquare) {
+        switch (label) {
+            case DirtPathSquare.VERTICAL_DIRT_PATH_SQUARE_CHARACTER:
+        }
         if(label == DirtPathSquare.VERTICAL_DIRT_PATH_SQUARE_CHARACTER) {
             return new DirtPathSquare(row, col, DirtPathSquare.VERTICAL_DIRT_PATH_FILE, isCharacterSquare, isEnemySquare);
         } else if(label == DirtPathSquare.HORIZONTAL_DIRT_PATH_SQUARE_CHARACTER) {

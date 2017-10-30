@@ -20,12 +20,12 @@ public abstract class Square {
     private Player enemy;
 
     // Character square constants
-    public static char CHARACTER_SQUARE_CHARACTER = 'C';
-    public static String CHARACTER_SQUARE_NAME = "Character";
-    public static String CHARACTER_SQUARE_DESCRIPTION = "This is you.";
-    public static char ENEMY_SQUARE_CHARACTER = 'E';
-    public static String ENEMY_SQUARE_NAME = "Enemy";
-    public static String ENEMY_SQUARE_DESCRIPTION = "He looks pretty scary";
+    public static final char CHARACTER_SQUARE_CHARACTER = 'C';
+    public static final String CHARACTER_SQUARE_NAME = "Character";
+    public static final String CHARACTER_SQUARE_DESCRIPTION = "This is you.";
+    public static final char ENEMY_SQUARE_CHARACTER = 'E';
+    public static final String ENEMY_SQUARE_NAME = "Enemy";
+    public static final String ENEMY_SQUARE_DESCRIPTION = "He looks pretty scary";
 
     /**
      * Square constructor.
