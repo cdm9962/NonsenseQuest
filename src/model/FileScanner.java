@@ -6,6 +6,7 @@ import model.map.*;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Scanner;
@@ -50,12 +51,18 @@ public class FileScanner {
         // Scans through each character in the file and adds them to the map
         while (scanner.hasNext()){
             curr = scanner.next();
-            if(curr.charAt(0) == Square.CHARACTER_SQUARE_CHARACTER) {
-                map[row][col] = addSquare(row, col, curr.charAt(1), true, false);
-            } else if(curr.charAt(0) == Square.ENEMY_SQUARE_CHARACTER){
-                map[row][col] = addSquare(row, col, curr.charAt(1), false, true);
-            } else {
-                map[row][col] = addSquare(row, col, curr.charAt(0), false, false);
+            try {
+                if (curr.charAt(0) == Square.CHARACTER_SQUARE_CHARACTER) {
+                    map[row][col] = addSquare(row, col, curr.charAt(1), true, false);
+                } else if (curr.charAt(0) == Square.ENEMY_SQUARE_CHARACTER) {
+                    map[row][col] = addSquare(row, col, curr.charAt(1), false, true);
+                } else {
+                    map[row][col] = addSquare(row, col, curr.charAt(0), false, false);
+                }
+
+            // Catches invalid characters in the map file
+            } catch (IOException e) {
+                e.printStackTrace();
             }
             col++;
             // Updates column and row position
@@ -72,38 +79,52 @@ public class FileScanner {
 
     /**
      * Method to determine the type of square to add to the stage map.
+     * @param row int representing the row to place the square
+     * @param col int representing the column to place the square
      * @param label char representing the type of square
      * @param isCharacterSquare boolean representing if the character is located on the square
+     * @param isEnemySquare boolean representing if an enemy is located on the square
      * @return Square representing the square to add to the stage map
      */
-    public Square addSquare(int row, int col, char label, boolean isCharacterSquare, boolean isEnemySquare) {
+    public Square addSquare(int row, int col, char label, boolean isCharacterSquare, boolean isEnemySquare) throws IOException {
+        // Run through the character set and create the corresponding square
         switch (label) {
             case DirtPathSquare.VERTICAL_DIRT_PATH_SQUARE_CHARACTER:
-        }
-        if(label == DirtPathSquare.VERTICAL_DIRT_PATH_SQUARE_CHARACTER) {
-            return new DirtPathSquare(row, col, DirtPathSquare.VERTICAL_DIRT_PATH_FILE, isCharacterSquare, isEnemySquare);
-        } else if(label == DirtPathSquare.HORIZONTAL_DIRT_PATH_SQUARE_CHARACTER) {
+                return new DirtPathSquare(row, col, DirtPathSquare.VERTICAL_DIRT_PATH_FILE, isCharacterSquare, isEnemySquare);
+
+            case DirtPathSquare.HORIZONTAL_DIRT_PATH_SQUARE_CHARACTER:
                 return new DirtPathSquare(row, col, DirtPathSquare.HORIZONTAL_DIRT_PATH_FILE, isCharacterSquare, isEnemySquare);
-        } else if(label == DirtPathSquare.TOP_LEFT_DIRT_PATH_SQUARE_CHARACTER) {
-            return new DirtPathSquare(row, col, DirtPathSquare.TOP_LEFT_DIRT_PATH_FILE, isCharacterSquare, isEnemySquare);
-        } else if(label == DirtPathSquare.TOP_RIGHT_DIRT_PATH_SQUARE_CHARACTER) {
-            return new DirtPathSquare(row, col, DirtPathSquare.TOP_RIGHT_DIRT_PATH_FILE, isCharacterSquare, isEnemySquare);
-        } else if(label == DirtPathSquare.BOTTOM_RIGHT_DIRT_PATH_SQUARE_CHARACTER) {
-            return new DirtPathSquare(row, col, DirtPathSquare.BOTTOM_RIGHT_DIRT_PATH_FILE, isCharacterSquare, isEnemySquare);
-        } else if(label == DirtPathSquare.BOTTOM_LEFT_DIRT_PATH_SQUARE_CHARACTER) {
-            return new DirtPathSquare(row, col, DirtPathSquare.BOTTOM_LEFT_DIRT_PATH_FILE, isCharacterSquare, isEnemySquare);
-        } else if(label == DirtPathSquare.INTERSECTION_DIRT_PATH_SQUARE_CHARACTER){
-            return new DirtPathSquare(row, col, DirtPathSquare.INTERSECTION_DIRT_PATH_FILE, isCharacterSquare, isEnemySquare);
-        } else if(label == GrassSquare.GRASS_SQUARE_CHARACTER) {
-            return new GrassSquare(row, col, isCharacterSquare, isEnemySquare);
-        } else if(label == DirtSquare.DIRT_SQUARE_CHARACTER) {
-            return new DirtSquare(row, col, isCharacterSquare, isEnemySquare);
-        } else if(label == TreeSquare.MAPLE_TREE_SQUARE_CHARACTER) {
-            return new TreeSquare(row, col, TreeSquare.MAPLE_TREE_SQUARE_FILE,isCharacterSquare, isEnemySquare);
-        } else if(label == TreeSquare.PINE_TREE_SQUARE_CHARACTER){
-            return new TreeSquare(row, col, TreeSquare.PINE_TREE_SQUARE_FILE, isCharacterSquare, isEnemySquare);
-        } else {
-            return null;
+
+            case DirtPathSquare.TOP_LEFT_DIRT_PATH_SQUARE_CHARACTER:
+                return new DirtPathSquare(row, col, DirtPathSquare.TOP_LEFT_DIRT_PATH_FILE, isCharacterSquare, isEnemySquare);
+
+            case DirtPathSquare.TOP_RIGHT_DIRT_PATH_SQUARE_CHARACTER:
+                return new DirtPathSquare(row, col, DirtPathSquare.TOP_RIGHT_DIRT_PATH_FILE, isCharacterSquare, isEnemySquare);
+
+            case DirtPathSquare.BOTTOM_LEFT_DIRT_PATH_SQUARE_CHARACTER:
+                return new DirtPathSquare(row, col, DirtPathSquare.BOTTOM_LEFT_DIRT_PATH_FILE, isCharacterSquare, isEnemySquare);
+
+            case DirtPathSquare.BOTTOM_RIGHT_DIRT_PATH_SQUARE_CHARACTER:
+                return new DirtPathSquare(row, col, DirtPathSquare.BOTTOM_RIGHT_DIRT_PATH_FILE, isCharacterSquare, isEnemySquare);
+
+            case DirtPathSquare.INTERSECTION_DIRT_PATH_SQUARE_CHARACTER:
+                return new DirtPathSquare(row, col, DirtPathSquare.INTERSECTION_DIRT_PATH_FILE, isCharacterSquare, isEnemySquare);
+
+            case GrassSquare.GRASS_SQUARE_CHARACTER:
+                return new GrassSquare(row, col, isCharacterSquare, isEnemySquare);
+
+            case DirtSquare.DIRT_SQUARE_CHARACTER:
+                return new DirtSquare(row, col, isCharacterSquare, isEnemySquare);
+
+            case TreeSquare.MAPLE_TREE_SQUARE_CHARACTER:
+                return new TreeSquare(row, col, TreeSquare.MAPLE_TREE_SQUARE_FILE,isCharacterSquare, isEnemySquare);
+
+            case TreeSquare.PINE_TREE_SQUARE_CHARACTER:
+                return new TreeSquare(row, col, TreeSquare.PINE_TREE_SQUARE_FILE, isCharacterSquare, isEnemySquare);
+
+            // Error, character not recognized
+            default:
+                throw new IOException("Failed to read map from file.");
         }
     }
 
