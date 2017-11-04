@@ -64,9 +64,10 @@ public class GameInterface extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle(TITLE);
-        primaryStage.setScene(new Scene(makeSplash()));
+        primaryStage.setScene(new Scene(makeSplash(), STAGE_WIDTH, STAGE_HEIGHT));
         primaryStage.setHeight(STAGE_HEIGHT);
         primaryStage.setWidth(STAGE_WIDTH);
+        primaryStage.setResizable(false);
         primaryStage.show();
         this.primaryStage = primaryStage;
     }
@@ -121,5 +122,4 @@ public class GameInterface extends Application {
 
         return border;
     }
-
 }
