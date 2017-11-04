@@ -7,10 +7,10 @@ package model.map;
  */
 public class DirtSquare extends Square {
     // Constant square values
-    public static char DIRT_SQUARE_CHARACTER = '/';
-    public static String DIRT_SQUARE_NAME = "Dirt";
-    public static String DIRT_SQUARE_DESCRIPTION = "This area looks to be well traveled.";
-    public static String DIRT_SQUARE_FILE = "/images/squares/dirt.png";
+    public static final char DIRT_SQUARE_CHARACTER = '/';
+    public static final String DIRT_SQUARE_NAME = "Dirt";
+    public static final String DIRT_SQUARE_DESCRIPTION = "This area looks to be well traveled.";
+    public static final String DIRT_SQUARE_FILE = "/images/squares/dirt.png";
 
     /**
      * Dirt Square constructor.

@@ -7,14 +7,14 @@ package model.map;
  */
 public class TreeSquare extends Square {
     // Constant square values
-    public static char MAPLE_TREE_SQUARE_CHARACTER = '*';
-    public static char PINE_TREE_SQUARE_CHARACTER = '^';
-    public static String TREE_SQUARE_NAME = "TreeSquare";
-    public static String TREE_SQUARE_DESCRIPTION = "What a fine looking tree.";
+    public static final char MAPLE_TREE_SQUARE_CHARACTER = '*';
+    public static final char PINE_TREE_SQUARE_CHARACTER = '^';
+    public static final String TREE_SQUARE_NAME = "TreeSquare";
+    public static final String TREE_SQUARE_DESCRIPTION = "What a fine looking tree.";
 
     // Constant file paths
-    public static String MAPLE_TREE_SQUARE_FILE = "/images/squares/mapletree.png";
-    public static String PINE_TREE_SQUARE_FILE = "/images/squares/pinetree.png";
+    public static final String MAPLE_TREE_SQUARE_FILE = "/images/squares/mapletree.png";
+    public static final String PINE_TREE_SQUARE_FILE = "/images/squares/pinetree.png";
 
     /**
      * TreeSquare Square constructor.
