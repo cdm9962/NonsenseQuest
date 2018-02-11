@@ -21,6 +21,8 @@ import model.races.Human;
 import java.awt.*;
 
 import static gui.GameInterface.PIXEL_FONT_SMALL;
+import static gui.GameInterface.STAGE_HEIGHT;
+import static gui.GameInterface.STAGE_WIDTH;
 
 /**
  * Utility class for the opening scene.  Gathers user information for character creation.
@@ -87,7 +89,7 @@ public class OpeningScene {
         });
 
         // Updates the scene
-        Scene opening = new Scene(border);
+        Scene opening = new Scene(border, STAGE_WIDTH, STAGE_HEIGHT);
         this.primaryStage.setScene(opening);
     }
 
@@ -146,7 +148,7 @@ public class OpeningScene {
         characterClass.setHgap(GameInterface.BUTTON_INSETS);
         characterClass.setVgap(GameInterface.BUTTON_INSETS);
 
-        // Adds the label to the class selction
+        // Adds the label to the class selection
         Label title = new Label("Select a Class: ");
         title.setFont(GameInterface.PIXEL_FONT_SMALL);
         characterClass.add(title, 0, 0);
