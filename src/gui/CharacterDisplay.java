@@ -24,7 +24,7 @@ public class CharacterDisplay {
     public CharacterDisplay(GameModel model){
         this.model = model;
         this.characterPane = new BorderPane();
-//        this.characterPane.setPadding(new Insets(5.0));
+        this.characterPane.setPadding(new Insets(5.0));
     }
 
     /**
